@@ -206,10 +206,7 @@ describe('AppNexusAdapter', () => {
       sinon.assert.calledOnce(bidmanager.addBidResponse);
 
       const response = bidmanager.addBidResponse.firstCall.args[1];
-      expect(response).to.have.property(
-        'statusMessage',
-        'Bid returned empty or error response'
-      );
+      expect(response).to.have.property('statusMessage', 'Bid available');
     });
 
     it('handles JSON.parse errors', () => {

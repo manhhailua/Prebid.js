@@ -27,6 +27,7 @@ function AppnexusAstAdapter() {
         bidRequests[bid.bidId] = bid;
 
         let tag = {};
+
         tag.sizes = getSizes(bid.sizes);
         tag.primary_size = tag.sizes[0];
         tag.uuid = bid.bidId;
@@ -36,6 +37,21 @@ function AppnexusAstAdapter() {
         tag.disable_psa = true;
         if (!utils.isEmpty(bid.params.keywords)) {
           tag.keywords = getKeywords(bid.params.keywords);
+        }
+
+        if (bid.params.video) {
+          tag.ad_types = 'video';
+          tag.require_asset_url = true;
+          tag.video = {
+            id: parseInt(bid.params.video.id, 10),
+            mimes: bid.params.video.mimes,
+            minduration: parseInt(bid.params.video.minduration, 10),
+            maxduration: parseInt(bid.params.video.maxduration, 10),
+            startdelay: parseInt(bid.params.video.startdelay, 10),
+            skipppable: bid.params.video.skippable,
+            playback_method: bid.params.video.playback_method,
+            frameworks: bid.params.video.frameworks
+          };
         }
 
         return tag;
@@ -78,18 +94,19 @@ function AppnexusAstAdapter() {
       const type = tag.ads && tag.ads[0].ad_type;
 
       let status;
-      if (cpm !== 0 && type === 'banner') {
+      if (cpm !== 0 && (type === 'banner' || type === 'video')) {
         status = STATUS.GOOD;
       } else {
         status = STATUS.NO_BID;
       }
 
-      if (type && type !== 'banner') {
+      if (type && (type !== 'banner' && type !== 'video')) {
         utils.logError(`${type} ad type not supported`);
       }
 
       tag.bidId = tag.uuid;  // bidfactory looks for bidId on requested bid
       const bid = createBid(status, tag);
+      if (type === 'video') bid.mediaType = 'video';
       const placement = bidRequests[bid.adId].placementCode;
       bidmanager.addBidResponse(placement, bid);
     });
@@ -158,16 +175,23 @@ function AppnexusAstAdapter() {
 
     if (status === STATUS.GOOD) {
       bid.cpm = tag.ads[0].cpm;
-      bid.creative_id = tag.ads[0].creativeId;
-      bid.width = tag.ads[0].rtb.banner.width;
-      bid.height = tag.ads[0].rtb.banner.height;
-      bid.ad = tag.ads[0].rtb.banner.content;
-      try {
-        const url = tag.ads[0].rtb.trackers[0].impression_urls[0];
-        const tracker = utils.createTrackPixelHtml(url);
-        bid.ad += tracker;
-      } catch (error) {
-        utils.logError('Error appending tracking pixel', error);
+      bid.creative_id = tag.ads[0].creative_id;
+
+      if (tag.ads[0].rtb.video) {
+        bid.width = tag.ads[0].rtb.video.player_width;
+        bid.height = tag.ads[0].rtb.video.player_height;
+        bid.ad = tag.ads[0].rtb.video.content || tag.ads[0].rtb.video.asset_url;
+      } else {
+        bid.width = tag.ads[0].rtb.banner.width;
+        bid.height = tag.ads[0].rtb.banner.height;
+        bid.ad = tag.ads[0].rtb.banner.content;
+        try {
+          const url = tag.ads[0].rtb.trackers[0].impression_urls[0];
+          const tracker = utils.createTrackPixelHtml(url);
+          bid.ad += tracker;
+        } catch (error) {
+          utils.logError('Error appending tracking pixel', error);
+        }
       }
     }
 
