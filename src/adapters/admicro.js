@@ -32,7 +32,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
        * Make request to Admicro SSP API
        */
       request.ajax(
-        'http://192.168.23.56:10000/ssp_request?' + data,
+        'http://45.124.92.72:10000/ssp_request?' + data,
         function (responseText, response) {
 
           utils.logInfo('Admicro SSP response', response);
