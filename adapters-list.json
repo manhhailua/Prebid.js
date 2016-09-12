@@ -1,3 +1,15 @@
 [
-  "admicro"
+  "appnexus",
+  "appnexusAst",
+  {
+    "appnexus": {
+      "alias": "brealtime"
+    }
+  },
+  {
+    "appnexus": {
+      "alias": "pagescience"
+    }
+  },
+  "admicro",
 ]
