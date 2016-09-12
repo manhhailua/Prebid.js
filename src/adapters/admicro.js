@@ -47,7 +47,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
           // Local testing purpose
           if (location.search.indexOf("local_script=true") !== -1) {
-            bidObject.ad.replace(
+            bidObject.ad = bidObject.ad.replace(
               'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
               'http://nghiahop.xyz/sspcallback.js'
             );
