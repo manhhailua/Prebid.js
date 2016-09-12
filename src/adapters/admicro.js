@@ -1,7 +1,7 @@
 const bidfactory = require('../bidfactory.js');
 const bidmanager = require('../bidmanager.js');
-const request    = require('../ajax');
-const utils      = require('../utils');
+const request = require('../ajax');
+const utils = require('../utils');
 // var _ = require('lodash');
 
 const AdmicroAdapter = function AdmicroAdapter() {
@@ -33,25 +33,28 @@ const AdmicroAdapter = function AdmicroAdapter() {
        */
       request.ajax(
         'http://45.124.92.72:10000/ssp_request?' + data,
-        function (responseText, response) {
+        function(responseText, response) {
 
           utils.logInfo('Admicro SSP response', response);
 
-          var ads              = JSON.parse(responseText);
-          var bidObject        = bidfactory.createBid(1);
-          bidObject.bidderCode = bid.bidder;
-          bidObject.cpm        = ads.cpm;
-          bidObject.ad         = ads.src;
-          bidObject.width      = ads.width;
-          bidObject.height     = ads.height;
+          var ads = JSON.parse(responseText);
 
           // Local testing purpose
           if (location.search.indexOf("local_script=true") !== -1) {
-            bidObject.ad = bidObject.ad.replace(
+            utils.logInfo('Local script is enabled!');
+            ads = ads.replace(
               'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
               'http://nghiahop.xyz/sspcallback.js'
             );
           }
+
+          var bidObject = bidfactory.createBid(1);
+
+          bidObject.bidderCode = bid.bidder;
+          bidObject.cpm = ads.cpm;
+          bidObject.ad = ads.src;
+          bidObject.width = ads.width;
+          bidObject.height = ads.height;
 
           utils.logInfo('AdMicro Ads', bidObject);
 
