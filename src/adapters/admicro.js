@@ -39,15 +39,6 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
           var ads = JSON.parse(responseText);
 
-          // Local testing purpose
-          if (location.search.indexOf("local_script=true") !== -1) {
-            utils.logInfo('Local script is enabled!');
-            ads = ads.replace(
-              'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
-              'http://nghiahop.xyz/sspcallback.js'
-            );
-          }
-
           var bidObject = bidfactory.createBid(1);
 
           bidObject.bidderCode = bid.bidder;
@@ -55,6 +46,16 @@ const AdmicroAdapter = function AdmicroAdapter() {
           bidObject.ad = ads.src;
           bidObject.width = ads.width;
           bidObject.height = ads.height;
+
+          // Local testing purpose
+          if (location.search.indexOf("local_script=true") !== -1) {
+            utils.logInfo('Local script is enabled!');
+
+            bidObject.ad = bidObject.ad.replace(
+              'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
+              'http://nghiahop.xyz/sspcallback.js'
+            );
+          }
 
           utils.logInfo('AdMicro Ads', bidObject);
 
