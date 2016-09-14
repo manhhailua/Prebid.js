@@ -41,7 +41,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
     let queryString = utils.parseQueryStringParameters(bid.params);
     utils.logInfo('Ads query string', queryString);
 
-    request.ajax(
+    ajax(
       // URL
       'http://45.124.92.72:10000/ssp_request',
       // Callback
