@@ -65,6 +65,7 @@ export function ajax(url, callback, data, options = {}) {
 
   function handler() {
     if (x.readyState === XHR_DONE && callback) {
+      utils.logMessage('@@@@@@@@@@@@ AJAX is done! @@@@@@@@@@@@');
       callback(x.responseText, x);
     }
   }
