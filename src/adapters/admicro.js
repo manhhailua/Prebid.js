@@ -45,7 +45,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
   function _request(bid, queryString) {
     request.ajax(
       'http://45.124.92.72:10000/ssp_request?' + queryString,
-      function(responseText, response) { // jshint loopfunc:true
+      function(responseText, response) {
 
         utils.logInfo('Admicro SSP response', response);
 
