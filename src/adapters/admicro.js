@@ -70,7 +70,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         utils.logInfo('AdMicro Ads', bidObject);
 
         bidmanager.addBidResponse(bid.placementCode, bidObject);
-      },
+      }
     );
   }
 
