@@ -24,8 +24,10 @@ const AdmicroAdapter = function AdmicroAdapter() {
    */
   function _requestBids(bids) {
     utils.logInfo('Bids object', bids);
+    
+    for (var i = 0; i < bids.length; i++) {
+      var bid = bids[i];
 
-    bids.map(bid => {
       let data = utils.parseQueryStringParameters(bid.params);
       utils.logInfo('Current bid object', bid);
       utils.logInfo('Ads query string', data);
@@ -64,7 +66,8 @@ const AdmicroAdapter = function AdmicroAdapter() {
           bidmanager.addBidResponse(bid.placementCode, bidObject);
         }
       );
-    });
+    }
+
   }
 
   // Export the callBids function, so that prebid.js can execute this function
