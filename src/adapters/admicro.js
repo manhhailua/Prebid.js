@@ -1,8 +1,7 @@
-const bidfactory = require('../bidfactory.js');
-const bidmanager = require('../bidmanager.js');
-const request = require('../ajax');
-const utils = require('../utils');
-// let _ = require('lodash');
+import bidfactory from 'src/bidfactory';
+import bidmanager from 'src/bidmanager';
+import { ajax } from 'src/ajax';
+import * as utils from 'src/utils';
 
 const AdmicroAdapter = function AdmicroAdapter() {
 
