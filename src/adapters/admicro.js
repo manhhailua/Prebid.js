@@ -2,7 +2,7 @@ const bidfactory = require('../bidfactory.js');
 const bidmanager = require('../bidmanager.js');
 const request = require('../ajax');
 const utils = require('../utils');
-// var _ = require('lodash');
+// let _ = require('lodash');
 
 const AdmicroAdapter = function AdmicroAdapter() {
 
@@ -25,35 +25,32 @@ const AdmicroAdapter = function AdmicroAdapter() {
   function _requestBids(bids) {
     utils.logInfo('Bids object', bids);
 
-    for (var i = 0; i < bids.length; i++) {
-      var bid = bids[i];
-      let queryString = utils.parseQueryStringParameters(bid.params);
-
+    for (let i = 0; i < bids.length; i++) {
+      let bid = bids[i];
       utils.logInfo('Current bid object', bid);
-      utils.logInfo('Ads query string', queryString);
 
-      _request(bid, queryString);
+      _request(bid);
     }
   }
 
   /**
    * Send AJAX request to SSP Service
    * @param  {[object]} bid         [single bid object]
-   * @param  {[string]} queryString [query string contains params]
    * @return {[void]}               [return nothing]
    */
-  function _request(bid, queryString) {
+  function _request(bid) {
+    let queryString = utils.parseQueryStringParameters(bid.params);
+    utils.logInfo('Ads query string', queryString);
+
     request.ajax(
       // URL
       'http://45.124.92.72:10000/ssp_request',
       // Callback
       function(responseText, response) {
-
         utils.logInfo('Admicro SSP response', response);
 
-        var ads = JSON.parse(responseText);
-
-        var bidObject = bidfactory.createBid(1);
+        let ads = JSON.parse(responseText);
+        let bidObject = bidfactory.createBid(1);
 
         bidObject.bidderCode = bid.bidder;
         bidObject.cpm = ads.cpm;
@@ -76,7 +73,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         bidmanager.addBidResponse(bid.placementCode, bidObject);
       },
       // Data
-      queryString
+      bid.params,
     );
   }
 
