@@ -18,9 +18,9 @@ const AdmicroAdapter = function AdmicroAdapter() {
   }
 
   /**
-   *
-   * @param bids
-   * @private
+   * Call bids requests
+   * @param  {[array]} bids [array of bids objects]
+   * @return {[void]}       [return nothing]
    */
   function _requestBids(bids) {
     utils.logInfo('Bids object', bids);
