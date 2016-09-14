@@ -42,8 +42,9 @@ const AdmicroAdapter = function AdmicroAdapter() {
     utils.logInfo('Ads query string', queryString);
 
     request('http://45.124.92.72:10000/ssp_request?' + queryString, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+      if (!error && response.statusCode === 200) {
 
+        utils.logInfo('Admicro SSP response body', body);
         utils.logInfo('Admicro SSP response', response);
 
         let ads = JSON.parse(response.responseText);
