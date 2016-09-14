@@ -27,46 +27,53 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
     for (var i = 0; i < bids.length; i++) {
       var bid = bids[i];
-      let data = utils.parseQueryStringParameters(bid.params);
+      let queryString = utils.parseQueryStringParameters(bid.params);
 
       utils.logInfo('Current bid object', bid);
-      utils.logInfo('Ads query string', data);
+      utils.logInfo('Ads query string', queryString);
 
-      /**
-       * Make request to Admicro SSP API
-       */
-      request.ajax(
-        'http://45.124.92.72:10000/ssp_request?' + data,
-        function(responseText, response) { // jshint loopfunc:true
-
-          utils.logInfo('Admicro SSP response', response);
-
-          var ads = JSON.parse(responseText);
-
-          var bidObject = bidfactory.createBid(1);
-
-          bidObject.bidderCode = bid.bidder;
-          bidObject.cpm = ads.cpm;
-          bidObject.ad = ads.src;
-          bidObject.width = ads.width;
-          bidObject.height = ads.height;
-
-          // Local testing purpose
-          if (location.search.indexOf("local_script=true") !== -1) {
-            utils.logInfo('Local script is enabled!');
-
-            bidObject.ad = bidObject.ad.replace(
-              'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
-              'http://nghiahop.xyz/sspcallback.js'
-            );
-          }
-
-          utils.logInfo('AdMicro Ads', bidObject);
-
-          bidmanager.addBidResponse(bid.placementCode, bidObject);
-        }
-      );
+      _request(bid, queryString);
     }
+  }
+
+  /**
+   * Send AJAX request to SSP Service
+   * @param  {[object]} bid         [single bid object]
+   * @param  {[string]} queryString [query string contains params]
+   * @return {[void]}               [return nothing]
+   */
+  function _request(bid, queryString) {
+    request.ajax(
+      'http://45.124.92.72:10000/ssp_request?' + queryString,
+      function(responseText, response) { // jshint loopfunc:true
+
+        utils.logInfo('Admicro SSP response', response);
+
+        var ads = JSON.parse(responseText);
+
+        var bidObject = bidfactory.createBid(1);
+
+        bidObject.bidderCode = bid.bidder;
+        bidObject.cpm = ads.cpm;
+        bidObject.ad = ads.src;
+        bidObject.width = ads.width;
+        bidObject.height = ads.height;
+
+        // Local testing purpose
+        if (location.search.indexOf("local_script=true") !== -1) {
+          utils.logInfo('Local script is enabled!');
+
+          bidObject.ad = bidObject.ad.replace(
+            'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
+            'http://nghiahop.xyz/sspcallback.js'
+          );
+        }
+
+        utils.logInfo('AdMicro Ads', bidObject);
+
+        bidmanager.addBidResponse(bid.placementCode, bidObject);
+      }
+    );
   }
 
   // Export the callBids function, so that prebid.js can execute this function
