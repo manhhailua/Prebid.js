@@ -22,11 +22,11 @@ const AdmicroAdapter = function AdmicroAdapter() {
    * @return {[void]}       [return nothing]
    */
   function _requestBids(bids) {
-    // utils.logInfo('Bids object', bids);
+    utils.logInfo('Bids object', bids);
 
     for (let i = 0; i < bids.length; i++) {
       let bid = bids[i];
-      // utils.logInfo('Current bid object', bid);
+      utils.logInfo('Current bid object', bid);
 
       _request(bid);
     }
@@ -39,14 +39,14 @@ const AdmicroAdapter = function AdmicroAdapter() {
    */
   function _request(bid) {
     let queryString = utils.parseQueryStringParameters(bid.params);
-    // utils.logInfo('Ads query string', queryString);
+    utils.logInfo('Ads query string', queryString);
 
     ajax(
       // URL
       'http://45.124.92.72:10000/ssp_request?' + queryString,
       // Callback
-      function(responseText) {
-        // utils.logInfo('Admicro SSP response', response);
+      function(responseText, response) {
+        utils.logInfo('Admicro SSP response', response);
 
         let ads = JSON.parse(responseText);
         let bidObject = bidfactory.createBid(1);
@@ -67,7 +67,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
           );
         }
 
-        // utils.logInfo('AdMicro Ads', bidObject);
+        utils.logInfo('AdMicro Ads', bidObject);
 
         bidmanager.addBidResponse(bid.placementCode, bidObject);
       }
