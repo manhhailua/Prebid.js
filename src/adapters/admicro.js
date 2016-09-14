@@ -23,6 +23,8 @@ const AdmicroAdapter = function AdmicroAdapter() {
    * @private
    */
   function _requestBids(bids) {
+    utils.logInfo('Bids', bids);
+    
     bids.map(bid => {
       let data = utils.parseQueryStringParameters(bid.params);
       utils.logInfo('Bids object', bid);
