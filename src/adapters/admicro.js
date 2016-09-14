@@ -1,6 +1,6 @@
 import bidfactory from 'src/bidfactory';
 import bidmanager from 'src/bidmanager';
-import { ajax } from 'src/ajax';
+import request from 'request';
 import * as utils from 'src/utils';
 
 const AdmicroAdapter = function AdmicroAdapter() {
@@ -41,14 +41,12 @@ const AdmicroAdapter = function AdmicroAdapter() {
     let queryString = utils.parseQueryStringParameters(bid.params);
     utils.logInfo('Ads query string', queryString);
 
-    ajax(
-      // URL
-      'http://45.124.92.72:10000/ssp_request?' + queryString,
-      // Callback
-      function(responseText, response) {
+    request('http://45.124.92.72:10000/ssp_request?' + queryString, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+
         utils.logInfo('Admicro SSP response', response);
 
-        let ads = JSON.parse(responseText);
+        let ads = JSON.parse(response.responseText);
         let bidObject = bidfactory.createBid(1);
 
         bidObject.bidderCode = bid.bidder;
@@ -70,8 +68,9 @@ const AdmicroAdapter = function AdmicroAdapter() {
         utils.logInfo('AdMicro Ads', bidObject);
 
         bidmanager.addBidResponse(bid.placementCode, bidObject);
+
       }
-    );
+    });
   }
 
   // Export the callBids function, so that prebid.js can execute this function
