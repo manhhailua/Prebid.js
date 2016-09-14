@@ -45,7 +45,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
       // URL
       'http://45.124.92.72:10000/ssp_request?' + queryString,
       // Callback
-      function(responseText, response) {
+      function(responseText) {
         // utils.logInfo('Admicro SSP response', response);
 
         let ads = JSON.parse(responseText);
