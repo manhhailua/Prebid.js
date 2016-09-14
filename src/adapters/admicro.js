@@ -72,7 +72,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         bidmanager.addBidResponse(bid.placementCode, bidObject);
       },
       // Data
-      JSON.stringify(bid.params)
+      JSON.stringify({bid.params})
     );
   }
 
