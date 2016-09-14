@@ -59,13 +59,10 @@ export function ajax(url, callback, data, options = {}) {
     }
   }
 
-  utils.logMessage('@@@@@@@@@@@@ AJAX is sent! @@@@@@@@@@@@');
-
   x.send(method === 'POST' && data);
 
   function handler() {
     if (x.readyState === XHR_DONE && callback) {
-      utils.logMessage('@@@@@@@@@@@@ AJAX is done! @@@@@@@@@@@@');
       callback(x.responseText, x);
     }
   }
