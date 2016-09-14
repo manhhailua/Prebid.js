@@ -59,6 +59,8 @@ export function ajax(url, callback, data, options = {}) {
     }
   }
 
+  utils.logMessage('@@@@@@@@@@@@ AJAX is sent! @@@@@@@@@@@@');
+
   x.send(method === 'POST' && data);
 
   function handler() {
