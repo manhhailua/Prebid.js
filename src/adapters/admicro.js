@@ -24,11 +24,11 @@ const AdmicroAdapter = function AdmicroAdapter() {
    */
   function _requestBids(bids) {
     utils.logInfo('Bids object', bids);
-    
+
     for (var i = 0; i < bids.length; i++) {
       var bid = bids[i];
-
       let data = utils.parseQueryStringParameters(bid.params);
+
       utils.logInfo('Current bid object', bid);
       utils.logInfo('Ads query string', data);
 
@@ -37,7 +37,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
        */
       request.ajax(
         'http://45.124.92.72:10000/ssp_request?' + data,
-        function(responseText, response) {
+        function(responseText, response) { // jshint loopfunc:true
 
           utils.logInfo('Admicro SSP response', response);
 
@@ -67,7 +67,6 @@ const AdmicroAdapter = function AdmicroAdapter() {
         }
       );
     }
-
   }
 
   // Export the callBids function, so that prebid.js can execute this function
