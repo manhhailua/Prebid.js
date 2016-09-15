@@ -49,7 +49,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         let bidObject = bidfactory.createBid(1);
 
         bidObject.bidderCode = bid.bidder;
-        bidObject.cpm = ads.cpm / 22270; // Convert VND to USD
+        bidObject.cpm = ads.cpm;
         bidObject.ad = ads.src;
         bidObject.width = ads.width;
         bidObject.height = ads.height;
