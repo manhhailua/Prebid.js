@@ -46,8 +46,6 @@ export function ajax(url, callback, data, options = {}) {
     let urlInfo = parseURL(url);
     Object.assign(urlInfo.search, data);
     url = formatURL(urlInfo);
-    console.log('AJAX urlInfo : ', urlInfo);
-    console.log('AJAX url : ', url);
   }
 
   x.open(method, url);

@@ -38,9 +38,6 @@ const AdmicroAdapter = function AdmicroAdapter() {
    * @return {[void]}               [return nothing]
    */
   function _request(bid) {
-    let queryString = utils.parseQueryStringParameters(bid.params);
-    utils.logInfo('Ads query string', queryString);
-
     ajax(
       // URL
       'http://45.124.92.72:10000/ssp_request',
@@ -71,7 +68,9 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
         bidmanager.addBidResponse(bid.placementCode, bidObject);
       },
+      // Query params
       bid.params,
+      // AJAX options
       {
         method: 'GET',
         preflight: false,
