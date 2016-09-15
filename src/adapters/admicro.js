@@ -6,9 +6,9 @@ import * as utils from 'src/utils';
 const AdmicroAdapter = function AdmicroAdapter() {
 
   /**
-   *
-   * @param params
-   * @private
+   * Default function for call bids
+   * @param  {object} params  all params
+   * @return {void}           void function
    */
   function _callBids(params) {
     let bids = params.bids || [];
@@ -18,8 +18,8 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
   /**
    * Call bids requests
-   * @param  {[array]} bids [array of bids objects]
-   * @return {[void]}       [return nothing]
+   * @param  {array} bids   array of bids objects
+   * @return {void}         void function
    */
   function _requestBids(bids) {
     utils.logInfo('Bids object', bids);
@@ -34,8 +34,8 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
   /**
    * Send AJAX request to SSP Service
-   * @param  {[object]} bid         [single bid object]
-   * @return {[void]}               [return nothing]
+   * @param  {object} bid   single bid object
+   * @return {void}         void function
    */
   function _request(bid) {
     ajax(
@@ -49,7 +49,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         let bidObject = bidfactory.createBid(1);
 
         bidObject.bidderCode = bid.bidder;
-        bidObject.cpm = ads.cpm / 22270;
+        bidObject.cpm = ads.cpm / 22270; // Convert VND to USD
         bidObject.ad = ads.src;
         bidObject.width = ads.width;
         bidObject.height = ads.height;
@@ -58,6 +58,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
         if (location.search.indexOf("local_script=true") !== -1) {
           utils.logInfo('Local script is enabled!');
 
+          // Using testing version instead of production version of sspcallback.js
           bidObject.ad = bidObject.ad.replace(
             'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
             'http://nghiahop.xyz/sspcallback.js'
@@ -71,6 +72,8 @@ const AdmicroAdapter = function AdmicroAdapter() {
       // Query params
       bid.params,
       // AJAX options
+      // .method - use GET or POST is okay
+      // .contentType and .preflight is for preventing preflight requests by CORS
       {
         method: 'GET',
         contentType: 'application/x-www-form-urlencoded',
