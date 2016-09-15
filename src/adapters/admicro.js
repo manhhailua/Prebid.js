@@ -43,7 +43,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
 
     ajax(
       // URL
-      'http://45.124.92.72:10000/ssp_request?' + queryString,
+      'http://45.124.92.72:10000/ssp_request',
       // Callback
       function(responseText, response) {
         utils.logInfo('Admicro SSP response', response);
@@ -70,6 +70,11 @@ const AdmicroAdapter = function AdmicroAdapter() {
         utils.logInfo('AdMicro Ads', bidObject);
 
         bidmanager.addBidResponse(bid.placementCode, bidObject);
+      },
+      bid.params,
+      {
+        method: 'GET',
+        preflight: false,
       }
     );
   }
