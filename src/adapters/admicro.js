@@ -73,6 +73,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
       // AJAX options
       {
         method: 'GET',
+        contentType: 'application/x-www-form-urlencoded',
         preflight: false,
       }
     );
