@@ -8,6 +8,7 @@
     "appnexus",
     "appnexusAst",
     "getintent",
+    "hiromedia",
     "indexExchange",
     "kruxlink",
     "openx",
@@ -28,6 +29,7 @@
     "underdogmedia",
     "memeglobal",
     "centro",
+    "roxot",
     {
       "appnexus": {
         "alias": "brealtime"
@@ -36,6 +38,11 @@
     {
       "appnexus": {
         "alias": "pagescience"
+      }
+    },
+    {
+      "appnexus": {
+        "alias": "defymedia"
       }
     },
     {
