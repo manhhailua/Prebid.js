@@ -40,7 +40,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
   function _request(bid) {
     ajax(
       // URL
-      'http://45.124.92.72:10000/ssp_request',
+      '//45.124.92.72:10000/ssp_request',
       // Callback
       function(responseText, response) {
         utils.logInfo('Admicro SSP response', response);
@@ -53,17 +53,6 @@ const AdmicroAdapter = function AdmicroAdapter() {
         bidObject.ad = ads.src;
         bidObject.width = ads.width;
         bidObject.height = ads.height;
-
-        // Local testing purpose
-        if (location.search.indexOf("local_script=true") !== -1) {
-          utils.logInfo('Local script is enabled!');
-
-          // Using testing version instead of production version of sspcallback.js
-          bidObject.ad = bidObject.ad.replace(
-            'http://adi.admicro.vn/adt/banners/nam2015/148/sspcallback/sspcallback.js',
-            'http://nghiahop.xyz/sspcallback.js'
-          );
-        }
 
         utils.logInfo('AdMicro Ads', bidObject);
 
