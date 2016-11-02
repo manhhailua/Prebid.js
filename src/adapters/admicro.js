@@ -40,7 +40,7 @@ const AdmicroAdapter = function AdmicroAdapter() {
   function _request(bid) {
     ajax(
       // URL
-      '//45.124.92.72:10000/ssp_request',
+      '//sspapi.admicro.vn/ssp_request',
       // Callback
       function(responseText, response) {
         utils.logInfo('Admicro SSP response', response);
