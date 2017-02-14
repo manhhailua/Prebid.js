@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Admicro Prebid Ads</title>
+  </head>
+
+  <body>
+    <script src="//admicro1.vcmedia.vn/core/admicro_core_nld.js"></script>
+    <script type="text/javascript">
+      (function () {
+        var d = document, pbs = d.createElement('script');
+        pbs.type = 'text/javascript';
+        pbs.src = '/build-admicro/dist/prebid.js';
+        var target = document.getElementsByTagName('head')[0];
+        target.insertBefore(pbs, target.firstChild);
+      })();
+    </script>
+    <script>
+      // Render ads dựa vào mảng chứa danh sách các bidders, bidders có index nhỏ hơn sẽ có mức độ ưu tiên cao hơn
+      function renderAds(iframeId, prioritizedBiddersList) {
+        try {
+          // iframe và inner document
+          var iframe = document.getElementById(iframeId);
+          var iframeDoc = iframe.contentWindow.document;
+
+          // Lấy thông tin bids được gán cho iframem trên
+          var biddersList = [].concat(prioritizedBiddersList || []);
+          var adserverTargeting = pbjs.getAdserverTargetingForAdUnitCode(iframeId);
+
+          // Lấy thông tin bidders theo thứ tự ưu tiên
+          var adTarget = getTargeting(biddersList, adserverTargeting);
+          pbjs.renderAd(iframeDoc, adTarget); // Render quảng cáo
+        } catch (error) {
+          console.log('Ads render fail! Reason:\n ', error);
+          renderDefaultAds(iframeId);
+        }
+      }
+
+      // Render quảng cáo mặc định trong các trường hợp không lấy được quảng cáo
+      function renderDefaultAds(iframeId) {
+        // iframe và inner document
+        var iframe = document.getElementById(iframeId);
+        var iframeDoc = iframe.contentWindow.document;
+
+        iframe.width = 300;
+        iframe.height = 250;
+        iframe.frameBorder = '1px solid';
+        iframeDoc.write('<h4>No Ads!</h4>');
+      }
+
+      // Lấy các thông số về quảng cáo từ bids response
+      function getTargeting(biddersList, adserverTargeting) {
+        // Trả về bid của bidder thắng theo chuẩn của prebid hoặc bidder duy nhất
+        if (biddersList.length <= 1 && biddersList.indexOf('hb_adid')) {
+          return adserverTargeting['hb_adid'];
+        }
+
+        // Nếu bid của bidder được ưu tiên tồn tại trong kết quả bids thì đưa trả về bid của bidder được ưu tiên
+        for (var i = 0; i <= biddersList.length; i++) {
+          var adTarget = adserverTargeting['hb_adid_' + biddersList[i]];
+          if (adTarget) {
+            return adTarget;
+          }
+        }
+      }
+
+      /**
+       * Push dữ liệu quảng cáo và render
+       *
+       * @param adUnits     bids data
+       * @param placement   slot quảng cáo
+       * @param bidders     danh sách bidders (có áp dụng ưu tiên từ trái sang phải của mảng
+       * @param timeout     thời gian timeout của bid requests
+       */
+      function pushBids(adUnits, placement, bidders, timeout) {
+        pbjs.que.push(function () {
+          pbjs.enableSendAllBids(); // Cho phép gửi toàn bộ bids được khai báo đến Ads Server, mặc định chỉ gửi bid có giá hiển thị cao nhất
+          pbjs.addAdUnits(adUnits); // Thêm Ad unit sau khi khai báo
+          pbjs.requestBids({
+            // Chỉ định bid được gọi
+            adUnitCodes: placement,
+            // Callback được gọi sau khi tất cả các bid được gửi đi có kết quả trả về
+            bidsBackHandler: sendAdserverRequest
+          });
+        });
+
+        function sendAdserverRequest() {
+          if (pbjs.adserverRequestSent[placement]) return; // Kiểm tra nếu đã gửi bids request 1 lần thì sẽ không làm lần thứ 2 (timeout)
+          pbjs.adserverRequestSent[placement] = true; // Xác định bids request đã được gửi
+          renderAds(placement, bidders); // Render ads theo mảng ưu tiên
+        }
+
+        // Timeout: sau khoảng thời gian quy định, sẽ gửi bids request đến ads server
+        setTimeout(function () {
+          sendAdserverRequest();
+        }, timeout || 1000);
+      }
+
+      // Prebid publisher object
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      // Đối tượng chứa cờ thực thi của các bid placements
+      pbjs.adserverRequestSent = {};
+    </script>
+
+    <h3>Ads Place 1 from AdMicro</h3>
+    <div id="sspbid_319">
+      <iframe
+        id="ads-place-319" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        topmargin="0" leftmargin="0" allowtransparency="true" width="0" height="0"
+      ></iframe>
+
+      <script>
+        (function () {
+          var placement = 'ads-place-319';
+          var adUnits = [{
+            code: placement, // Id của <div/> chứa quảng cáo
+            sizes: [[300, 250]], // Kích thước
+            bids: [{ // Thông tin của bid
+              bidder: 'admicro',
+              params: {
+                i: '5391961763416397448',
+                u: 'soha.vn/tong-thong-obama-len-tieng-sau-vu-xa-sung-dam-mau-nhat-lich-su-my-20160613014742777.htm',
+                z: '319',
+                l: '4',
+                w: 300,
+                h: 250
+              }
+            }]
+          },];
+
+          pushBids(adUnits, placement, ['admicro'], 1000);
+        })();
+      </script>
+    </div>
+
+    <h3>Ads Place 2 from AdMicro</h3>
+    <div id="sspbid_318">
+      <iframe
+        id="ads-place-318" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        topmargin="0" leftmargin="0" allowtransparency="true" width="0" height="0"
+      ></iframe>
+
+      <script>
+        (function () {
+          var placement = 'ads-place-318';
+          var adUnits = [{
+            code: placement, // Id của <div/> chứa quảng cáo
+            sizes: [[300, 250]], // Kích thước
+            bids: [{ // Thông tin của bid
+              bidder: 'admicro',
+              params: {
+                i: '5391961763416397448',
+                u: 'soha.vn/tong-thong-obama-len-tieng-sau-vu-xa-sung-dam-mau-nhat-lich-su-my-20160613014742777.htm',
+                z: '318',
+                l: '4',
+                w: 300,
+                h: 250
+              }
+            }]
+          },];
+
+          pushBids(adUnits, placement, ['admicro'], 1000);
+        })();
+      </script>
+    </div>
+  </body>
+</html>

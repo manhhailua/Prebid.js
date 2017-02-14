@@ -1,0 +1,147 @@
+<html>
+<head>
+  <title>Prebid Test</title>
+  <!-- Prebid Config Section START -->
+  <!-- Make sure this is inserted before your GPT tag -->
+  <script>
+    var PREBID_TIMEOUT = 700;
+
+    var adUnits = [{
+      code: 'div-gpt-ad-1460505748561-0',
+      sizes: [[300, 250], [300, 600]],
+      bids: [{
+        bidder: 'admicro',
+        params: {
+          h: '5391961763416397448',
+          u: 'soha.vn/tong-thong-obama-len-tieng-sau-vu-xa-sung-dam-mau-nhat-lich-su-my-20160613014742777.htm',
+          zid: 1,
+          loc: 4,
+          wbmax: 120,
+          hbmax: 180,
+          wbmin: 80,
+          hbmin: 120
+        }
+      }, {
+        bidder: 'appnexus',
+        params: {
+          placementId: '4799418'
+        }
+      }]
+    }, {
+      code: 'div-gpt-ad-1460505661639-0',
+      sizes: [[728, 90], [970, 90]],
+      bids: [{
+        bidder: 'appnexus',
+        params: {
+          placementId: '4799418'
+        }
+      }]
+    }];
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+  </script>
+  <!-- Prebid Config Section END -->
+
+  <!-- Prebid Boilerplate Section START. No Need to Edit. -->
+  <script type="text/javascript" async>
+    (function () {
+      var d      = document, pbs = d.createElement('script');
+      pbs.type   = 'text/javascript';
+      pbs.src    = '/build/dev/prebid.js';
+      var target = document.getElementsByTagName('head')[0];
+      target.insertBefore(pbs, target.firstChild);
+    })();
+  </script>
+  <script>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    googletag.cmd.push(function () {
+      googletag.pubads().disableInitialLoad();
+    });
+
+    pbjs.que.push(function () {
+      pbjs.addAdUnits(adUnits);
+
+      pbjs.requestBids({
+        bidsBackHandler: sendAdserverRequest
+      });
+    });
+
+    function sendAdserverRequest() {
+      if (pbjs.adserverRequestSent) return;
+      pbjs.adserverRequestSent = true; // One time requests
+
+      var iframe    = document.getElementById('postbid_if');
+      var iframeDoc = iframe.contentWindow.document;
+      var params    = pbjs.getAdserverTargetingForAdUnitCode('div-gpt-ad-1460505661639-0');
+
+      if (params && params['hb_adid']) {
+        pbjs.renderAd(iframeDoc, params['hb_adid']);
+      }
+
+      googletag.cmd.push(function () {
+        pbjs.que.push(function () {
+          pbjs.setTargetingForGPTAsync();
+          googletag.pubads().refresh();
+        });
+      });
+    }
+
+    setTimeout(function () {
+      sendAdserverRequest();
+    }, PREBID_TIMEOUT);
+
+  </script>
+  <!-- Prebid Boilerplate Section END -->
+
+  <script>
+    (function () {
+      var gads   = document.createElement('script');
+      gads.async = true;
+      gads.type  = 'text/javascript';
+      var useSSL = 'https:' == document.location.protocol;
+      gads.src   = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+      var node   = document.getElementsByTagName('script')[0];
+      node.parentNode.insertBefore(gads, node);
+    })();
+  </script>
+
+  <script>
+    googletag.cmd.push(function () {
+      googletag.defineSlot('/19968336/header-bid-tag-0', [[300, 250], [300, 600]], 'div-gpt-ad-1460505748561-0').addService(googletag.pubads());
+
+      googletag.defineSlot('/19968336/header-bid-tag1', [[728, 90], [970, 90]], 'div-gpt-ad-1460505661639-0').addService(googletag.pubads());
+
+      googletag.pubads().enableSingleRequest();
+      googletag.enableServices();
+    });
+  </script>
+</head>
+
+<body>
+<h2>Prebid.js Test</h2>
+<h5>Div-1</h5>
+<div id='div-gpt-ad-1460505748561-0'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function () {
+      googletag.display('div-gpt-ad-1460505748561-0');
+    });
+  </script>
+</div>
+
+<h5>Div-2</h5>
+<div id='div-gpt-ad-1460505661639-0'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function () {
+      googletag.display('div-gpt-ad-1460505661639-0');
+    });
+  </script>
+</div>
+
+<h5>Testing priority</h5>
+<iframe id="postbid_if" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0"
+        allowtransparency="true" width="0" height="0"></iframe>
+</body>
+</html>

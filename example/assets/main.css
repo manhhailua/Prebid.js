@@ -1,0 +1,27 @@
+.controller {
+
+}
+
+.result-container {
+  margin-top: 30px;
+}
+
+.input-group {
+  margin-bottom: 5px;
+}
+
+.input-group-addon {
+  min-width: 100px;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.btn {
+  width: 200px;
+}
+
+.result-container {
+  margin-bottom: 50px;
+}

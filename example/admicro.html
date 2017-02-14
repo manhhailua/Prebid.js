@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admicro Prebid Ads</title>
+</head>
+<body>
+<script type="text/javascript">
+  (function () {
+    var d      = document, pbs = d.createElement('script');
+    pbs.type   = 'text/javascript';
+    pbs.src    = '/build-admicro/dist/prebid.js';
+    var target = document.getElementsByTagName('head')[0];
+    target.insertBefore(pbs, target.firstChild);
+  })();
+</script>
+
+<script>
+  // Prebid publisher object
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  pbjs.que.push(function () {
+    var adUnits = [{
+      code: 'ads-place-1', // Id của <div/> chứa quảng cáo
+      sizes: [[300, 250]], // Kích thước
+      bids: [{ // Thông tin của bid
+        bidder: 'admicro',
+        params: {
+          i: '5391961763416397448',
+          u: 'soha.vn/tong-thong-obama-len-tieng-sau-vu-xa-sung-dam-mau-nhat-lich-su-my-20160613014742777.htm',
+          z: '1',
+          l: '4',
+          w: 300,
+          h: 250
+        }
+      }]
+    },];
+
+    pbjs.addAdUnits(adUnits); // Thêm Ad unit sau khi khai báo
+    pbjs.enableSendAllBids(); // Cho phép gửi toàn bộ bids được khai báo đến Ads Server, mặc định chỉ gửi bid có giá hiển thị cao nhất
+    pbjs.requestBids({
+      // Callback được gọi sau khi tất cả các bid được gửi đi có kết quả trả về
+      bidsBackHandler: sendAdserverRequest
+    });
+  });
+
+  function sendAdserverRequest() {
+    if (pbjs.adserverRequestSent) return; // Kiểm tra nếu đã gửi bids request 1 lần thì sẽ không làm lần thứ 2 (timeout)
+    pbjs.adserverRequestSent = true; // Xác định bids request đã được gửi
+    renderAds('ads-place-1', ['admicro']); // Render ads
+  }
+
+  /*
+   Render ads dựa vào mảng chứa danh sách các bidders, bidders có index nhỏ hơn sẽ có mức độ ưu tiên cao hơn
+   */
+  function renderAds(iframeId, prioritizedBiddersList) {
+    var biddersList       = [].concat(prioritizedBiddersList || []);
+    var adserverTargeting = pbjs.getAdserverTargetingForAdUnitCode(iframeId);
+    var adTarget          = getTargeting(biddersList, adserverTargeting);
+    var iframe            = document.getElementById(iframeId);
+    var iframeDoc         = iframe.contentWindow.document;
+
+    if (adserverTargeting && adTarget) {
+      pbjs.renderAd(iframeDoc, adTarget);
+    } else {
+      iframe.width       = 300;
+      iframe.height      = 250;
+      iframe.frameBorder = '1px solid';
+      iframeDoc.write('<h4>No Ads!</h4>');
+    }
+  }
+
+  /*
+   Lấy các thông số về quảng cáo từ bids response
+   */
+  function getTargeting(biddersList, adserverTargeting) {
+    if (biddersList.length === 0) {
+      return adserverTargeting['hb_adid'];
+    }
+
+    if (!adserverTargeting) {
+      return false;
+    }
+
+    for (var i = 0; i <= biddersList.length; i++) {
+      var adTarget = adserverTargeting['hb_adid_' + biddersList[i]];
+      if (adTarget) {
+        return adTarget;
+      }
+    }
+  }
+
+  /*
+   Timeout: sau khoảng thời gian quy định, sẽ gửi bids request đến ads server
+   */
+  setTimeout(function () {
+    sendAdserverRequest();
+  }, 1000);
+</script>
+
+<h3>Ads Place from AdMicro</h3>
+<iframe id="ads-place-1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0"
+        leftmargin="0" allowtransparency="true" width="0" height="0"></iframe>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "prebid",
+  "authors": [
+    "Manh Pham <manhhailua@gmail.com>"
+  ],
+  "description": "Prebid test",
+  "main": "",
+  "license": "MIT",
+  "homepage": "prebid.manhhailua.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "pouchdb": "^5.4.5"
+  }
+}
