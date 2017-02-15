@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/mantis.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/mantis.js</span></h1>
+    <h2>
+        Statements: <span class="metric">89.66% <small>(104 / 116)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">68.75% <small>(66 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">95.45% <small>(21 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">90.35% <small>(103 / 114)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; mantis.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">110</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-yes">84</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? "symbol" : typeof obj; </span>};</span>
+&nbsp;
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader');
+var constants = require('../constants.json');
+&nbsp;
+module.exports = function () {
+  function inIframe() {
+    try {
+      return window.self !== window.top &amp;&amp; !window.mantis_link;
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    }
+  }
+&nbsp;
+  function isDesktop(ignoreTouch) {
+    var scope = function scope(win) {
+      var width = win.innerWidth || <span class="branch-1 cbranch-no" title="branch not covered" >win.document.documentElement.clientWidth </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >win.document.body.clientWidth;</span>
+      var supportsTouch = !ignoreTouch &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >'ontouchstart' in window </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >navigator.msMaxTouchPoints)</span>;
+&nbsp;
+      return !supportsTouch &amp;&amp; (!width || width &gt;= (window.mantis_breakpoint || <span class="branch-1 cbranch-no" title="branch not covered" >768)</span>);
+    };
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (inIframe()) {
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        return scope(window.top);</span>
+      } catch (ex) {}
+    }
+&nbsp;
+    return scope(window);
+  }
+&nbsp;
+  function isSendable(val) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (val === null || val === undefined) {
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+&nbsp;
+    if (typeof val === 'string') {
+      return !(!val || /^\s*$/.test(val));
+    }
+&nbsp;
+    if (typeof val === 'number') {
+      return !isNaN(val);
+    }
+&nbsp;
+    return true;
+  }
+&nbsp;
+  function isObject(value) {
+    return Object.prototype.toString.call(value) === '[object Object]';
+  }
+&nbsp;
+  function isAmp() {
+    return _typeof(window.context) === "object" &amp;&amp; (window.context.tagName === "AMP-AD" || <span class="branch-2 cbranch-no" title="branch not covered" >window.context.tagName === "AMP-EMBED")</span>;
+  }
+&nbsp;
+  function isSecure() {
+    return document.location.protocol === "https:";
+  }
+&nbsp;
+  function isArray(value) {
+    return Object.prototype.toString.call(value) === '[object Array]';
+  }
+&nbsp;
+  function jsonp(callback) {
+    if (!window.mantis_jsonp) {
+      window.mantis_jsonp = [];
+    }
+&nbsp;
+    window.mantis_jsonp.push(callback);
+&nbsp;
+    return 'mantis_jsonp[' + (window.mantis_jsonp.length - 1) + ']';
+  }
+&nbsp;
+  function jsonToQuery(data, chain, form) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!data) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    var parts = form || [];
+&nbsp;
+    for (var key in data) {
+      var queryKey = key;
+&nbsp;
+      if (chain) {
+        queryKey = chain + '[' + key + ']';
+      }
+&nbsp;
+      var val = data[key];
+&nbsp;
+      if (isArray(val)) {
+        for (var index = 0; index &lt; val.length; index++) {
+          var akey = queryKey + '[' + index + ']';
+          var aval = val[index];
+&nbsp;
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (isObject(aval)) {
+            jsonToQuery(aval, akey, parts);
+          } else <span class="cstat-no" title="statement not covered" >if (isSendable(aval)) {</span>
+<span class="cstat-no" title="statement not covered" >            parts.push(akey + '=' + encodeURIComponent(aval));</span>
+          }
+        }
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (isObject(val)) {
+<span class="cstat-no" title="statement not covered" >        jsonToQuery(val, queryKey, parts);</span>
+      } else if (isSendable(val)) {
+        parts.push(queryKey + '=' + encodeURIComponent(val));
+      }
+    }
+&nbsp;
+    return parts.join('&amp;');
+  }
+&nbsp;
+  function buildMantisUrl(path, data, domain) {
+    var params = {
+      referrer: document.referrer,
+      tz: new Date().getTimezoneOffset(),
+      buster: new Date().getTime(),
+      secure: isSecure()
+    };
+&nbsp;
+    if (!inIframe() || isAmp()) {
+      params.mobile = !isAmp() &amp;&amp; isDesktop(true) ? <span class="branch-0 cbranch-no" title="branch not covered" >'false' </span>: 'true';
+    }
+&nbsp;
+    if (window.mantis_uuid) {
+      params.uuid = window.mantis_uuid;
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (window.localStorage) {
+      var localUuid = window.localStorage.getItem('mantis:uuid');
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (localUuid) {
+<span class="cstat-no" title="statement not covered" >        params.uuid = localUuid;</span>
+      }
+    }
+&nbsp;
+    if (!inIframe()) {
+      try {
+        params.title = window.top.document.title;
+        params.referrer = window.top.document.referrer;
+        params.url = window.top.document.location.href;
+      } catch (ex) {}
+    } else {
+      params.iframe = true;
+    }
+&nbsp;
+    if (isAmp()) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!params.url &amp;&amp; window.context.canonicalUrl) {
+<span class="cstat-no" title="statement not covered" >        params.url = window.context.canonicalUrl;</span>
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!params.url &amp;&amp; window.context.location) {
+        params.url = window.context.location.href;
+      }
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!params.referrer &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >window.context.referrer)</span> {
+<span class="cstat-no" title="statement not covered" >        params.referrer = window.context.referrer;</span>
+      }
+    }
+&nbsp;
+    Object.keys(data || <span class="branch-1 cbranch-no" title="branch not covered" >{})</span>.forEach(function (key) {
+      params[key] = data[key];
+    });
+&nbsp;
+    var query = jsonToQuery(params);
+&nbsp;
+    return (window.mantis_domain === undefined ? domain || 'https://mantodea.mantisadnetwork.com' : <span class="branch-1 cbranch-no" title="branch not covered" >window.mantis_domain)</span> + path + '?' + query;
+  }
+&nbsp;
+  var Prebid = function Prebid(bidfactory, bidmanager, adloader, constants) {
+    return {
+      callBids: function callBids(params) {
+        var property = null;
+&nbsp;
+        params.bids.some(function (bid) {
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (bid.params.property) {
+            property = bid.params.property;
+&nbsp;
+            return true;
+          }
+        });
+&nbsp;
+        var url = {
+          jsonp: jsonp(function (resp) {
+            params.bids.forEach(function (bid) {
+              var ad = resp.ads[bid.bidId];
+&nbsp;
+              var bidObject;
+&nbsp;
+              if (ad) {
+                bidObject = bidfactory.createBid(constants.STATUS.GOOD);
+                bidObject.bidderCode = 'mantis';
+                bidObject.cpm = ad.cpm;
+                bidObject.ad = ad.html;
+                bidObject.width = ad.width;
+                bidObject.height = ad.height;
+              } else {
+                bidObject = bidfactory.createBid(constants.STATUS.NO_BID);
+                bidObject.bidderCode = 'mantis';
+              }
+&nbsp;
+              bidmanager.addBidResponse(bid.placementCode, bidObject);
+            });
+          }),
+          property: property,
+          bids: params.bids.map(function (bid) {
+            return {
+              bidId: bid.bidId,
+              sizes: bid.sizes.map(function (size) {
+                return { width: size[0], height: size[1] };
+              })
+            };
+          }),
+          version: 1
+        };
+&nbsp;
+        adloader.loadScript(buildMantisUrl('/website/prebid', url));
+      }
+    };
+  };
+&nbsp;
+  return new Prebid(bidfactory, bidmanager, adloader, constants);
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

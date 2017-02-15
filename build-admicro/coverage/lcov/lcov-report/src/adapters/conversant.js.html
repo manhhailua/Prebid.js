@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/conversant.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/conversant.js</span></h1>
+    <h2>
+        Statements: <span class="metric">87.91% <small>(80 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">67.74% <small>(42 / 62)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">88.24% <small>(15 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">87.91% <small>(80 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; conversant.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">68</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var VERSION = '2.0.1',
+    CONSTANTS = require('../constants.json'),
+    utils = require('../utils.js'),
+    bidfactory = require('../bidfactory.js'),
+    bidmanager = require('../bidmanager.js'),
+    adloader = require('../adloader'),
+    ajax = require('../ajax').ajax;
+&nbsp;
+/**
+ * Adapter for requesting bids from Conversant
+ */
+var ConversantAdapter = function ConversantAdapter() {
+  var w = window,
+      n = navigator;
+&nbsp;
+  // production endpoint
+  var conversantUrl = '//media.msg.dotomi.com/s2s/header?callback=pbjs.conversantResponse';
+&nbsp;
+  // SSAPI returns JSONP with window.pbjs.conversantResponse as the cb
+  var appendScript = function appendScript(code) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.className = 'cnvr-response';
+&nbsp;
+    try {
+      script.appendChild(document.createTextNode(code));
+      document.getElementsByTagName('head')[0].appendChild(script);
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      script.text = code;</span>
+<span class="cstat-no" title="statement not covered" >      document.getElementsByTagName('head')[0].appendChild(script);</span>
+    }
+  };
+&nbsp;
+  var getDNT = function getDNT() {
+    return n.doNotTrack === '1' || w.doNotTrack === '1' || n.msDoNotTrack === '1' || n.doNotTrack === 'yes';
+  };
+&nbsp;
+  var getDevice = function getDevice() {
+    var language = n.language ? 'language' : <span class="branch-1 cbranch-no" title="branch not covered" >'userLanguage';</span>
+    return {
+      h: screen.height,
+      w: screen.width,
+      dnt: getDNT() ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: 0,
+      language: n[language].split('-')[0],
+      make: n.vendor ? n.vendor : <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
+      ua: n.userAgent
+    };
+  };
+&nbsp;
+  var callBids = function callBids(params) {
+    var conversantBids = params.bids || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    requestBids(conversantBids);
+  };
+&nbsp;
+  var requestBids = function requestBids(bidReqs) {
+    // build bid request object
+    var page = location.pathname + location.search + location.hash,
+        siteId = '',
+        conversantImps = [],
+        conversantBidReqs,
+        secure = 0;
+&nbsp;
+    //build impression array for conversant
+    utils._each(bidReqs, function (bid) {
+      var bidfloor = utils.getBidIdParameter('bidfloor', bid.params),
+          adW = 0,
+          adH = 0,
+          imp;
+&nbsp;
+      secure = utils.getBidIdParameter('secure', bid.params) ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: secure;
+      siteId = utils.getBidIdParameter('site_id', bid.params) + '';
+&nbsp;
+      // Allow sizes to be overridden per placement
+      var bidSizes = Array.isArray(bid.params.sizes) ? <span class="branch-0 cbranch-no" title="branch not covered" >bid.params.sizes </span>: bid.sizes;
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (bidSizes.length === 2 &amp;&amp; typeof bidSizes[0] === 'number' &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >typeof bidSizes[1] === 'number')</span> {
+<span class="cstat-no" title="statement not covered" >        adW = bidSizes[0];</span>
+<span class="cstat-no" title="statement not covered" >        adH = bidSizes[1];</span>
+      } else {
+        adW = bidSizes[0][0];
+        adH = bidSizes[0][1];
+      }
+&nbsp;
+      imp = {
+        id: bid.bidId,
+        banner: {
+          w: adW,
+          h: adH
+        },
+        secure: secure,
+        bidfloor: bidfloor ? <span class="branch-0 cbranch-no" title="branch not covered" >bidfloor </span>: 0,
+        displaymanager: 'Prebid.js',
+        displaymanagerver: VERSION
+      };
+&nbsp;
+      conversantImps.push(imp);
+    });
+&nbsp;
+    conversantBidReqs = {
+      'id': utils.getUniqueIdentifierStr(),
+      'imp': conversantImps,
+&nbsp;
+      'site': {
+        'id': siteId,
+        'mobile': document.querySelector('meta[name="viewport"][content*="width=device-width"]') !== null ? 1 : <span class="branch-1 cbranch-no" title="branch not covered" >0,</span>
+        'page': page
+      },
+&nbsp;
+      'device': getDevice(),
+      'at': 1
+    };
+&nbsp;
+    var url = secure ? <span class="branch-0 cbranch-no" title="branch not covered" >'https:' + conversantUrl </span>: location.protocol + conversantUrl;
+    ajax(url, appendScript, JSON.stringify(conversantBidReqs), {
+      withCredentials: true
+    });
+  };
+&nbsp;
+  var addEmptyBidResponses = function addEmptyBidResponses(placementsWithBidsBack) {
+    var allConversantBidRequests = pbjs._bidsRequested.find(function (bidSet) {
+      return bidSet.bidderCode === 'conversant';
+    });
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (allConversantBidRequests &amp;&amp; allConversantBidRequests.bids) {
+      utils._each(allConversantBidRequests.bids, function (conversantBid) {
+        if (!utils.contains(placementsWithBidsBack, conversantBid.placementCode)) {
+          // Add a no-bid response for this placement.
+          var bid = bidfactory.createBid(2, conversantBid);
+          bid.bidderCode = 'conversant';
+          bidmanager.addBidResponse(conversantBid.placementCode, bid);
+        }
+      });
+    }
+  };
+&nbsp;
+  var parseSeatbid = function parseSeatbid(bidResponse) {
+    var placementsWithBidsBack = [];
+    utils._each(bidResponse.bid, function (conversantBid) {
+      var responseCPM,
+          placementCode = '',
+          id = conversantBid.impid,
+          bid = {},
+          responseAd,
+          responseNurl,
+          sizeArrayLength;
+&nbsp;
+      // Bid request we sent Conversant
+      var bidRequested = pbjs._bidsRequested.find(function (bidSet) {
+        return bidSet.bidderCode === 'conversant';
+      }).bids.find(function (bid) {
+        return bid.bidId === id;
+      });
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (bidRequested) {
+        placementCode = bidRequested.placementCode;
+        bidRequested.status = CONSTANTS.STATUS.GOOD;
+        responseCPM = parseFloat(conversantBid.price);
+&nbsp;
+        if (responseCPM !== 0.0) {
+          conversantBid.placementCode = placementCode;
+          placementsWithBidsBack.push(placementCode);
+          conversantBid.size = bidRequested.sizes;
+          responseAd = conversantBid.adm || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+          responseNurl = conversantBid.nurl || '';
+&nbsp;
+          // Our bid!
+          bid = bidfactory.createBid(1, bidRequested);
+          bid.creative_id = conversantBid.id || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+          bid.bidderCode = 'conversant';
+&nbsp;
+          bid.cpm = responseCPM;
+&nbsp;
+          // Track impression image onto returned html
+          bid.ad = responseAd + '&lt;img src=\"' + responseNurl + '\" /&gt;';
+&nbsp;
+          sizeArrayLength = bidRequested.sizes.length;
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (sizeArrayLength === 2 &amp;&amp; typeof bidRequested.sizes[0] === 'number' &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >typeof bidRequested.sizes[1] === 'number')</span> {
+<span class="cstat-no" title="statement not covered" >            bid.width = bidRequested.sizes[0];</span>
+<span class="cstat-no" title="statement not covered" >            bid.height = bidRequested.sizes[1];</span>
+          } else {
+            bid.width = bidRequested.sizes[0][0];
+            bid.height = bidRequested.sizes[0][1];
+          }
+&nbsp;
+          bidmanager.addBidResponse(placementCode, bid);
+        }
+      }
+    });
+    addEmptyBidResponses(placementsWithBidsBack);
+  };
+&nbsp;
+  // Register our callback to the global object:
+  pbjs.conversantResponse = function (conversantResponseObj, path) {
+    // valid object?
+    if (conversantResponseObj &amp;&amp; conversantResponseObj.id) {
+      if (conversantResponseObj.seatbid &amp;&amp; conversantResponseObj.seatbid.length &gt; 0 &amp;&amp; conversantResponseObj.seatbid[0].bid &amp;&amp; conversantResponseObj.seatbid[0].bid.length &gt; 0) {
+        utils._each(conversantResponseObj.seatbid, parseSeatbid);
+      } else {
+        //no response data for any placements
+        addEmptyBidResponses([]);
+      }
+    } else {
+      //no response data for any placements
+      addEmptyBidResponses([]);
+    }
+    // for debugging purposes
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (path) {
+<span class="cstat-no" title="statement not covered" >      adloader.loadScript(path, <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        var allConversantBidRequests = pbjs._bidsRequested.find(<span class="fstat-no" title="function not covered" >function (bidSet) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return bidSet.bidderCode === 'conversant';</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (pbjs.conversantDebugResponse) {</span>
+<span class="cstat-no" title="statement not covered" >          pbjs.conversantDebugResponse(allConversantBidRequests);</span>
+        }
+      });
+    }
+  }; // conversantResponse
+&nbsp;
+  return {
+    callBids: callBids
+  };
+};
+&nbsp;
+module.exports = ConversantAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/sharethrough.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/sharethrough.js</span></h1>
+    <h2>
+        Statements: <span class="metric">88.24% <small>(60 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">75% <small>(6 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">88.24% <small>(60 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; sharethrough.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var utils = require('../utils.js');
+var bidmanager = require('../bidmanager.js');
+var bidfactory = require('../bidfactory.js');
+&nbsp;
+var STR_BIDDER_CODE = "sharethrough";
+var STR_VERSION = "0.1.0"; //Need to check analytics too for version
+&nbsp;
+var SharethroughAdapter = function SharethroughAdapter() {
+&nbsp;
+  var str = {};
+  str.STR_BTLR_HOST = document.location.protocol + "//btlr.sharethrough.com";
+  str.STR_BEACON_HOST = document.location.protocol + "//b.sharethrough.com/butler?";
+  str.placementCodeSet = {};
+&nbsp;
+  function _callBids(params) {
+    var bids = params.bids;
+&nbsp;
+    addEventListener("message", _receiveMessage, false);
+&nbsp;
+    // cycle through bids
+    for (var i = 0; i &lt; bids.length; i += 1) {
+      var bidRequest = bids[i];
+      str.placementCodeSet[bidRequest.placementCode] = bidRequest;
+      var scriptUrl = _buildSharethroughCall(bidRequest);
+      str.loadIFrame(scriptUrl);
+    }
+  }
+&nbsp;
+  function _buildSharethroughCall(bid) {
+    var testPkey = 'test';
+    var pkey = utils.getBidIdParameter('pkey', bid.params);
+&nbsp;
+    var host = str.STR_BTLR_HOST;
+&nbsp;
+    var url = host + "/header-bid/v1?";
+    url = utils.tryAppendQueryString(url, 'bidId', bid.bidId);
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (pkey !== testPkey) {
+      url = utils.tryAppendQueryString(url, 'placement_key', pkey);
+      url = utils.tryAppendQueryString(url, 'ijson', 'pbjs.strcallback');
+      url = appendEnvFields(url);
+    } else {
+<span class="cstat-no" title="statement not covered" >      url = url.substring(0, url.length - 1);</span>
+    }
+&nbsp;
+    return url;
+  }
+&nbsp;
+  str.loadIFrame = function (url) {
+    var iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.style.cssText = 'display:none;';
+&nbsp;
+    document.body.appendChild(iframe);
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _receiveMessage(event) {</span>
+<span class="cstat-no" title="statement not covered" >    if (event.origin === str.STR_BTLR_HOST) {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        pbjs.strcallback(JSON.parse(event.data).response);</span>
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        console.log(e);</span>
+      }
+    }
+  }
+&nbsp;
+  pbjs.strcallback = function (bidResponse) {
+    var bidId = bidResponse.bidId;
+    var bidObj = utils.getBidRequest(bidId);
+    try {
+      var bid = bidfactory.createBid(1, bidObj);
+      bid.bidderCode = STR_BIDDER_CODE;
+      bid.cpm = bidResponse.creatives[0].cpm;
+      var size = bidObj.sizes[0];
+      bid.width = size[0];
+      bid.height = size[1];
+      bid.adserverRequestId = bidResponse.adserverRequestId;
+      str.placementCodeSet[bidObj.placementCode].adserverRequestId = bidResponse.adserverRequestId;
+&nbsp;
+      bid.pkey = utils.getBidIdParameter('pkey', bidObj.params);
+&nbsp;
+      var windowLocation = 'str_response_' + bidId;
+      var bidJsonString = JSON.stringify(bidResponse);
+      bid.ad = '&lt;div data-str-native-key="' + bid.pkey + '" data-stx-response-name=\'' + windowLocation + '\'&gt;\n                &lt;/div&gt;\n                &lt;script&gt;var ' + windowLocation + ' = ' + bidJsonString + '&lt;/script&gt;\n                &lt;script src="//native.sharethrough.com/assets/sfp-set-targeting.js"&gt;&lt;/script&gt;\n                &lt;script type=\'text/javascript\'&gt;\n                (function() {\n                    var sfp_js = document.createElement(\'script\');\n                    sfp_js.src = "//native.sharethrough.com/assets/sfp.js";\n                    sfp_js.type = \'text/javascript\';\n                    sfp_js.charset = \'utf-8\';\n                    try {\n                        window.top.document.getElementsByTagName(\'body\')[0].appendChild(sfp_js);\n                    } catch (e) {\n                      console.log(e);\n                    }\n                })();\n                &lt;/script&gt;';
+      bidmanager.addBidResponse(bidObj.placementCode, bid);
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      _handleInvalidBid(bidObj);</span>
+    }
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _handleInvalidBid(bidObj) {</span>
+<span class="cstat-no" title="statement not covered" >    var bid = bidfactory.createBid(2, bidObj);</span>
+<span class="cstat-no" title="statement not covered" >    bidmanager.addBidResponse(bidObj.placementCode, bid);</span>
+  }
+&nbsp;
+  function appendEnvFields(url) {
+    url = utils.tryAppendQueryString(url, 'hbVersion', '$prebid.version$');
+    url = utils.tryAppendQueryString(url, 'strVersion', STR_VERSION);
+    url = utils.tryAppendQueryString(url, 'hbSource', 'prebid');
+&nbsp;
+    return url;
+  }
+&nbsp;
+  return {
+    callBids: _callBids,
+    str: str
+  };
+};
+&nbsp;
+module.exports = SharethroughAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

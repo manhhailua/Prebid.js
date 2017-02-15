@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/widespace.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/widespace.js</span></h1>
+    <h2>
+        Statements: <span class="metric">96.43% <small>(54 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">80.95% <small>(17 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(5 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">96.43% <small>(54 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; widespace.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _utils = require('../utils.js');
+&nbsp;
+var utils = require('../utils.js');
+var adloader = require('../adloader.js');
+var bidmanager = require('../bidmanager.js');
+var bidfactory = require('../bidfactory.js');
+&nbsp;
+function WidespaceAdapter() {
+  var useSSL = 'https:' === document.location.protocol,
+      baseURL = (useSSL ? <span class="branch-0 cbranch-no" title="branch not covered" >'https:' </span>: 'http:') + '//engine.widespace.com/map/engine/hb/dynamic?',
+      callbackName = 'pbjs.widespaceHandleCB';
+&nbsp;
+  function _callBids(params) {
+    var bids = params &amp;&amp; params.bids || [];
+&nbsp;
+    for (var i = 0; i &lt; bids.length; i++) {
+      var bid = bids[i],
+          callbackUid = bid.bidId,
+          sid = bid.params.sid,
+          currency = bid.params.currency;
+&nbsp;
+      //Handle Sizes string
+      var sizeQueryString = '';
+      var parsedSizes = utils.parseSizesInput(bid.sizes);
+&nbsp;
+      sizeQueryString = parsedSizes.reduce(function (prev, curr) {
+        return prev ? prev + ',' + curr : curr;
+      }, sizeQueryString);
+&nbsp;
+      var requestURL = baseURL;
+      requestURL = utils.tryAppendQueryString(requestURL, 'hb.name', 'prebidjs');
+      requestURL = utils.tryAppendQueryString(requestURL, 'hb.callback', callbackName);
+      requestURL = utils.tryAppendQueryString(requestURL, 'hb.callbackUid', callbackUid);
+      requestURL = utils.tryAppendQueryString(requestURL, 'hb.sizes', sizeQueryString);
+      requestURL = utils.tryAppendQueryString(requestURL, 'sid', sid);
+      requestURL = utils.tryAppendQueryString(requestURL, 'hb.currency', currency);
+&nbsp;
+      // Expose the callback
+      pbjs.widespaceHandleCB = window[callbackName] = handleCallback;
+&nbsp;
+      adloader.loadScript(requestURL);
+    }
+  }
+&nbsp;
+  //Handle our callback
+  var handleCallback = function handleCallback(bidsArray) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!bidsArray) {
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    var bidObject,
+        bidCode = 'widespace';
+&nbsp;
+    for (var i = 0, l = bidsArray.length; i &lt; l; i++) {
+      var bid = bidsArray[i],
+          placementCode = '',
+          validSizes = [];
+&nbsp;
+      bid.sizes = { height: bid.height, width: bid.height };
+&nbsp;
+      var inBid = (0, _utils.getBidRequest)(bid.callbackUid);
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (inBid) {
+        bidCode = inBid.bidder;
+        placementCode = inBid.placementCode;
+        validSizes = inBid.sizes;
+      }
+      if (bid &amp;&amp; bid.callbackUid &amp;&amp; bid.status !== 'noad' &amp;&amp; verifySize(bid.sizes, validSizes)) {
+        bidObject = bidfactory.createBid(1);
+        bidObject.bidderCode = bidCode;
+        bidObject.cpm = bid.cpm;
+        bidObject.cur = bid.currency;
+        bidObject.creative_id = bid.adId;
+        bidObject.ad = bid.code;
+        bidObject.width = bid.width;
+        bidObject.height = bid.height;
+        bidmanager.addBidResponse(placementCode, bidObject);
+      } else {
+        bidObject = bidfactory.createBid(2);
+        bidObject.bidderCode = bidCode;
+        bidmanager.addBidResponse(placementCode, bidObject);
+      }
+    }
+&nbsp;
+    function verifySize(bid, validSizes) {
+      for (var j = 0, k = validSizes.length; j &lt; k; j++) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (bid.width === validSizes[j][0] &amp;&amp; bid.height === validSizes[j][1]) {
+          return true;
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+  };
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+}
+&nbsp;
+module.exports = WidespaceAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

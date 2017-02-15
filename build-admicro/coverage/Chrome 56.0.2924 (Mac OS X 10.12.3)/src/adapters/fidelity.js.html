@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/fidelity.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/fidelity.js</span></h1>
+    <h2>
+        Statements: <span class="metric">98.55% <small>(68 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">74.47% <small>(35 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">98.51% <small>(66 / 67)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; fidelity.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var utils = require('../utils.js');
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader');
+var STATUS = require('../constants').STATUS;
+&nbsp;
+var FidelityAdapter = function FidelityAdapter() {
+  var FIDELITY_BIDDER_NAME = 'fidelity';
+  var FIDELITY_SERVER_NAME = 'x.fidelity-media.com';
+&nbsp;
+  function _callBids(params) {
+    var bids = params.bids || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    bids.forEach(function (currentBid) {
+      var server = currentBid.params.server || FIDELITY_SERVER_NAME;
+      var m3_u = window.location.protocol + '//' + server + '/delivery/hb.php?';
+      m3_u += 'callback=window.pbjs.fidelityResponse';
+      m3_u += '&amp;requestid=' + utils.getUniqueIdentifierStr();
+      m3_u += '&amp;impid=' + currentBid.bidId;
+      m3_u += '&amp;zoneid=' + currentBid.params.zoneid;
+      m3_u += '&amp;cb=' + Math.floor(Math.random() * 99999999999);
+      m3_u += document.charset ? '&amp;charset=' + document.charset : <span class="branch-1 cbranch-no" title="branch not covered" >document.characterSet ? '&amp;charset=' + document.characterSet : '';</span>
+&nbsp;
+      var loc;
+      try {
+        loc = window.top !== window ? document.referrer : <span class="branch-1 cbranch-no" title="branch not covered" >window.location.href;</span>
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        loc = document.referrer;</span>
+      }
+      loc = currentBid.params.loc || loc;
+      m3_u += '&amp;loc=' + encodeURIComponent(loc);
+&nbsp;
+      var subid = currentBid.params.subid || 'hb';
+      m3_u += '&amp;subid=' + subid;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (document.referrer) m3_u += '&amp;referer=' + encodeURIComponent(document.referrer);
+      if (currentBid.params.click) m3_u += '&amp;ct0=' + encodeURIComponent(currentBid.params.click);
+      m3_u += '&amp;flashver=' + encodeURIComponent(getFlashVersion());
+&nbsp;
+      adloader.loadScript(m3_u);
+    });
+  }
+&nbsp;
+  function getFlashVersion() {
+    var plugins, plugin, result;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (navigator.plugins &amp;&amp; navigator.plugins.length &gt; 0) {
+      plugins = navigator.plugins;
+      for (var i = 0; i &lt; plugins.length &amp;&amp; !result; i++) {
+        plugin = plugins[i];
+        if (plugin.name.indexOf("Shockwave Flash") &gt; -1) {
+          result = plugin.description.split("Shockwave Flash ")[1];
+        }
+      }
+    }
+    return result ? result : <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
+  }
+&nbsp;
+  function addBlankBidResponses(placementsWithBidsBack) {
+    var allFidelityBidRequests = pbjs._bidsRequested.find(function (bidSet) {
+      return bidSet.bidderCode === FIDELITY_BIDDER_NAME;
+    });
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (allFidelityBidRequests &amp;&amp; allFidelityBidRequests.bids) {
+      utils._each(allFidelityBidRequests.bids, function (fidelityBid) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!utils.contains(placementsWithBidsBack, fidelityBid.placementCode)) {
+          // Add a no-bid response for this placement.
+          var bid = bidfactory.createBid(STATUS.NO_BID, fidelityBid);
+          bid.bidderCode = FIDELITY_BIDDER_NAME;
+          bidmanager.addBidResponse(fidelityBid.placementCode, bid);
+        }
+      });
+    }
+  }
+&nbsp;
+  pbjs.fidelityResponse = function (responseObj) {
+&nbsp;
+    if (!responseObj || !responseObj.seatbid || responseObj.seatbid.length === 0 || !responseObj.seatbid[0].bid || responseObj.seatbid[0].bid.length === 0) {
+      addBlankBidResponses([]);
+      return;
+    }
+&nbsp;
+    var bid = responseObj.seatbid[0].bid[0];
+    var status = bid.adm ? STATUS.GOOD : <span class="branch-1 cbranch-no" title="branch not covered" >STATUS.NO_BID;</span>
+    var requestObj = utils.getBidRequest(bid.impid);
+&nbsp;
+    var bidResponse = bidfactory.createBid(status);
+    bidResponse.bidderCode = FIDELITY_BIDDER_NAME;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (status === STATUS.GOOD) {
+      bidResponse.cpm = parseFloat(bid.price);
+      bidResponse.ad = bid.adm;
+      bidResponse.width = parseInt(bid.width);
+      bidResponse.height = parseInt(bid.height);
+    }
+    var placementCode = requestObj &amp;&amp; requestObj.placementCode;
+    bidmanager.addBidResponse(placementCode, bidResponse);
+  };
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;
+module.exports = FidelityAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

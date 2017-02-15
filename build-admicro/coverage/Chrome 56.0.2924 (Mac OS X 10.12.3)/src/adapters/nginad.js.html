@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/nginad.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/adapters/nginad.js</span></h1>
+    <h2>
+        Statements: <span class="metric">18.18% <small>(16 / 88)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">10% <small>(1 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">18.18% <small>(16 / 88)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; nginad.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var CONSTANTS = require('../constants.json');
+var utils = require('../utils.js');
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader');
+&nbsp;
+var defaultPlacementForBadBid = null;
+&nbsp;
+/**
+ * Adapter for requesting bids from NginAd
+ */
+var NginAdAdapter = function NginAdAdapter() {
+&nbsp;
+  var rtbServerDomain = 'placeholder.for.nginad.server.com';
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _callBids(params) {</span>
+<span class="cstat-no" title="statement not covered" >    var nginadBids = params.bids || [];</span>
+&nbsp;
+    // De-dupe by tagid then issue single bid request for all bids
+<span class="cstat-no" title="statement not covered" >    _requestBids(_getUniqueTagids(nginadBids));</span>
+  }
+&nbsp;
+  // filter bids to de-dupe them?
+<span class="fstat-no" title="function not covered" >  function _getUniqueTagids(bids) {</span>
+<span class="cstat-no" title="statement not covered" >    var key;</span>
+<span class="cstat-no" title="statement not covered" >    var map = {};</span>
+<span class="cstat-no" title="statement not covered" >    var PubZoneIds = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (key in bids) {</span>
+<span class="cstat-no" title="statement not covered" >      map[utils.getBidIdParameter('pzoneid', bids[key].params)] = bids[key];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (key in map) {</span>
+<span class="cstat-no" title="statement not covered" >      if (map.hasOwnProperty(key)) {</span>
+<span class="cstat-no" title="statement not covered" >        PubZoneIds.push(map[key]);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return PubZoneIds;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function getWidthAndHeight(bid) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var adW = null;</span>
+<span class="cstat-no" title="statement not covered" >    var adH = null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var sizeArrayLength = bid.sizes.length;</span>
+<span class="cstat-no" title="statement not covered" >    if (sizeArrayLength === 2 &amp;&amp; typeof bid.sizes[0] === 'number' &amp;&amp; typeof bid.sizes[1] === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >      adW = bid.sizes[0];</span>
+<span class="cstat-no" title="statement not covered" >      adH = bid.sizes[1];</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      adW = bid.sizes[0][0];</span>
+<span class="cstat-no" title="statement not covered" >      adH = bid.sizes[0][1];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return [adW, adH];</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _requestBids(bidReqs) {</span>
+    // build bid request object
+<span class="cstat-no" title="statement not covered" >    var domain = window.location.host;</span>
+<span class="cstat-no" title="statement not covered" >    var page = window.location.pathname + location.search + location.hash;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var nginadImps = [];</span>
+&nbsp;
+    //assign the first adUnit (placement) for bad bids;
+<span class="cstat-no" title="statement not covered" >    defaultPlacementForBadBid = bidReqs[0].placementCode;</span>
+&nbsp;
+    //build impression array for nginad
+<span class="cstat-no" title="statement not covered" >    utils._each(bidReqs, <span class="fstat-no" title="function not covered" >function (bid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var tagId = utils.getBidIdParameter('pzoneid', bid.params);</span>
+<span class="cstat-no" title="statement not covered" >      var bidFloor = utils.getBidIdParameter('bidfloor', bid.params);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var whArr = getWidthAndHeight(bid);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var imp = {</span>
+        id: bid.bidId,
+        banner: {
+          w: whArr[0],
+          h: whArr[1]
+        },
+        tagid: tagId,
+        bidfloor: bidFloor
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      nginadImps.push(imp);</span>
+      //bidmanager.pbCallbackMap[imp.id] = bid;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      rtbServerDomain = bid.params.nginadDomain;</span>
+    });
+&nbsp;
+    // build bid request with impressions
+<span class="cstat-no" title="statement not covered" >    var nginadBidReq = {</span>
+      id: utils.getUniqueIdentifierStr(),
+      imp: nginadImps,
+      site: {
+        domain: domain,
+        page: page
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var scriptUrl = window.location.protocol + '//' + rtbServerDomain + '/bid/rtb?callback=window.pbjs.nginadResponse' + '&amp;br=' + encodeURIComponent(JSON.stringify(nginadBidReq));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    adloader.loadScript(scriptUrl);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function handleErrorResponse(bidReqs, defaultPlacementForBadBid) {</span>
+    //no response data
+<span class="cstat-no" title="statement not covered" >    if (defaultPlacementForBadBid === null) {</span>
+      // no id with which to create an dummy bid
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var bid = bidfactory.createBid(2);</span>
+<span class="cstat-no" title="statement not covered" >    bid.bidderCode = 'nginad';</span>
+<span class="cstat-no" title="statement not covered" >    bidmanager.addBidResponse(defaultPlacementForBadBid, bid);</span>
+  }
+&nbsp;
+  //expose the callback to the global object:
+  pbjs.nginadResponse = <span class="fstat-no" title="function not covered" >function (nginadResponseObj) {</span>
+<span class="cstat-no" title="statement not covered" >    var bid = {};</span>
+<span class="cstat-no" title="statement not covered" >    var key;</span>
+&nbsp;
+    // valid object?
+<span class="cstat-no" title="statement not covered" >    if (!nginadResponseObj || !nginadResponseObj.id) {</span>
+<span class="cstat-no" title="statement not covered" >      return handleErrorResponse(nginadResponseObj, defaultPlacementForBadBid);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!nginadResponseObj.seatbid || nginadResponseObj.seatbid.length === 0 || !nginadResponseObj.seatbid[0].bid || nginadResponseObj.seatbid[0].bid.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      return handleErrorResponse(nginadResponseObj, defaultPlacementForBadBid);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (key in nginadResponseObj.seatbid[0].bid) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var nginadBid = nginadResponseObj.seatbid[0].bid[key];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var responseCPM;</span>
+<span class="cstat-no" title="statement not covered" >      var placementCode = '';</span>
+<span class="cstat-no" title="statement not covered" >      var id = nginadBid.impid;</span>
+&nbsp;
+      // try to fetch the bid request we sent NginAd
+      /*jshint -W083 */
+<span class="cstat-no" title="statement not covered" >      var bidObj = pbjs._bidsRequested.find(<span class="fstat-no" title="function not covered" >function (bidSet) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return bidSet.bidderCode === 'nginad';</span>
+      }).bids.find(<span class="fstat-no" title="function not covered" >function (bid) {</span>
+<span class="cstat-no" title="statement not covered" >        return bid.bidId === id;</span>
+      });
+<span class="cstat-no" title="statement not covered" >      if (!bidObj) {</span>
+<span class="cstat-no" title="statement not covered" >        return handleErrorResponse(nginadBid, defaultPlacementForBadBid);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      placementCode = bidObj.placementCode;</span>
+<span class="cstat-no" title="statement not covered" >      bidObj.status = CONSTANTS.STATUS.GOOD;</span>
+&nbsp;
+      //place ad response on bidmanager._adResponsesByBidderId
+<span class="cstat-no" title="statement not covered" >      responseCPM = parseFloat(nginadBid.price);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (responseCPM === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        handleErrorResponse(nginadBid, id);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      nginadBid.placementCode = placementCode;</span>
+<span class="cstat-no" title="statement not covered" >      nginadBid.size = bidObj.sizes;</span>
+<span class="cstat-no" title="statement not covered" >      var responseAd = nginadBid.adm;</span>
+&nbsp;
+      //store bid response
+      //bid status is good (indicating 1)
+<span class="cstat-no" title="statement not covered" >      bid = bidfactory.createBid(1);</span>
+<span class="cstat-no" title="statement not covered" >      bid.creative_id = nginadBid.Id;</span>
+<span class="cstat-no" title="statement not covered" >      bid.bidderCode = 'nginad';</span>
+<span class="cstat-no" title="statement not covered" >      bid.cpm = responseCPM;</span>
+&nbsp;
+      //The bid is a mock bid, the true bidding process happens after the publisher tag is called
+<span class="cstat-no" title="statement not covered" >      bid.ad = decodeURIComponent(responseAd);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var whArr = getWidthAndHeight(bidObj);</span>
+<span class="cstat-no" title="statement not covered" >      bid.width = whArr[0];</span>
+<span class="cstat-no" title="statement not covered" >      bid.height = whArr[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      bidmanager.addBidResponse(placementCode, bid);</span>
+    }
+  }; // nginadResponse
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;
+module.exports = NginAdAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

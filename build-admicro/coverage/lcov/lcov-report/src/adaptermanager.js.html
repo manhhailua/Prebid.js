@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adaptermanager.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adaptermanager.js</span></h1>
+    <h2>
+        Statements: <span class="metric">87.38% <small>(180 / 206)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">50% <small>(26 / 52)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">75% <small>(12 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">90.4% <small>(179 / 198)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; adaptermanager.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">479</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">182</span>
+<span class="cline-any cline-yes">1629</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">122</span>
+<span class="cline-any cline-yes">122</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">122</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">122</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">105</span>
+<span class="cline-any cline-yes">105</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">422</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">422</span>
+<span class="cline-any cline-yes">421</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">58</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58</span>
+<span class="cline-any cline-yes">58</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? "symbol" : typeof obj; </span>};</span>
+&nbsp;
+var _extends = Object.assign || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (target) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 1; i &lt; arguments.length; i++) { <span class="cstat-no" title="statement not covered" >var source = arguments[i]; <span class="cstat-no" title="statement not covered" ></span>for (var key in source) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(source, key)) { <span class="cstat-no" title="statement not covered" >target[key] = source[key]; </span>} </span>} </span>} <span class="cstat-no" title="statement not covered" ></span>return target; </span>};</span> /** @module adaptermanger */
+&nbsp;
+var _utils = require('./utils');
+&nbsp;
+var _sizeMapping = require('./sizeMapping');
+&nbsp;
+var _baseAdapter = require('./adapters/baseAdapter');
+&nbsp;
+var utils = require('./utils.js');
+var CONSTANTS = require('./constants.json');
+var events = require('./events');
+&nbsp;
+&nbsp;
+var _bidderRegistry = {};
+exports.bidderRegistry = _bidderRegistry;
+&nbsp;
+var _analyticsRegistry = {};
+var _bidderSequence = null;
+&nbsp;
+function getBids(_ref) {
+    var bidderCode = _ref.bidderCode,
+        requestId = _ref.requestId,
+        bidderRequestId = _ref.bidderRequestId,
+        adUnits = _ref.adUnits;
+&nbsp;
+    return adUnits.map(function (adUnit) {
+        return adUnit.bids.filter(function (bid) {
+            return bid.bidder === bidderCode;
+        }).map(function (bid) {
+            var sizes = adUnit.sizes;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (adUnit.sizeMapping) {
+<span class="cstat-no" title="statement not covered" >                var sizeMapping = (0, _sizeMapping.mapSizes)(adUnit);</span>
+<span class="cstat-no" title="statement not covered" >                if (sizeMapping === '') {</span>
+<span class="cstat-no" title="statement not covered" >                    return '';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                sizes = sizeMapping;</span>
+            }
+            return _extends(bid, {
+                placementCode: adUnit.code,
+                mediaType: adUnit.mediaType,
+                sizes: sizes,
+                bidId: utils.getUniqueIdentifierStr(),
+                bidderRequestId: bidderRequestId,
+                requestId: requestId
+            });
+        });
+    }).reduce(_utils.flatten, []).filter(function (val) {
+        return val !== '';
+    });
+}
+&nbsp;
+exports.callBids = function (_ref2) {
+    var adUnits = _ref2.adUnits,
+        cbTimeout = _ref2.cbTimeout;
+&nbsp;
+    var requestId = utils.generateUUID();
+    var auctionStart = Date.now();
+&nbsp;
+    var auctionInit = {
+        timestamp: auctionStart,
+        requestId: requestId
+    };
+    events.emit(CONSTANTS.EVENTS.AUCTION_INIT, auctionInit);
+&nbsp;
+    var bidderCodes = (0, _utils.getBidderCodes)(adUnits);
+    if (_bidderSequence === CONSTANTS.ORDER.RANDOM) {
+        bidderCodes = (0, _utils.shuffle)(bidderCodes);
+    }
+&nbsp;
+    bidderCodes.forEach(function (bidderCode) {
+        var adapter = _bidderRegistry[bidderCode];
+        if (adapter) {
+            var bidderRequestId = utils.getUniqueIdentifierStr();
+            var bidderRequest = {
+                bidderCode: bidderCode,
+                requestId: requestId,
+                bidderRequestId: bidderRequestId,
+                bids: getBids({ bidderCode: bidderCode, requestId: requestId, bidderRequestId: bidderRequestId, adUnits: adUnits }),
+                start: new Date().getTime(),
+                auctionStart: auctionStart,
+                timeout: cbTimeout
+            };
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (bidderRequest.bids &amp;&amp; bidderRequest.bids.length !== 0) {
+                utils.logMessage('CALLING BIDDER ======= ' + bidderCode);
+                pbjs._bidsRequested.push(bidderRequest);
+                events.emit(CONSTANTS.EVENTS.BID_REQUESTED, bidderRequest);
+                adapter.callBids(bidderRequest);
+            }
+        } else {
+            utils.logError('Adapter trying to be called which does not exist: ' + bidderCode + ' adaptermanager.callBids');
+        }
+    });
+};
+&nbsp;
+exports.registerBidAdapter = function (bidAdaptor, bidderCode) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (bidAdaptor &amp;&amp; bidderCode) {
+&nbsp;
+        if (_typeof(bidAdaptor.callBids) === CONSTANTS.objectType_function) {
+            _bidderRegistry[bidderCode] = bidAdaptor;
+        } else {
+            utils.logError('Bidder adaptor error for bidder code: ' + bidderCode + 'bidder must implement a callBids() function');
+        }
+    } else {
+<span class="cstat-no" title="statement not covered" >        utils.logError('bidAdaptor or bidderCode not specified');</span>
+    }
+};
+&nbsp;
+exports.aliasBidAdapter = function (bidderCode, alias) {
+    var existingAlias = _bidderRegistry[alias];
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if ((typeof existingAlias === 'undefined' ? 'undefined' : <span class="branch-1 cbranch-no" title="branch not covered" >_typeof(existingAlias))</span> === CONSTANTS.objectType_undefined) {
+        var bidAdaptor = _bidderRegistry[bidderCode];
+&nbsp;
+        if ((typeof bidAdaptor === 'undefined' ? 'undefined' : _typeof(bidAdaptor)) === CONSTANTS.objectType_undefined) {
+            utils.logError('bidderCode "' + bidderCode + '" is not an existing bidder.', 'adaptermanager.aliasBidAdapter');
+        } else {
+            try {
+                var newAdapter = null;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (bidAdaptor instanceof _baseAdapter.BaseAdapter) {
+                    //newAdapter = new bidAdaptor.constructor(alias);
+<span class="cstat-no" title="statement not covered" >                    utils.logError(bidderCode + ' bidder does not currently support aliasing.', 'adaptermanager.aliasBidAdapter');</span>
+                } else {
+                    newAdapter = bidAdaptor.createNew();
+                    newAdapter.setBidderCode(alias);
+                    this.registerBidAdapter(newAdapter, alias);
+                }
+            } catch (e) {
+<span class="cstat-no" title="statement not covered" >                utils.logError(bidderCode + ' bidder does not currently support aliasing.', 'adaptermanager.aliasBidAdapter');</span>
+            }
+        }
+    } else {
+<span class="cstat-no" title="statement not covered" >        utils.logMessage('alias name "' + alias + '" has been already specified.');</span>
+    }
+};
+&nbsp;
+exports.registerAnalyticsAdapter = function (_ref3) {
+    var adapter = _ref3.adapter,
+        code = _ref3.code;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (adapter &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >code)</span> {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (_typeof(adapter.enableAnalytics) === CONSTANTS.objectType_function) {</span>
+<span class="cstat-no" title="statement not covered" >            adapter.code = code;</span>
+<span class="cstat-no" title="statement not covered" >            _analyticsRegistry[code] = adapter;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            utils.logError('Prebid Error: Analytics adaptor error for analytics "' + code + '"\n        analytics adapter must implement an enableAnalytics() function');</span>
+        }
+    } else {
+        utils.logError('Prebid Error: analyticsAdapter or analyticsCode not specified');
+    }
+};
+&nbsp;
+exports.enableAnalytics = <span class="fstat-no" title="function not covered" >function (config) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!utils.isArray(config)) {</span>
+<span class="cstat-no" title="statement not covered" >        config = [config];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    utils._each(config, <span class="fstat-no" title="function not covered" >function (adapterConfig) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var adapter = _analyticsRegistry[adapterConfig.provider];</span>
+<span class="cstat-no" title="statement not covered" >        if (adapter) {</span>
+<span class="cstat-no" title="statement not covered" >            adapter.enableAnalytics(adapterConfig);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            utils.logError('Prebid Error: no analytics adapter found in registry for\n        ' + adapterConfig.provider + '.');</span>
+        }
+    });
+};
+&nbsp;
+exports.setBidderSequence = function (order) {
+    _bidderSequence = order;
+};
+&nbsp;
+var AardvarkAdapter = require('./adapters/aardvark.js');
+exports.registerBidAdapter(new AardvarkAdapter(), 'aardvark');
+var AdbladeAdapter = require('./adapters/adblade.js');
+exports.registerBidAdapter(new AdbladeAdapter(), 'adblade');
+var AdbutlerAdapter = require('./adapters/adbutler.js');
+exports.registerBidAdapter(new AdbutlerAdapter(), 'adbutler');
+var AdequantAdapter = require('./adapters/adequant.js');
+exports.registerBidAdapter(new AdequantAdapter(), 'adequant');
+var AdformAdapter = require('./adapters/adform.js');
+exports.registerBidAdapter(new AdformAdapter(), 'adform');
+var AdkernelAdapter = require('./adapters/adkernel.js');
+exports.registerBidAdapter(new AdkernelAdapter(), 'adkernel');
+var AdmediaAdapter = require('./adapters/admedia.js');
+exports.registerBidAdapter(new AdmediaAdapter(), 'admedia');
+var VertamediaAdapter = require('./adapters/vertamedia.js');
+exports.registerBidAdapter(new VertamediaAdapter(), 'vertamedia');
+var AolAdapter = require('./adapters/aol.js');
+exports.registerBidAdapter(new AolAdapter(), 'aol');
+var AppnexusAdapter = require('./adapters/appnexus.js');
+exports.registerBidAdapter(new AppnexusAdapter(), 'appnexus');
+var AppnexusAstAdapter = require('./adapters/appnexusAst.js');
+exports.registerBidAdapter(new AppnexusAstAdapter(), 'appnexusAst');
+var ConversantAdapter = require('./adapters/conversant.js');
+exports.registerBidAdapter(new ConversantAdapter(), 'conversant');
+var DistrictmDMXAdapter = require('./adapters/districtmDMX.js');
+exports.registerBidAdapter(new DistrictmDMXAdapter(), 'districtmDMX');
+var FidelityAdapter = require('./adapters/fidelity.js');
+exports.registerBidAdapter(new FidelityAdapter(), 'fidelity');
+var GetintentAdapter = require('./adapters/getintent.js');
+exports.registerBidAdapter(new GetintentAdapter(), 'getintent');
+var GumgumAdapter = require('./adapters/gumgum.js');
+exports.registerBidAdapter(new GumgumAdapter(), 'gumgum');
+var HiromediaAdapter = require('./adapters/hiromedia.js');
+exports.registerBidAdapter(new HiromediaAdapter(), 'hiromedia');
+var IndexExchangeAdapter = require('./adapters/indexExchange.js');
+exports.registerBidAdapter(new IndexExchangeAdapter(), 'indexExchange');
+var KruxlinkAdapter = require('./adapters/kruxlink.js');
+exports.registerBidAdapter(new KruxlinkAdapter(), 'kruxlink');
+var KomoonaAdapter = require('./adapters/komoona.js');
+exports.registerBidAdapter(new KomoonaAdapter(), 'komoona');
+var LifestreetAdapter = require('./adapters/lifestreet.js');
+exports.registerBidAdapter(new LifestreetAdapter(), 'lifestreet');
+var MantisAdapter = require('./adapters/mantis.js');
+exports.registerBidAdapter(new MantisAdapter(), 'mantis');
+var OpenxAdapter = require('./adapters/openx.js');
+exports.registerBidAdapter(new OpenxAdapter(), 'openx');
+var PiximediaAdapter = require('./adapters/piximedia.js');
+exports.registerBidAdapter(new PiximediaAdapter(), 'piximedia');
+var PubmaticAdapter = require('./adapters/pubmatic.js');
+exports.registerBidAdapter(new PubmaticAdapter(), 'pubmatic');
+var PulsepointAdapter = require('./adapters/pulsepoint.js');
+exports.registerBidAdapter(new PulsepointAdapter(), 'pulsepoint');
+var RhythmoneAdapter = require('./adapters/rhythmone.js');
+exports.registerBidAdapter(new RhythmoneAdapter(), 'rhythmone');
+var RubiconAdapter = require('./adapters/rubicon.js');
+exports.registerBidAdapter(new RubiconAdapter(), 'rubicon');
+var SmartyadsAdapter = require('./adapters/smartyads.js');
+exports.registerBidAdapter(new SmartyadsAdapter(), 'smartyads');
+var SmartadserverAdapter = require('./adapters/smartadserver.js');
+exports.registerBidAdapter(new SmartadserverAdapter(), 'smartadserver');
+var SekindoUMAdapter = require('./adapters/sekindoUM.js');
+exports.registerBidAdapter(new SekindoUMAdapter(), 'sekindoUM');
+var SonobiAdapter = require('./adapters/sonobi.js');
+exports.registerBidAdapter(new SonobiAdapter(), 'sonobi');
+var SovrnAdapter = require('./adapters/sovrn.js');
+exports.registerBidAdapter(new SovrnAdapter(), 'sovrn');
+var SpringserveAdapter = require('./adapters/springserve.js');
+exports.registerBidAdapter(new SpringserveAdapter(), 'springserve');
+var StickyadstvAdapter = require('./adapters/stickyadstv.js');
+exports.registerBidAdapter(new StickyadstvAdapter(), 'stickyadstv');
+var TripleliftAdapter = require('./adapters/triplelift.js');
+exports.registerBidAdapter(new TripleliftAdapter(), 'triplelift');
+var TwengaAdapter = require('./adapters/twenga.js');
+exports.registerBidAdapter(new TwengaAdapter(), 'twenga');
+var YieldbotAdapter = require('./adapters/yieldbot.js');
+exports.registerBidAdapter(new YieldbotAdapter(), 'yieldbot');
+var NginadAdapter = require('./adapters/nginad.js');
+exports.registerBidAdapter(new NginadAdapter(), 'nginad');
+var BrightcomAdapter = require('./adapters/brightcom.js');
+exports.registerBidAdapter(new BrightcomAdapter(), 'brightcom');
+var WideorbitAdapter = require('./adapters/wideorbit.js');
+exports.registerBidAdapter(new WideorbitAdapter(), 'wideorbit');
+var JcmAdapter = require('./adapters/jcm.js');
+exports.registerBidAdapter(new JcmAdapter(), 'jcm');
+var UnderdogmediaAdapter = require('./adapters/underdogmedia.js');
+exports.registerBidAdapter(new UnderdogmediaAdapter(), 'underdogmedia');
+var MemeglobalAdapter = require('./adapters/memeglobal.js');
+exports.registerBidAdapter(new MemeglobalAdapter(), 'memeglobal');
+var CriteoAdapter = require('./adapters/criteo.js');
+exports.registerBidAdapter(new CriteoAdapter(), 'criteo');
+var CentroAdapter = require('./adapters/centro.js');
+exports.registerBidAdapter(new CentroAdapter(), 'centro');
+var XhbAdapter = require('./adapters/xhb.js');
+exports.registerBidAdapter(new XhbAdapter(), 'xhb');
+var SharethroughAdapter = require('./adapters/sharethrough.js');
+exports.registerBidAdapter(new SharethroughAdapter(), 'sharethrough');
+var RoxotAdapter = require('./adapters/roxot.js');
+exports.registerBidAdapter(new RoxotAdapter(), 'roxot');
+var VertozAdapter = require('./adapters/vertoz.js');
+exports.registerBidAdapter(new VertozAdapter(), 'vertoz');
+var WidespaceAdapter = require('./adapters/widespace.js');
+exports.registerBidAdapter(new WidespaceAdapter(), 'widespace');
+var AdmixerAdapter = require('./adapters/admixer.js');
+exports.registerBidAdapter(new AdmixerAdapter(), 'admixer');
+exports.aliasBidAdapter('appnexus', 'brealtime');
+exports.aliasBidAdapter('appnexus', 'pagescience');
+exports.aliasBidAdapter('appnexus', 'defymedia');
+exports.aliasBidAdapter('appnexus', 'matomy');
+exports.aliasBidAdapter('rubicon', 'rubiconLite');
+exports.aliasBidAdapter('appnexus', 'featureforward');
+exports.aliasBidAdapter('appnexus', 'oftmedia');
+exports.aliasBidAdapter('adkernel', 'headbidding');
+exports.videoAdapters = ["appnexusAst", "vertamedia", "rubicon"];
+&nbsp;
+null;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

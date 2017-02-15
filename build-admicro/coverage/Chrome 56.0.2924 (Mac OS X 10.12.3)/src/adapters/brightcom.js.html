@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/brightcom.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/adapters/brightcom.js</span></h1>
+    <h2>
+        Statements: <span class="metric">50.65% <small>(39 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">28.13% <small>(9 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">50% <small>(3 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">50.65% <small>(39 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; brightcom.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var CONSTANTS = require('../constants.json');
+var utils = require('../utils.js');
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader');
+&nbsp;
+/**
+ * Adapter for requesting bids from Brightcom
+ */
+var BrightcomAdapter = function BrightcomAdapter() {
+&nbsp;
+  // Set Brightcom Bidder URL
+  var brightcomUrl = 'hb.iselephant.com/auc/ortb';
+&nbsp;
+  // Define the bidder code
+  var brightcomBidderCode = 'brightcom';
+&nbsp;
+  // Define the callback function
+  var brightcomCallbackFunction = 'window.pbjs=window.pbjs||window.parent.pbjs||window.top.pbjs;window.pbjs.brightcomResponse';
+&nbsp;
+  // Manage the requested and received ad units' codes, to know which are invalid (didn't return)
+  var reqAdUnitsCode = [],
+      resAdUnitsCode = [];
+&nbsp;
+  function _callBids(params) {
+&nbsp;
+    var bidRequests = params.bids || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+&nbsp;
+    // Get page data
+    var siteDomain = window.location.host;
+    var sitePage = window.location.href;
+&nbsp;
+    // Prepare impressions object
+    var brightcomImps = [];
+&nbsp;
+    // Prepare a variable for publisher id
+    var pubId = '';
+&nbsp;
+    // Go through the requests and build array of impressions
+    utils._each(bidRequests, function (bid) {
+&nbsp;
+      // Get impression details
+      var tagId = utils.getBidIdParameter('tagId', bid.params);
+      var ref = utils.getBidIdParameter('ref', bid.params);
+      var adWidth = 0;
+      var adHeight = 0;
+&nbsp;
+      // If no publisher id is set, use the current
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (pubId === '') {
+        // Get the current publisher id (if it doesn't exist, it'll return '')
+        pubId = utils.getBidIdParameter('pubId', bid.params);
+      }
+&nbsp;
+      // Brightcom supports only 1 size per impression
+      // Check if the array contains 1 size or array of sizes
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (bid.sizes.length === 2 &amp;&amp; typeof bid.sizes[0] === 'number' &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >typeof bid.sizes[1] === 'number')</span> {
+        // The array contains 1 size (the items are the values)
+<span class="cstat-no" title="statement not covered" >        adWidth = bid.sizes[0];</span>
+<span class="cstat-no" title="statement not covered" >        adHeight = bid.sizes[1];</span>
+      } else {
+        // The array contains array of sizes, use the first size
+        adWidth = bid.sizes[0][0];
+        adHeight = bid.sizes[0][1];
+      }
+&nbsp;
+      // Build the impression
+      var imp = {
+        id: utils.getUniqueIdentifierStr(),
+        banner: {
+          w: adWidth,
+          h: adHeight
+        },
+        tagid: tagId
+      };
+&nbsp;
+      // If ref exists, create it (in the "ext" object)
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (ref !== '') {
+<span class="cstat-no" title="statement not covered" >        imp.ext = {</span>
+          refoverride: ref
+        };
+      }
+&nbsp;
+      // Add current impression to collection
+      brightcomImps.push(imp);
+      // Add mapping to current bid via impression id
+      //bidmanager.pbCallbackMap[imp.id] = bid;
+&nbsp;
+      // Add current ad unit's code to tracking
+      reqAdUnitsCode.push(bid.placementCode);
+    });
+&nbsp;
+    // Build the bid request
+    var brightcomBidReq = {
+      id: utils.getUniqueIdentifierStr(),
+      imp: brightcomImps,
+      site: {
+        publisher: {
+          id: pubId
+        },
+        domain: siteDomain,
+        page: sitePage
+      }
+    };
+&nbsp;
+    // Add timeout data, if available
+    var PREBID_TIMEOUT = PREBID_TIMEOUT || 0;
+    var curTimeout = PREBID_TIMEOUT;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (curTimeout &gt; 0) {
+<span class="cstat-no" title="statement not covered" >      brightcomBidReq.tmax = curTimeout;</span>
+    }
+&nbsp;
+    // Define the bid request call URL
+    var bidRequestCallUrl = 'https://' + brightcomUrl + '?callback=' + encodeURIComponent(brightcomCallbackFunction) + '&amp;request=' + encodeURIComponent(JSON.stringify(brightcomBidReq));
+&nbsp;
+    // Add the call to get the bid
+    adloader.loadScript(bidRequestCallUrl);
+  }
+&nbsp;
+  //expose the callback to the global object:
+  pbjs.brightcomResponse = <span class="fstat-no" title="function not covered" >function (brightcomResponseObj) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var bid = {};</span>
+&nbsp;
+    // Make sure response is valid
+<span class="cstat-no" title="statement not covered" >    if (brightcomResponseObj &amp;&amp; brightcomResponseObj.id &amp;&amp; brightcomResponseObj.seatbid &amp;&amp; brightcomResponseObj.seatbid.length !== 0 &amp;&amp; brightcomResponseObj.seatbid[0].bid &amp;&amp; brightcomResponseObj.seatbid[0].bid.length !== 0) {</span>
+&nbsp;
+      // Go through the received bids
+<span class="cstat-no" title="statement not covered" >      brightcomResponseObj.seatbid[0].bid.forEach(<span class="fstat-no" title="function not covered" >function (curBid) {</span></span>
+&nbsp;
+        // Get the bid request data
+<span class="cstat-no" title="statement not covered" >        var bidRequest = pbjs._bidsRequested.find(<span class="fstat-no" title="function not covered" >function (bidSet) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return bidSet.bidderCode === 'brightcom';</span>
+        }).bids[0]; // this assumes a single request only
+&nbsp;
+        // Make sure the bid exists
+<span class="cstat-no" title="statement not covered" >        if (bidRequest) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          var placementCode = bidRequest.placementCode;</span>
+<span class="cstat-no" title="statement not covered" >          bidRequest.status = CONSTANTS.STATUS.GOOD;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          curBid.placementCode = placementCode;</span>
+<span class="cstat-no" title="statement not covered" >          curBid.size = bidRequest.sizes;</span>
+&nbsp;
+          // Get the creative
+<span class="cstat-no" title="statement not covered" >          var responseCreative = curBid.adm;</span>
+          // Build the NURL element
+<span class="cstat-no" title="statement not covered" >          var responseNurl = '&lt;img src="' + curBid.nurl + '" width="1" height="1" style="display:none" /&gt;';</span>
+          // Build the ad to display:
+<span class="cstat-no" title="statement not covered" >          var responseAd = decodeURIComponent(responseCreative + responseNurl);</span>
+&nbsp;
+          // Create a valid bid
+<span class="cstat-no" title="statement not covered" >          bid = bidfactory.createBid(1);</span>
+&nbsp;
+          // Set the bid data
+<span class="cstat-no" title="statement not covered" >          bid.creative_id = curBid.Id;</span>
+<span class="cstat-no" title="statement not covered" >          bid.bidderCode = brightcomBidderCode;</span>
+<span class="cstat-no" title="statement not covered" >          bid.cpm = parseFloat(curBid.price);</span>
+&nbsp;
+          // Brightcom tag is in &lt;script&gt; block, so use bid.ad, not bid.adurl
+<span class="cstat-no" title="statement not covered" >          bid.ad = responseAd;</span>
+&nbsp;
+          // Since Brightcom currently supports only 1 size, if multiple sizes are provided - take the first
+<span class="cstat-no" title="statement not covered" >          var adWidth, adHeight;</span>
+<span class="cstat-no" title="statement not covered" >          if (bidRequest.sizes.length === 2 &amp;&amp; typeof bidRequest.sizes[0] === 'number' &amp;&amp; typeof bidRequest.sizes[1] === 'number') {</span>
+            // Only one size is provided
+<span class="cstat-no" title="statement not covered" >            adWidth = bidRequest.sizes[0];</span>
+<span class="cstat-no" title="statement not covered" >            adHeight = bidRequest.sizes[1];</span>
+          } else {
+            // And array of sizes is provided. Take the first.
+<span class="cstat-no" title="statement not covered" >            adWidth = bidRequest.sizes[0][0];</span>
+<span class="cstat-no" title="statement not covered" >            adHeight = bidRequest.sizes[0][1];</span>
+          }
+&nbsp;
+          // Set the ad's width and height
+<span class="cstat-no" title="statement not covered" >          bid.width = adWidth;</span>
+<span class="cstat-no" title="statement not covered" >          bid.height = adHeight;</span>
+&nbsp;
+          // Add the bid
+<span class="cstat-no" title="statement not covered" >          bidmanager.addBidResponse(placementCode, bid);</span>
+&nbsp;
+          // Add current ad unit's code to tracking
+<span class="cstat-no" title="statement not covered" >          resAdUnitsCode.push(placementCode);</span>
+        }
+      });
+    }
+&nbsp;
+    // Define all unreceived ad unit codes as invalid (if Brightcom don't want to bid on an impression, it won't include it in the response)
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; reqAdUnitsCode.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      var adUnitCode = reqAdUnitsCode[i];</span>
+      // Check if current ad unit code was NOT received
+<span class="cstat-no" title="statement not covered" >      if (resAdUnitsCode.indexOf(adUnitCode) === -1) {</span>
+        // Current ad unit wasn't returned. Define it as invalid.
+<span class="cstat-no" title="statement not covered" >        bid = bidfactory.createBid(2);</span>
+<span class="cstat-no" title="statement not covered" >        bid.bidderCode = brightcomBidderCode;</span>
+<span class="cstat-no" title="statement not covered" >        bidmanager.addBidResponse(adUnitCode, bid);</span>
+      }
+    }
+  };
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;
+module.exports = BrightcomAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

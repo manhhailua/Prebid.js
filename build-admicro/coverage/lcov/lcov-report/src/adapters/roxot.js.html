@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/roxot.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/roxot.js</span></h1>
+    <h2>
+        Statements: <span class="metric">86.89% <small>(53 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.33% <small>(10 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">90.91% <small>(10 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">86.89% <small>(53 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; roxot.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">64</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var CONSTANTS = require('../constants.json');
+var utils = require('../utils.js');
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader');
+&nbsp;
+var RoxotAdapter = function RoxotAdapter() {
+  var roxotUrl = "r.rxthdr.com";
+&nbsp;
+  pbjs.roxotResponseHandler = roxotResponseHandler;
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _callBids(bidReqs) {</span>
+<span class="cstat-no" title="statement not covered" >    utils.logInfo('callBids roxot adapter invoking');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var domain = window.location.host;</span>
+<span class="cstat-no" title="statement not covered" >    var page = window.location.pathname + location.search + location.hash;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var roxotBidReqs = {</span>
+      id: utils.getUniqueIdentifierStr(),
+      bids: bidReqs,
+      site: {
+        domain: domain,
+        page: page
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var scriptUrl = '//' + roxotUrl + '?callback=pbjs.roxotResponseHandler' + '&amp;src=' + CONSTANTS.REPO_AND_VERSION + '&amp;br=' + encodeURIComponent(JSON.stringify(roxotBidReqs));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    adloader.loadScript(scriptUrl);</span>
+  }
+&nbsp;
+  function roxotResponseHandler(roxotResponseObject) {
+    utils.logInfo('roxotResponseHandler invoking');
+    var placements = [];
+&nbsp;
+    if (isResponseInvalid()) {
+      return fillPlacementEmptyBid();
+    }
+&nbsp;
+    roxotResponseObject.bids.forEach(pushRoxotBid);
+    var allBidResponse = fillPlacementEmptyBid(placements);
+    utils.logInfo('roxotResponse handler finish');
+&nbsp;
+    return allBidResponse;
+&nbsp;
+    function isResponseInvalid() {
+      return !roxotResponseObject || !roxotResponseObject.bids || !Array.isArray(roxotResponseObject.bids) || roxotResponseObject.bids.length &lt;= 0;
+    }
+&nbsp;
+    function pushRoxotBid(roxotBid) {
+      var placementCode = '';
+&nbsp;
+      var bidReq = pbjs._bidsRequested.find(function (bidSet) {
+        return bidSet.bidderCode === 'roxot';
+      }).bids.find(function (bid) {
+        return bid.bidId === roxotBid.bidId;
+      });
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!bidReq) {
+<span class="cstat-no" title="statement not covered" >        return pushErrorBid(placementCode);</span>
+      }
+&nbsp;
+      bidReq.status = CONSTANTS.STATUS.GOOD;
+&nbsp;
+      placementCode = bidReq.placementCode;
+      placements.push(placementCode);
+&nbsp;
+      var cpm = roxotBid.cpm;
+      var responseNurl = '&lt;img src="' + roxotBid.nurl + '"&gt;';
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!cpm) {
+<span class="cstat-no" title="statement not covered" >        return pushErrorBid(placementCode);</span>
+      }
+&nbsp;
+      var bid = bidfactory.createBid(1, bidReq);
+&nbsp;
+      bid.creative_id = roxotBid.id;
+      bid.bidderCode = 'roxot';
+      bid.cpm = cpm;
+      bid.ad = decodeURIComponent(roxotBid.adm + responseNurl);
+      bid.width = parseInt(roxotBid.w);
+      bid.height = parseInt(roxotBid.h);
+&nbsp;
+      bidmanager.addBidResponse(placementCode, bid);
+    }
+&nbsp;
+    function fillPlacementEmptyBid(places) {
+      pbjs._bidsRequested.find(function (bidSet) {
+        return bidSet.bidderCode === 'roxot';
+      }).bids.forEach(fillIfNotFilled);
+&nbsp;
+      function fillIfNotFilled(bid) {
+        if (utils.contains(places, bid.placementCode)) {
+          return null;
+        }
+&nbsp;
+        pushErrorBid(bid);
+      }
+    }
+&nbsp;
+    function pushErrorBid(bidRequest) {
+      var bid = bidfactory.createBid(2, bidRequest);
+      bid.bidderCode = 'roxot';
+      bidmanager.addBidResponse(bidRequest.placementCode, bid);
+    }
+  }
+};
+&nbsp;
+module.exports = RoxotAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

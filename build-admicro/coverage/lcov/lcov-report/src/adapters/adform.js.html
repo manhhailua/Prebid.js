@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/adform.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/adform.js</span></h1>
+    <h2>
+        Statements: <span class="metric">93.58% <small>(102 / 109)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">78.79% <small>(26 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.4% <small>(99 / 106)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; adform.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">132</span>
+<span class="cline-any cline-yes">132</span>
+<span class="cline-any cline-yes">132</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">99</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-yes">171</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">489</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">489</span>
+<span class="cline-any cline-yes">489</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var utils = require('../utils.js');
+var adloader = require('../adloader.js');
+var bidmanager = require('../bidmanager.js');
+var bidfactory = require('../bidfactory.js');
+var STATUSCODES = require('../constants.json').STATUS;
+&nbsp;
+function AdformAdapter() {
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+&nbsp;
+  function _callBids(params) {
+    var bid, _value, _key, i, j, k, l;
+    var bids = params.bids;
+    var request = [];
+    var callbackName = '_adf_' + utils.getUniqueIdentifierStr();
+    var globalParams = [['adxDomain', 'adx.adform.net'], ['url', null], ['tid', null], ['callback', 'pbjs.' + callbackName]];
+&nbsp;
+    for (i = 0, l = bids.length; i &lt; l; i++) {
+      bid = bids[i];
+&nbsp;
+      for (j = 0, k = globalParams.length; j &lt; k; j++) {
+        _key = globalParams[j][0];
+        _value = bid[_key] || bid.params[_key];
+        if (_value) {
+          bid[_key] = bid.params[_key] = null;
+          globalParams[j][1] = _value;
+        }
+      }
+&nbsp;
+      request.push(formRequestUrl(bid.params));
+    }
+&nbsp;
+    request.unshift('//' + globalParams[0][1] + '/adx/?rp=4');
+&nbsp;
+    for (i = 1, l = globalParams.length; i &lt; l; i++) {
+      _key = globalParams[i][0];
+      _value = globalParams[i][1];
+      if (_value) {
+        request.push(globalParams[i][0] + '=' + encodeURIComponent(_value));
+      }
+    }
+&nbsp;
+    pbjs[callbackName] = handleCallback(bids);
+&nbsp;
+    adloader.loadScript(request.join('&amp;'));
+  }
+&nbsp;
+  function formRequestUrl(reqData) {
+    var key;
+    var url = [];
+&nbsp;
+    for (key in reqData) {
+      if (reqData.hasOwnProperty(key) &amp;&amp; reqData[key]) url.push(key, '=', reqData[key], '&amp;');
+    }
+&nbsp;
+    return encode64(url.join('').slice(0, -1));
+  }
+&nbsp;
+  function handleCallback(bids) {
+    return function handleResponse(adItems) {
+      var bidObject;
+      var bidder = 'adform';
+      var adItem;
+      var bid;
+      for (var i = 0, l = adItems.length; i &lt; l; i++) {
+        adItem = adItems[i];
+        bid = bids[i];
+        if (adItem &amp;&amp; adItem.response === 'banner' &amp;&amp; verifySize(adItem, bid.sizes)) {
+&nbsp;
+          bidObject = bidfactory.createBid(STATUSCODES.GOOD, bid);
+          bidObject.bidderCode = bidder;
+          bidObject.cpm = adItem.win_bid;
+          bidObject.cur = adItem.win_cur;
+          bidObject.ad = adItem.banner;
+          bidObject.width = adItem.width;
+          bidObject.height = adItem.height;
+          bidObject.dealId = adItem.deal_id;
+          bidmanager.addBidResponse(bid.placementCode, bidObject);
+        } else {
+          bidObject = bidfactory.createBid(STATUSCODES.NO_BID, bid);
+          bidObject.bidderCode = bidder;
+          bidmanager.addBidResponse(bid.placementCode, bidObject);
+        }
+      }
+    };
+&nbsp;
+    function verifySize(adItem, validSizes) {
+      for (var j = 0, k = validSizes.length; j &lt; k; j++) {
+        if (adItem.width === validSizes[j][0] &amp;&amp; adItem.height === validSizes[j][1]) {
+          return true;
+        }
+      }
+&nbsp;
+      return false;
+    }
+  }
+&nbsp;
+  function encode64(input) {
+    var out = [];
+    var chr1;
+    var chr2;
+    var chr3;
+    var enc1;
+    var enc2;
+    var enc3;
+    var enc4;
+    var i = 0;
+    var _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_=';
+&nbsp;
+    input = utf8_encode(input);
+&nbsp;
+    while (i &lt; input.length) {
+&nbsp;
+      chr1 = input.charCodeAt(i++);
+      chr2 = input.charCodeAt(i++);
+      chr3 = input.charCodeAt(i++);
+&nbsp;
+      enc1 = chr1 &gt;&gt; 2;
+      enc2 = (chr1 &amp; 3) &lt;&lt; 4 | chr2 &gt;&gt; 4;
+      enc3 = (chr2 &amp; 15) &lt;&lt; 2 | chr3 &gt;&gt; 6;
+      enc4 = chr3 &amp; 63;
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(chr2)) {
+<span class="cstat-no" title="statement not covered" >        enc3 = enc4 = 64;</span>
+      } else if (isNaN(chr3)) {
+        enc4 = 64;
+      }
+&nbsp;
+      out.push(_keyStr.charAt(enc1), _keyStr.charAt(enc2));
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (enc3 !== 64) out.push(_keyStr.charAt(enc3));
+      if (enc4 !== 64) out.push(_keyStr.charAt(enc4));
+    }
+&nbsp;
+    return out.join('');
+  }
+&nbsp;
+  function utf8_encode(string) {
+    string = string.replace(/\r\n/g, '\n');
+    var utftext = '';
+&nbsp;
+    for (var n = 0; n &lt; string.length; n++) {
+&nbsp;
+      var c = string.charCodeAt(n);
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (c &lt; 128) {
+        utftext += String.fromCharCode(c);
+      } else <span class="cstat-no" title="statement not covered" >if (c &gt; 127 &amp;&amp; c &lt; 2048) {</span>
+<span class="cstat-no" title="statement not covered" >        utftext += String.fromCharCode(c &gt;&gt; 6 | 192);</span>
+<span class="cstat-no" title="statement not covered" >        utftext += String.fromCharCode(c &amp; 63 | 128);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        utftext += String.fromCharCode(c &gt;&gt; 12 | 224);</span>
+<span class="cstat-no" title="statement not covered" >        utftext += String.fromCharCode(c &gt;&gt; 6 &amp; 63 | 128);</span>
+<span class="cstat-no" title="statement not covered" >        utftext += String.fromCharCode(c &amp; 63 | 128);</span>
+      }
+    }
+&nbsp;
+    return utftext;
+  }
+}
+&nbsp;
+module.exports = AdformAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

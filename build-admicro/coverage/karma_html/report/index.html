@@ -1,0 +1,4232 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>report</title>
+<style>
+body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
+#HTMLReporter h1 { font-size: 12px; font-weight: normal; text-align: right; margin: 10px 0 10px 0 !important; }
+#HTMLReporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
+#HTMLReporter a { text-decoration: none; }
+#HTMLReporter a:hover { text-decoration: underline; }
+#HTMLReporter p, #HTMLReporter h1, #HTMLReporter h2, #HTMLReporter h3, #HTMLReporter h4, #HTMLReporter h5, #HTMLReporter h6 { margin: 0; line-height: 14px; }
+#HTMLReporter .banner, #HTMLReporter .symbolSummary, #HTMLReporter .summary, #HTMLReporter .resultMessage, #HTMLReporter .specDetail .description, #HTMLReporter .alert .bar, #HTMLReporter .stackTrace { padding-left: 9px; padding-right: 9px; }
+
+#HTMLReporter #jasmine_content { position: fixed; right: 100%; }
+#HTMLReporter .version { color: #aaaaaa; }
+#HTMLReporter .banner { margin-top: 14px; }
+#HTMLReporter .duration { color: #aaaaaa; float: right; }
+#HTMLReporter .exceptions { color: #fff; float: right; margin-top: 5px; margin-right: 5px; }
+#HTMLReporter .bar { line-height: 28px; font-size: 14px; display: block; color: #eee; }
+#HTMLReporter .runningAlert { background-color: #666666; }
+#HTMLReporter .skippedAlert { background-color: #aaaaaa; }
+#HTMLReporter .skippedAlert:first-child { background-color: #333333; }
+#HTMLReporter .skippedAlert:hover { text-decoration: none; color: white; text-decoration: underline; }
+#HTMLReporter .passingAlert { background-color: #a6b779; }
+#HTMLReporter .passingAlert:first-child { background-color: #5e7d00; }
+#HTMLReporter .failingAlert { background-color: #cf867e; }
+#HTMLReporter .failingAlert:first-child { background-color: #b03911; }
+#HTMLReporter .results { margin-top: 14px; }
+#HTMLReporter #details { display: none; }
+#HTMLReporter .resultsMenu { color: #999; background-color: #fff; }
+
+#HTMLReporter .summaryMenuItem { font-weight: normal; text-decoration: none; margin-right: 5px; color: #333; }
+#HTMLReporter .detailsMenuItem { font-weight: normal; text-decoration: none; margin-left: 5px; color: #999; }
+
+#HTMLReporter.showDetails .summaryMenuItem { color: #999; }
+#HTMLReporter.showDetails .detailsMenuItem { color: #333; }
+#HTMLReporter.showDetails .summaryMenuItem:hover { text-decoration: underline; }
+#HTMLReporter             .detailsMenuItem:hover { text-decoration: underline; }
+
+
+#HTMLReporter.showDetails .summary { display: none; }
+#HTMLReporter.showDetails #details { display: block; }
+#HTMLReporter .summary { margin-top: 14px; margin-bottom: 40px; }
+#HTMLReporter .summary .suite .suite, #HTMLReporter .summary .specSummary { margin-left: 14px; }
+#HTMLReporter .summary .specSummary.passed { color: #5e7d00; }
+#HTMLReporter .summary .specSummary.failed { color: #b03911; }
+#HTMLReporter .summary .specSummary.skipped { color: #ba9d37; }
+#HTMLReporter .description + .suite { margin-top: 0; }
+#HTMLReporter .suite { margin-top: 14px; }
+#HTMLReporter .suite a { color: #333333; }
+#HTMLReporter #details .specDetail { margin-bottom: 28px; }
+#HTMLReporter #details .specDetail .description { display: block; color: white; background-color: #b03911; }
+#HTMLReporter .resultMessage { padding-top: 14px; color: #333333; }
+#HTMLReporter .resultMessage span.result { display: block; }
+#HTMLReporter .stackTrace { margin: 5px 0 0 0; max-height: 224px; overflow: auto; 
+    line-height: 18px; color: #666666; border: 1px solid #ddd; background: white; white-space: pre; }
+
+
+.fold-buttons { float: right; }
+.fold-buttons a { color: #fff; font-size: 12px; }
+.fold-buttons { display: none } 
+#HTMLReporter .br { margin-top: 8px; }
+#HTMLReporter .section-starter { font-size: 14px; line-height: 18px }
+#HTMLReporter .summary-section { 
+  cursor: -webkit-zoom-out; cursor: -moz-zoom-out; cursor: zoom-out; 
+  background: #fafafa; 
+  padding: 10px; 
+  border-bottom: #eaeaea 1px solid; }
+#HTMLReporter .summary-section.folded { 
+  cursor: -webkit-zoom-in; cursor: -moz-zoom-in; cursor: zoom-in; 
+  padding-bottom: 8px;
+}
+#HTMLReporter .summary-section.folded div { display: none }
+#HTMLReporter .summary-section.folded div.section-starter { display: block }
+/*#HTMLReporter .summary-section:hover { background: #e9e9e9; }*/
+#HTMLReporter .summary-section:hover { background: #f5f5f5; }
+#HTMLReporter .summary-section-totals { 
+  font-size: 11px;
+  display: none; 
+  margin-left: 11px; 
+  overflow: hidden; 
+  position: relative;
+  top: -1px; 
+}
+#HTMLReporter .summary-section.folded .summary-section-totals { display: inline; }
+#HTMLReporter .summary-section-total { color: #fff; vertical-align: baseline; padding: 1px 8px; }
+#HTMLReporter .summary-section-total.passed { background: #5e7d00;  }
+#HTMLReporter .summary-section-total.failed { background: #b03911;  }
+#HTMLReporter .summary-section-total.skipped { background: #ba9d37;  }
+
+#HTMLReporter { font-size: 12px; line-height: 18px; } /*larget font-size*/
+
+</style>
+</head>
+
+<body id="HTMLReporter" class="html-reporter showDetails">
+<h1>Tested in Chrome 56.0.2924 (Mac OS X 10.12.3) on Wed Feb 15 2017</h1>
+
+<div class="alert">
+
+
+<!-- <span class="failingAlert bar">Failed 2 specs</span> -->
+<span class="failingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>756 specs, 2 failed, 0 pending</span>
+<span class="resultsMenu bar">
+<a class="summaryMenuItem" onclick="showSummary();" href="#">Spec List<a>|<a 
+   class="detailsMenuItem" onclick="showFailures();" href="#">Failures</a>
+</span>
+
+
+
+</div>
+<div class="results">
+  <div class="summary">
+  
+  
+  
+  
+  
+    <div class="suite passed">
+      <span class="description">Publisher API _ AdUnits addAdUnits</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have two adUnits</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">the first adUnits value should be same with the adUnits that is added by pbjs.addAdUnits();</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">the second adUnits value should be same with the adUnits that is added by pbjs.addAdUnits();</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Publisher API _ AdUnits removeAdUnit</span>
+    
+      <div class="specSummary passed">
+      <span class="description">the first adUnit should be not existed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">the second adUnit should be still existed</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">aardvark adapter tests callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load script</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">aardvark adapter tests callBids with custom host</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load script</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">aardvark adapter tests aardvarkResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">aardvark adapter tests add empty bids if no bid returned</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have an error statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include bid request bidId as the adId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">aardvark adapter tests add bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include bid request bidId as the adId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a good statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the CPM to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the ad to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the size to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adblade adapter sizes</span>
+    
+      <div class="specSummary passed">
+      <span class="description">array of arrays</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">array of strings</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adblade adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load script</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adblade adapter adbladeResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adblade adapter add bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a good statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the CPM to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the ad to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the size to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adblade adapter add empty bids if no bid returned</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have an error statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adbutler adapter tests creation of bid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should populate the keyword</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adbutler adapter tests bid responses</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return complete bid response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return empty bid response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return empty bid response on incorrect size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return empty bid response with CPM too low</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return empty bid response with CPM too high</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adbutler adapter tests ad code</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be populated</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain tracking pixels</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adform adapter request</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create callback method on PREBID_GLOBAL</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass multiple bids via single request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle global request parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should correctly form bid items</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adform adapter response callback</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create bid response item for every requested item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should correctly form bid response object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should correctly form empty bid response object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter out item which does not fit required size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should correctly set bid response adId</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adkernel adapter input parameters validation</span>
+    
+      <div class="specSummary passed">
+      <span class="description">empty request shouldn't generate exception</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">request without zone shouldn't issue a request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">request without host shouldn't issue a request</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adkernel adapter request building</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be a first-price auction</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have banner object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have h/w</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should respect secure connection</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create proper site block</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fill device with caller macro</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adkernel adapter requests routing</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should issue a request for each network</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should issue a request for each zone</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should route calls to proper zones</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adkernel adapter responses processing</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return fully-initialized bid-response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should map responses to proper ad units</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should process empty responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add nurl as pixel</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should perform usersync for each unique host/zone combination</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Adkernel adapter adapter aliasing</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow bidder code changing</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Admixer adapter bid request with valid data</span>
+    
+      <div class="specSummary passed">
+      <span class="description">bid request should be called. sizes style -&gt; [[],[]]</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bid request should be called. sizes style -&gt; []</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">ajax params should be matched</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Admixer adapter bid request with invalid data</span>
+    
+      <div class="specSummary passed">
+      <span class="description">ajax shouldn't be called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse status code must to be equal &quot;2&quot;</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Admixer adapter bid response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">response with ad. bidmanager.addBidResponse status code must to be equal &quot;1&quot;</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">response without ad. bidmanager.addBidResponse status code must to be equal &quot;2</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">response empty. bidmanager.addBidResponse status code must to be equal &quot;2</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AolAdapter callBids()</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AolAdapter callBids() bid request</span>
+    
+      <div class="specSummary passed">
+      <span class="description">requires parameters to be made</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hit the default pubapi endpoint</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hit endpoint based on the region config option</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hit the default endpoint in case of unknown region config option</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hit endpoint based on the server config option</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be the pubapi bid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be the version 2 of pubapi</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain cache busting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain required params - placement &amp; network</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain pageId and sizeId of 0 if params are missing</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain pageId optional param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain sizeId optional param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain generated alias if alias param is missing</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain alias optional param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not contain bidfloor if bidFloor param is missing</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain bidFloor optional param</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AolAdapter callBids() bid response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager if returned from pubapi</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager with correct bidderCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have adId matching the bidId from related bid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager as invalid in case of empty response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager as invalid in case of invalid JSON response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager as invalid in case of no bid data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have adId matching the bidId from bid request in case of no bid data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager as invalid in case of empty price</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager with attributes from pubapi response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager including pixels from pubapi response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager including dealid from pubapi response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be added to bidmanager including encrypted price from pubapi response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AolAdapter callBids() when bidCpmAdjustment is set</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show warning in the console</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppNexusAdapter request function</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires paramters to make request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires member &amp;&amp; invCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">attaches valid video params to the tag</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">attaches valid user params to the tag</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">sends bid request to ENDPOINT via POST</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">converts keyword params to proper form and attaches to request</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">AppNexusAdapter response handler</span>
+    
+      <div class="specSummary passed">
+      <span class="description">registers bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles nobid responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles non-banner media responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles JSON.parse errors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">centro adapter tests creation of bid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fix parameter name</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">centro adapter tests handling of the callback response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">callback function should exist</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called with correct arguments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Conversant adapter tests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">The Conversant response should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Conversant adapter tests Should submit bid responses correctly</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should correctly submit valid and empty bids to the bid manager</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should submit bids with statuses of 2 to the bid manager for empty bid responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should submit valid bids to the bid manager</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Conversant adapter tests Should submit the correct headers in the xhr</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should contain valid request header properties</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">criteo adapter test adding bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">adds bid for valid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds bid for multibid valid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds bidderCode to the response of a valid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds cpm to the response of a valid request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds creative to the response of a valid request</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">criteo adapter test dealing with unexpected situations</span>
+    
+      <div class="specSummary passed">
+      <span class="description">no bid if cdb handler responds with no bid empty string response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">no bid if cdb handler responds with no bid empty object response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">no bid if cdb handler responds with HTTP error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">no bid if response is invalid because response slots don't match input slots</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test File loading</span>
+    
+      <div class="specSummary passed">
+      <span class="description">For loading file </span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test check for library do exists</span>
+    
+      <div class="specSummary passed">
+      <span class="description">library was not loaded</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">library is now available</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test Check if size get clean</span>
+    
+      <div class="specSummary passed">
+      <span class="description">size clean up using fixe size</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test Check call bids return no errors</span>
+    
+      <div class="specSummary passed">
+      <span class="description">check value push using cal bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">check if value got pass correctly for DM params</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test Run prebid definitions !</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Run and return send bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test HandlerRes function test</span>
+    
+      <div class="specSummary passed">
+      <span class="description">it's now time to play with the response ...</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">it's now time to play with the response failure...</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test look at the adloader</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify districtm library is downloaded if nessesary</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DistrictM adapter test run send bid from within !!!</span>
+    
+      <div class="specSummary passed">
+      <span class="description">last test on send bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">fidelity adapter tests creation of bid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should populate required parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should populate required and optional parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">fidelity adapter tests fidelityResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add empty bid response if no bids returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid response for bid returned</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">getintent media adapter test adding bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">was called three times</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will respond to the first bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will respond to the second bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">wont respond to the third bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will add the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">gumgum adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">calls the endpoint once per valid bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">includes required browser data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">includes the global bid timeout</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">includes the publisher identity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">first call should be in-screen</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">second call should be in-image</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">third call should be native</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">last call should be slot</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">gumgum adapter handleGumGumCB[...]</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">gumgum adapter respond with a successful bid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">adds one bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">passes the correct placement code as the first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">has a GOOD status code</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">uses the CPM returned by the server</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">has an ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">has the size specified by the server</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">gumgum adapter respond with an empty bid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">adds one bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">has a NO_BID status code</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">passes the correct placement code as the first parameter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">gumgum adapter refresh throttle</span>
+    
+      <div class="specSummary passed">
+      <span class="description">warns about the throttle limit</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">hiromedia adapter callbids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates empty arguments</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates empty params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates empty bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">responds with status `NO_BID` for placements that are not in the allowed size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">invokes a single bid request for a single valid placement</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">finds an allowed size in a placement with multiple sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates sizes in default size tolerance range</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">accepts a custom allowed size per placement which makes no bid if no match is found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">accepts a custom allowed size per placement which bids if a match is found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">accepts a custom size tolerance which makes no bid if no match is found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">accepts a custom size tolerance which makes a bid if a match is found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">invalidates bids with no id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">accepts a custom bid endpoint url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">batches similar bid requests for similar sized placements</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">hiromedia adapter global response handler</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates empty arguments</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tolerates an empty response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds a bid reponse for each pending bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adds responses according to the sampling defined in the response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">indexExchange adapter - Request</span>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_parameter_x3: prebid sends AS request -&gt; x3 parameter does not exist in the request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_1_1: single slot with single size -&gt; single request object for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_1_1: single slot with single size -&gt; single request object for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_1_2: single slot with unsupported single size -&gt; indexExchange does not participate in auction</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_2_1: single slot with all supported multiple sizes -&gt; multiple request objects for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_2_2: single slot with all unsupported multiple sizes -&gt; no request objects for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_2_3: single slot with supported, unsupportrd, supported sizes -&gt; only the supported size request objects for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_2_4: single slot with unsupported, supportrd, unsupported sizes -&gt; only the supported size request objects for the slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_3: multiple slots with single size below allowed slot threshold -&gt; request for all the slots</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_4: multiple slots with single size at exact allowed slot threshold -&gt; request for all the slots</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_5: multiple slots with single size exceed allowed slot threshold -&gt; request for all the slots</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_6: threshold valid + non valid which exceeds threshold -&gt; 1 Ad Server request with supported sizes only</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_7: multiple sizes with slots that exceeds max threshold requests -&gt; 1 Ad Server request with supported sizes only</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_1: 1 prebid size slot, 1 index slot with size -&gt; one slot in AS request 1 no size ID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_2: multiple prebid size slot, 1 index slot with size -&gt; one slot in AS request 1 no size ID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_3: multiple prebid size slot, index slots with size for all prebid slots -&gt; all size in AS request, no size ID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_4: multiple prebid size slot, 1 index slot but size not in prebid defined size git -&gt; no AS requset</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_5: multiple prebid size slot, 1 index slot but size not defined in slot -&gt; no AS requset</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">indexExchange adapter - Response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_1_1: response for single slot with single size -&gt; bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_1_2: pass on bid for single slot with single size -&gt; bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_2_1: response for single slot with multiple sizes -&gt; all bids fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_2_2: pass on bid on some sizes for single slot with multiple sizes -&gt; highest bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_2_3: pass on bid on all sizes for a single slot -&gt; no bids fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_3_1: response for multiple slots request with single size for each slots -&gt; all response for all adunit fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_3_2: some slots response returned -&gt; returned bids fetched into prebid </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_3_3: response for multiple slots with no response returned -&gt; no bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_refreshSlot_1: slot refreshes multiple times with different bids on refresh with same price -&gt; response to prebid use correct AS response's creative</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_refreshSlot_2: slot refreshes multiple times with different bids on refresh with different price, but first bid is higher -&gt; response to prebid use correct AS response's creative</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_refreshSlot_3: slot refreshes multiple times with different bids on refresh with different price, but first bid is lower -&gt; response to prebid use correct AS response's creative</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_refreshSlot_4: got no response the second time -&gt; no bids fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_refreshSlot_5: unsupported slots refresh -&gt; no ad server request, no bids fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_1_1: response for single slot with single size contains alpha deal -&gt; bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_1_2: response for single slot with single size contains numeric deal -&gt; bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_1_3: response for single slot with single size contains alpha-numeric deal starting with numeric -&gt; bid fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_1_4: response for single slot with single size contains alpha-numeric deal starting with non-numeric -&gt; bid fetched into prebid </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_2_1: response for single slot with multi size, all deal bids returned -&gt; all bid fetched into prebid as deal bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_2_2: response for single slot with multi size, some deal resposne returned and the rest non deal response -&gt; all bid fetched, only deal response has dealID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_2_3: response for single slot with multi size, all returned as non-deal response -&gt; all bid fetched, no response has dealID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_3_1: multi slots, all responses contain deal -&gt; all bid fetched into prebid as deal bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_3_2: multi slots, some responses contain deal -&gt; all bid fetched, only deal response has dealID</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_deal_3_3: multi slots, no responses contain deal -&gt; all bid fetched, no response has dealID </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier: one slot with multiple tier -&gt; all tier bids are fetched into prebid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_callback_bids: callback function defined with bids -&gt; calls callback function with bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_callback_nobids: callback function defined with no bids -&gt; calls callback function without bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_response_sizeID_1: multiple prebid size slot, index slots with size for all prebid slots -&gt; all size in AS request, no size ID</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">indexExchange adapter - Validation</span>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_1: request slot has supported and unsupported size -&gt; unsupported size ignored in IX demand request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_2_1: some slot has unsupported size -&gt; unsupported slot ignored in IX demand request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_2_2: multiple slots with sinle size, all slot has supported size -&gt; all slots are sent to IX demand</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_2_3: multiple slots with sinle size, all slot has unsupported size -&gt; all slots are ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_3_1: one slot has supported, unsupported, supported size -&gt; unsupported slot ignored in IX demand request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_3_2: one slot has unsupported, supported, unsupported size -&gt; unsupported slot ignored in IX demand request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_3_3: multiple slots, all slots have supported size -&gt; all slots are included in IX demand request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_sizeValidation_3_4: multiple slots, all slots have unsupported size -&gt; no slots are sent to IX demand</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_integer: timeout is integer -&gt; t parameter that matches with the integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_quoted_integer: timeout is quoted integer -&gt; t parameter that matches with the integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_float: timeout is float number -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_float: timeout is float number -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_string: timeout is string -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_array: timeout is array -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_hash: timeout is hash -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_zero: timeout is zero -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_negative: timeout is negative integer -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_too_big: timeout is bigger than AS max timeout -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_missing: timeout is missing -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_param_timeout_empty_string: timeout is empty string -&gt; t parameter is not included in AS request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_integer: slot ID is integer -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_quoted_integer: slot ID is quoted_integer -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_float: slot ID is float -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_string: slot ID is string -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_array: slot ID is array -&gt; slot is not sent to AS</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_hash: slot ID is hash -&gt; slot is not sent to AS</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_zero: slot ID is zero integer -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_negative: slot ID is negative integer -&gt; slot ID sent to AS in string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_undefined: slot ID is undefined -&gt; slot is not sent to AS</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_missing: slot ID is missing -&gt; slot is not sent to AS</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_multiple_slot: uniqueness for multiple slots -&gt; all slots in ad server request with unique slot id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_slotid_multiple_same: same across some slots -&gt; all slots in ad server request with same slot id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_integer: site ID is integer -&gt; siteID ID sent to AS as integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_quoted_integer: site ID is quoted integer -&gt; siteID ID sent to AS as integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_float: site ID is float -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_string: site ID is string -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_array: site ID is array with int -&gt; siteID sent to AS as integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_array: site ID is array with quoted int -&gt; siteID sent to AS as integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_array: site ID is array with alpha string -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_hash: site ID is hash -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_zero: site ID is zero integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_negative: site ID is a negative integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteid_missing: site ID is missing -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_second_siteid_float: site ID is float -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_integer: tier2 site ID is integer -&gt; siteID ID sent to AS in integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_quoted_integer: tier2 site ID is quoted integer -&gt; siteID ID sent to AS in integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_float: tier2 site ID is float -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_string: tier2 site ID is string -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_array: tier2 site ID is array -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_hash: tier2 site ID is hash -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_zero: tier2 site ID is zero integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_negative: tier2 site ID is a negative integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier2siteid_missing: tier2 site ID is missing -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_integer: tier3 site ID is integer -&gt; siteID ID sent to AS in integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_quoted_integer: tier3 site ID is quoted integer -&gt; siteID ID sent to AS in integer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_float: tier3 site ID is float -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_string: tier3 site ID is string -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_array: tier3 site ID is array -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_hash: tier3 site ID is hash -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_zero: tier3 site ID is zero integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_negative: tier3 site ID is a negative integer -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_tier3siteid_missing: tier3 site ID is missing -&gt; slot is ignored</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteID_multiple: multiple slots have same siteIDs -&gt; all slots in ad server request with the same site IDs</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_siteID_different: multiple slots have different siteIDs -&gt; all slots in ad server request with the different site IDs</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_singleArr: single sized array -&gt; width and height in integer in request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_singleDim: missing width/height -&gt; size is ignored, no ad server request for bad size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_missing: missing size -&gt; slot is ignored, no ad server request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_negativeWidth: negative width -&gt; size is ignored, no ad server request for bad size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_negativeHeight: negative height -&gt; size is ignored, no ad server request for bad size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_quoted: height and width quoted -&gt; invalid size, no ad server request for invalid size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_float: height and width float -&gt; invalid size, no ad server request for invalid size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_string_1_pba23: height and width string -&gt; invalid size, no ad server request for invalid size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_string_2: whole size is string -&gt; invalid size, no ad server request for invalid size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_string_3: entire size structure is string -&gt; no ad server request since size is invalid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_hash_1: height or width hash -&gt; invalid size, no ad server request for invalid size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_hash_2: whole size hash -&gt; invalid size, no ad server request for invalid size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_hash_3: entire size structure is hash -&gt; no ad server request since size is invalid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_swap: swap size and width for valid so now its invalid -&gt; unsupportedsize, no ad server request for unsupported size </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_sameWidth: same width for all sizes in a slot -&gt; ad server request only for supported sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_size_sameHeight: same height for all sizes in a slot -&gt; ad server request only for supported sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">test_prebid_indexAdapter_request_sizeID_validation_1: multiple prebid size slot, index slots with size for all prebid slots, 1 slot is not configured properly -&gt; all size in AS request, except misconfigured slot</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">jcm adapter tests creation of bid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called only once</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fix parameter name</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">jcm adapter tests placement by size</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called with specific parameters for two bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">jcm adapter tests handling of the callback response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">callback function should exist</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called twice with correct arguments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">komoonaAdapter request function</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires paramters to make request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires placementid and hbid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">sends bid request to ENDPOINT via POST</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">komoonaAdapter response handler</span>
+    
+      <div class="specSummary passed">
+      <span class="description">registers bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles nobid responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles JSON.parse errors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LifestreetAdapter callBids()</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LifestreetAdapter callBids() request</span>
+    
+      <div class="specSummary passed">
+      <span class="description">parameters should present</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">parameters do not have supported size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tag when size is supported</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">tag when one size is provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">wrong size is provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">ad_size is not provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">slot is not provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adkey is not provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">jstag_url is not provided</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should request a tag</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">LSM_Slot function should contain expected parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Default timeout should be 700 milliseconds</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">LifestreetAdapter callBids() response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">nobid for undefined LSM_Slot function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">nobid for error response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">show existing slot</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should bid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite failed">
+      <span class="description">mantis adapter tests callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create appropriate bid responses</span>
+      </div>
+    
+      <div class="specSummary failed">
+      <span class="description">should load script with relevant bid data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send uuid from window if set</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send mobile = true if breakpoint is hit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send different params if amp is detected</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">memeglobal adapter tests functions and initialization</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">callBids with params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">callBids empty params</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">memeglobal adapter tests memeglobalResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not add bid responses if no bids returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid response for bids returned and empty bid responses for the rest</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">openx adapter tests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add bid responses if bids are returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add no fill bid responses if bids are returned, but have empty pub rev</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not call loadscript when inputting with empty params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call loadscript with the correct params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send out custom params on bids that have customParams specified</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">openx adapter tests test openx callback responce</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add empty bid responses if no bids returned</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Piximedia adapter tests creation of prebid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the Piximedia prebid URL once on valid calls</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not call the Piximedia prebid URL once on invalid calls</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the correct Prebid URL when using the default URL</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the correct Prebid URL when using the default URL with a deal and custom data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the correct Prebid URL when using the default URL and overridding sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the correct Prebid URL when supplying a custom URL</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Piximedia adapter tests handling of the callback response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Piximedia callback function should exist</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called once with correct arguments</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called once with correct arguments on partial response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called once without any ads</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should not be called on bogus cbid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should not be called on bogus response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PulsePoint Adapter Tests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify requests sent to PulsePoint library</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify passback</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify PulsePoint library is downloaded if nessesary</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify Bids get processed after PulsePoint library downloads</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify Passbacks when window.pp is not available</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">rhythmone adapter tests rhythmoneResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should echo placementcode div-gpt-ad-1438287399331-0</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have the expected ad response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Roxot adapter tests roxotResponseHandler</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add empty bid responses if no bids returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid response for bids returned and empty bid responses for the rest</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter callBids public interface</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should receive a well-formed bidRequest from the adaptermanager</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter MAS mapping / ordering</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not include values without a proper mapping</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should sort values without any MAS priority sizes in regular ascending order</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should sort MAS priority sizes in the proper order w/ rest ascending</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter callBids implementation for requests to fastlane</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should make a well-formed request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should use rubicon sizes if present</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not send a request and register an error bid if no valid sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow a floor override</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter callBids implementation for requests for video requests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should make a well-formed video request</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter callBids implementation response handler for fastlane</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle a success response and sort by cpm</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be fine with a CPM of 0</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle an error with no ads returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle an error with bad status</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle an error because of malformed json response</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not register an error bid when a success call to addBidResponse throws an error</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">the rubicon adapter callBids implementation response handler for video</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should register a successful bid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sekindoUM Adapter Tests sekindoUM callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Verify sekindo script tag was created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sekindoUM Adapter Tests Should submit bid responses correctly</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should correctly submit valid bid to the bid manager</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call loadIFrame on the adloader for each bid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough adapter strcallback</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough adapter bid requests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the bid request bidId as the adId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a good statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the CPM to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the ad on the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the size on the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the pkey</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">smartadserver adapter tests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">set url parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">creates an empty bid response if no bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">creates a bid response if bid is returned</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Smartyads adapter tests Smartyads callBids validation</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Valid bid-request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Valid bid-response</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Smartyads adapter tests MAS mapping / ordering</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not include values without a proper mapping</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should sort values without any MAS priority sizes in regular ascending order</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should sort MAS priority sizes in the proper order w/ rest ascending</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Sonobi adapter tests should form valid bid requests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_p</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_p</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_pd</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_pd</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_pdf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_pdf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_a</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_a</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_af</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_af</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_adf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_adf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_A</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_A</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_Ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_Ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_Af</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_Af</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_Adf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_Adf</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_m1hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_m1hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_m2hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_m2hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_m3hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_m3hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_m4hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_m4hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should make trinity key:vals for: adUnit_m5hb</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should attempt to call bidder for: adUnit_m5hb</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Sonobi adapter tests should parse bid returns and register bid objects</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create bid object for good bid return</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create bid object for outstream video bid return</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create bid object for deal bid return</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create fail bid object for empty return</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sovrn adapter tests sovrnResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add empty bid responses if no bids returned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid response for bids returned and empty bid responses for the rest</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called twice</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have load screenroll and mustang script</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter getBid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have returned a valid bidObject</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have called load with proper config</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have called getPricing</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter formatBidObject</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a valid bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a invalid bid object because price is not defined</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a invalid bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter formatAdHTML</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create an inBanner ad format</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create an intext ad format</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a screenroll ad format</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter getBiggerSize</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should returns the bigger size</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">StickyAdsTV Adapter top most window</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should returns the top most window</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">triplelift adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load a script for each bid request</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">triplelift adapter TLCB</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">triplelift adapter add bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the bid request bidId as the adId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a good statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the CPM to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the ad on the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the size on the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the dealId on the bid object if present</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">triplelift adapter add empty bids if no bid returned</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the bid request bidId as the adId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have an error statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass the correct placement code as first param</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">twenga adapter tests</span>
+    
+      <div class="specSummary passed">
+      <span class="description">sets url parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">creates an empty bid response if no bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">creates a bid response if bid is returned</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">underdog media adapter test adding bids to the manager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">will add a bid object for each bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will add the ad html to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will have the right size attached</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will add the CPM to the bid object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will add the bidder code to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">VertamediaAdater request function</span>
+    
+      <div class="specSummary passed">
+      <span class="description">exists and is a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires paramters to make request</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">requires member &amp;&amp; invCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">sends bid request to ENDPOINT via POST</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">VertamediaAdater response handler</span>
+    
+      <div class="specSummary passed">
+      <span class="description">registers bids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles nobid responses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">handles JSON.parse errors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Vertoz Adapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called twice</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Vertoz Adapter Bid response success</span>
+    
+      <div class="specSummary passed">
+      <span class="description">cpm to have property 1.000000</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adSpaceId should exist and be equal to placementCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have property ad</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include the size to the bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Vertoz Adapter Bid response failure</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have cpm property</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">adSpaceId should exist and be equal to placementCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have ad property</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">wideorbit adapter tests creation of bid url</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called only once</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fix parameters name</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">wideorbit adapter tests creation of bid url placement by name</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called with specific parameters for two bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">wideorbit adapter tests creation of bid url placement by id</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be called with specific parameters for two bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">wideorbit adapter tests handling of the callback response</span>
+    
+      <div class="specSummary passed">
+      <span class="description">callback function should exist</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">bidmanager.addBidResponse should be called thrice with correct arguments</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should append an image to the head when type is set to redirect</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should append an iframe to the head when type is set to iframe</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should append an script to the head when type is set to javascript</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter callBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exists and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter callBids with valid request parameters</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the endpoint once per valid bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include required request parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter callBids with unvalid request parameters</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not call the endpoint with if there is no request parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter widespaceHandleCB</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist and be a function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter respond with a successful bid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add one bid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should use the CPM returned by the server</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have an OK statusCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a valid size</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should recive right placementCode</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">WidespaceAdapter respond with a no-ad</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have an error statusCode</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adLoader</span>
+    
+      <div class="specSummary passed">
+      <span class="description">correctly appends a cachebuster query paramter to a pixel with one existing parameter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">correctly appends a cachebuster query paramter to a pixel with multiple existing parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">adLoader trackPixel</span>
+    
+      <div class="specSummary passed">
+      <span class="description">correctly appends a cachebuster query paramter to a pixel with no existing parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Publisher API _ Alias Bidder set Alias Bidder</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have both of target bidder and alias bidder</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Publisher API api of command queue</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a global variable pbjs</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a global variable pbjs.que as an array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have pbjs.que.push function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Publisher API has function</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.getAdserverTargeting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.getAdserverTargetingForAdUnitCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.getBidResponses</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.getBidResponsesForAdUnitCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.setTargetingForGPTAsync</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.allBidsAvailable</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.renderAd</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.removeAdUnit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.requestBids</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.addAdUnits</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.addCallback</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.removeCallback</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.aliasBidder</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have function pbjs.getAllWinningBids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">replaceTokenInString</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should replace all given tokens in a String</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should ignore tokens it does not see</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">bidmanager.js getKeyValueTargetingPairs</span>
+    
+      <div class="specSummary passed">
+      <span class="description">No bidder level configuration defined - default</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Custom configuration for all bidders</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Custom configuration for one bidder</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Custom configuration for one bidder - not matched</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Custom bidCpmAdjustment for one bidder and inherit standard</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Custom bidCpmAdjustment AND custom configuration for one bidder and inherit standard settings</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">alwaysUseBid=true, sendStandardTargeting=false, and inherit custom</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">suppressEmptyKeys=true</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">bidmanager.js adjustBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should adjust bids if greater than zero and pass copy of bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">bidmanager.js addBidResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return proper price bucket increments for dense mode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should place dealIds in adserver targeting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not alter bid adID</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">cpmBucketManager</span>
+    
+      <div class="specSummary passed">
+      <span class="description">getPriceBucketString function generates the correct price strings</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">gets the correct custom bucket strings</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">checks whether custom config is valid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Ga enableAnalytics</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should accept a tracker name option and output prefixed send string</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite failed">
+      <span class="description">Bug: #825 adUnit code based refresh times out without setting targets Given a page with five ad slots has loaded and the auction is finished When the first auction completes</span>
+    
+      <div class="specSummary failed">
+      <span class="description">Then there will be correct number of bidder requests</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sizeMapping</span>
+    
+      <div class="specSummary passed">
+      <span class="description">mapSizes 1029 width</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">mapSizes 400 width</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">mapSizes - invalid adUnit - should return sizes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">mapSizes - should return desktop (largest) sizes if screen width not detected</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">mapSizes - should return sizes if sizemapping improperly defined </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">getScreenWidth</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">getScreenWidth - should return 0 if it cannot deteremine size</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN an event occurs that is to be tracked
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN an event occurs before tracking library is available
+ AND the adapter is then enabled
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should queue the event first and then track it
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN an event occurs after enable analytics
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN a bidRequest event occurs
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN a bidResponse event occurs
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN a bidTimeout event occurs
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">
+FEATURE: Analytics Adapters API
+  SCENARIO: A publisher enables analytics
+    GIVEN a global object `window['testGlobal']`
+    AND an  `example` instance of `AnalyticsAdapter`
+ WHEN adapter.enableAnalytics is called twice
+</span>
+    
+      <div class="specSummary passed">
+      <span class="description">THEN should call `window.ExampleAnalyticsGlobalObject` function
+</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough analytics adapter track when event type is bidRequested</span>
+    
+      <div class="specSummary passed">
+      <span class="description">placementCodeSet contains a value</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough analytics adapter bid won handler when bidderCode is not sharethrough and sharethrough is in bid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should fire lose beacon</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">sharethrough analytics adapter lose beacon is fired</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call correct url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getAdserverTargetingForAdUnitCodeStr</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return targeting info as a string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log message if adunitCode param is falsey</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getAdserverTargetingForAdUnitCode</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return targeting info as an object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getAdServerTargeting</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return current targeting data for slots</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return correct targeting with default settings</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return correct targeting with bid landscape targeting on</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should include a losing bid's custom ad targeting key when the bid has `alwaysUseBid` set to `true`</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not overwrite winning bids custom keys targeting key when the bid has `alwaysUseBid` set to `true`</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not send standard targeting keys when the bid has `sendStandardTargeting` set to `false`</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getBidResponses</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return expected bid responses when not passed an adunitCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return bid responses for most recent requestId only</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getBidResponsesForAdUnitCode</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return bid responses as expected</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module setTargetingForGPTAsync</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set googletag targeting keys after calling setTargetingForGPTAsync function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set targeting when passed an array of ad unit codes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set targeting from googletag data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Calling enableSendAllBids should set targeting to include standard keys with bidder append to key name</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set targeting for bids with `alwaysUseBid=true`</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when googletag is not defined on page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit SET_TARGETING event when successfully invoked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module allBidsAvailable</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call bidmanager.allBidsBack</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module renderAd</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should require doc and id params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log message with bid id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should write the ad to the doc</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should place the url inside an iframe on the doc</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log an error when no ad or url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log an error when doc is document</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not render videos</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should catch errors thrown when trying to write ads to the page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log an error when ad not found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save bid displayed to winning bid</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module requestBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add bidsBackHandler callback to bidmanager</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log message when adUnits not configured</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should execute callback after timeout</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should execute callback immediately if adUnits is empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not propagate exceptions from bidsBackHandler</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call callBids function on adaptermanager</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not callBids if a video adUnit has non-video bidders</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should callBids if a video adUnit has all video bidders</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should queue bid requests when a previous bid request is in process</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module onEvent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should log an error when handler is not a function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log an error when id provided is not valid for event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call events.on with valid parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module offEvent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return when id provided is not valid for event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call events.off with valid parameters</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module emit</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be able to emit event without arguments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module addCallback</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error and return null id when error registering callback</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add callback to bidmanager</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module removeCallback</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return null</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module registerBidAdapter</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should register bidAdaptor with adaptermanager</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should catch thrown errors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module bidsAvailableForAdapter</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should update requested bid with status set to available</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module createBid</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return a bid object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module addBidResponse</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call bidmanager.addBidResponse</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module loadScript</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call adloader.loadScript</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module sendTimeoutEvent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit BID_TIMEOUT for timed out bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module aliasBidder</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call adaptermanager.aliasBidder</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when not passed correct arguments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module setPriceGranularity</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when not passed granularity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call bidmanager.setPriceGranularity with granularity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when not passed a valid config object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call bidmanager.setCustomPriceBucket with custom config buckets</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getAllWinningBids</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return all winning bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module emit event</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call AUCTION_END only once</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module removeAdUnit</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove given adUnit in adUnits array</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getDealTargeting</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should truncate deal keys</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module video adserverTag</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when adserver is not dfp</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return original adservertag if bids empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should log error when google's parameters are missing in adserverTag</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module setBidderSequence</span>
+    
+      <div class="specSummary passed">
+      <span class="description">setting to `random` uses shuffled order of adUnits</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module getHighestCpm</span>
+    
+      <div class="specSummary passed">
+      <span class="description">returns an array of winning bid objects for each adUnit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">returns an array containing the highest bid object for the given adUnitCode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">returns an empty array when the given adUnit is not found</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">returns an empty array when the given adUnit has no bids</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Unit: Prebid Module setTargetingForAst</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set targeting for appnexus apntag object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">helpers.url parse()</span>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the protocol</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the hostname</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the port</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the pathname</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the search query</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the hash</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">extracts the host</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">helpers.url format()</span>
+    
+      <div class="specSummary passed">
+      <span class="description">formats an object in to a URL</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">will use defaults for missing properties</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils replaceTokenInString</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should replace all given tokens in a String</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should ignore tokens it does not see</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils getBidIdParameter</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return value of the key in input object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return empty string, if the key is not existsed in the object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils tryAppendQueryString</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should append query string to existing url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return existing url, if the value is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils parseQueryStringParameters</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should append query string to existing using the input obj</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return an empty string, if input obj is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils transformAdServerTargetingObj</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should append query string to existing using the input obj</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return an empty string, if input obj is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils extend</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should merge two input object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should merge two input object even though target object is empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">just return target object, if the source object is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils parseSizesInput</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return query string using multi size array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return query string using single size array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return query string using string input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined if input array is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils parseGPTSingleSizeArray</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return size string with input single size array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return size string with input single size array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined using string input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined using number input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined using one length single array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined if the input is empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined if the input is not a number</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return undefined if the input is not a number 2</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils isA</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with string object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with array object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with array object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with array object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with number</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with number</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils isFn</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with input function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input number</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input Array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input object</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils isStr</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with input string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input number</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils isArray</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input number</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with input array</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with input function</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils isEmpty</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true with empty object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with non-empty object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false with null</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils contains</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if the input string contains in the input obj</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the input string do not contain in the input obj</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the input string is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils _map</span>
+    
+      <div class="specSummary passed">
+      <span class="description">return empty array when input object is empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return value array with vaild input object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return value array with vaild input object_callback func changed 1</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return value array with vaild input object_callback func changed 2</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils createInvisibleIframe</span>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - height</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - width</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - hspace</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - vspace</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - marginWidth</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - marginHeight</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - scrolling</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - frameBorder</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - src</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">return iframe - style</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils getHighestCpm</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should pick the existing highest cpm</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pick the new highest cpm</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pick the fastest cpm in case of tie</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">Utils polyfill test</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not add polyfill to array</span>
+      </div>
+    
+    </div>
+  
+  
+</div>
+
+<div id="details">
+  
+  
+  <div class="specDetail failed">
+    <span class="description">mantis adapter tests callBids should load script with relevant bid data</span>
+    <div class="stackTrace">
+      <div class="resultMessage">AssertionError: expected 'https://mantodea.mantisadnetwork.com/website/prebid?referrer=http%3A%2F%2Flocalhost%3A9876%2F%3Fid%3D48990949&amp;tz=-420&amp;buster=1487133312267&amp;secure=false&amp;iframe=true&amp;jsonp=mantis_jsonp%5B1%5D&amp;property=1234&amp;bids[0][bidId]=bidId1&amp;bids[0][sizes][0][width]=728&amp;bids[0][sizes][0][height]=90&amp;bids[1][bidId]=bidId2&amp;bids[1][sizes][0][width]=300&amp;bids[1][sizes][0][height]=600&amp;bids[1][sizes][1][width]=300&amp;bids[1][sizes][1][height]=250&amp;version=1' to match /tz=[0-9]+&amp;/
+    at context.&lt;anonymous&gt; (http://localhost:9876/base/test/spec/adapters/mantis_spec.js?4c12d95505194ad7ac45e1466c2df7a063b34322:142:27)</div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="specDetail failed">
+    <span class="description">Bug: #825 adUnit code based refresh times out without setting targets Given a page with five ad slots has loaded and the auction is finished When the first auction completes Then there will be correct number of bidder requests</span>
+    <div class="stackTrace">
+      <div class="resultMessage">AssertionError: there are three bidder requests
+    at context.&lt;anonymous&gt; (http://localhost:9876/base/test/spec/integration/bug-825-truncate-bidsRequested_spec.js?ad49c881ee55b10fb70f06432d52d33a1faa0703:103:28)</div>
+    </div>
+  </div>
+  
+  
+</div>
+
+<script>
+
+var folded = false;
+
+document.body.onkeypress = function (e) {
+  if (!e || !e.keyCode) return;
+  switch (e.keyCode) {
+    case 102: toggleFold(); break;
+    case 49: showSummary(); break;
+    case 50: showFailures(); break;case 50: showFailures(); break;
+  }
+};
+
+function showSummary() { document.body.className = "html-reporter showSummary"; }
+function showFailures() { document.body.className = "html-reporter showDetails"; }
+
+function toggleSection(el) {
+  el.className = el.className === 'summary-section' ? 'summary-section folded' : 'summary-section';
+}
+
+function toggleFold() { (folded) ? unfold() : fold(); }
+function fold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section folded';
+  }
+  folded = true;
+}
+function unfold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section';
+  }
+  folded = false;
+}
+
+</script>
+
+
+</body>
+</html>
+

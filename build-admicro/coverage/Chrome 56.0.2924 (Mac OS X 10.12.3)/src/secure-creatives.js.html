@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/secure-creatives.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/secure-creatives.js</span></h1>
+    <h2>
+        Statements: <span class="metric">39.39% <small>(13 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">21.43% <small>(3 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">28.57% <small>(2 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">37.5% <small>(12 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; secure-creatives.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.listenMessagesFromCreative = listenMessagesFromCreative;
+&nbsp;
+var _events = require('./events');
+&nbsp;
+var _events2 = _interopRequireDefault(_events);
+&nbsp;
+var _constants = require('./constants');
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj </span>: { 'default': obj }; }
+&nbsp;
+/* Secure Creatives
+  Provides support for rendering creatives into cross domain iframes such as SafeFrame to prevent
+   access to a publisher page from creative payloads.
+ */
+&nbsp;
+var BID_WON = _constants.EVENTS.BID_WON;
+&nbsp;
+function listenMessagesFromCreative() {
+  addEventListener('message', receiveMessage, false);
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function receiveMessage(ev) {</span>
+<span class="cstat-no" title="statement not covered" >  var key = ev.message ? 'message' : 'data';</span>
+<span class="cstat-no" title="statement not covered" >  var data = {};</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    data = JSON.parse(ev[key]);</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (data.adId) {</span>
+<span class="cstat-no" title="statement not covered" >    var adObject = pbjs._bidsReceived.find(<span class="fstat-no" title="function not covered" >function (bid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return bid.adId === data.adId;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (data.message === 'Prebid Request') {</span>
+<span class="cstat-no" title="statement not covered" >      sendAdToCreative(adObject, data.adServerDomain, ev.source);</span>
+<span class="cstat-no" title="statement not covered" >      _events2['default'].emit(BID_WON, adObject);</span>
+    }
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function sendAdToCreative(adObject, remoteDomain, source) {</span>
+<span class="cstat-no" title="statement not covered" >  var adId = adObject.adId,</span>
+      ad = adObject.ad,
+      adUrl = adObject.adUrl,
+      width = adObject.width,
+      height = adObject.height;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (adId) {</span>
+<span class="cstat-no" title="statement not covered" >    resizeRemoteCreative(adObject);</span>
+<span class="cstat-no" title="statement not covered" >    source.postMessage(JSON.stringify({</span>
+      message: 'Prebid Response',
+      ad: ad,
+      adUrl: adUrl,
+      adId: adId,
+      width: width,
+      height: height
+    }), remoteDomain);
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function resizeRemoteCreative(_ref) {</span>
+<span class="cstat-no" title="statement not covered" >  var adUnitCode = _ref.adUnitCode,</span>
+      width = _ref.width,
+      height = _ref.height;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var iframe = document.getElementById(window.googletag.pubads().getSlots().find(<span class="fstat-no" title="function not covered" >function (slot) {</span></span>
+<span class="cstat-no" title="statement not covered" >    return slot.getAdUnitPath() === adUnitCode || slot.getSlotElementId() === adUnitCode;</span>
+  }).getSlotElementId()).querySelector('iframe');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  iframe.width = '' + width;</span>
+<span class="cstat-no" title="statement not covered" >  iframe.height = '' + height;</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/piximedia.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/piximedia.js</span></h1>
+    <h2>
+        Statements: <span class="metric">100% <small>(72 / 72)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(41 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(5 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(72 / 72)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric">1 branch</span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; piximedia.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var CONSTANTS = require('../constants.json');
+var utils = require('../utils.js');
+var bidmanager = require('../bidmanager.js');
+var bidfactory = require('../bidfactory.js');
+var adloader = require('../adloader.js');
+var Adapter = require('./adapter.js');
+&nbsp;
+var PiximediaAdapter = function PiximediaAdapter() {
+  var PREBID_URL = '//static.adserver.pm/prebid';
+  var baseAdapter = Adapter.createNew('piximedia');
+  var bidStash = {};
+&nbsp;
+  var tryAppendPixiQueryString = function tryAppendPixiQueryString(url, name, value) {
+    return url + "/" + encodeURIComponent(name) + "=" + value;
+  };
+&nbsp;
+  baseAdapter.callBids = function callBidsPiximedia(params) {
+    utils._each(params.bids, function (bid) {
+&nbsp;
+      // valid bids must include a siteId and an placementId
+      if (bid.placementCode &amp;&amp; bid.sizes &amp;&amp; bid.params &amp;&amp; bid.params.siteId &amp;&amp; bid.params.placementId) {
+&nbsp;
+        var sizes = bid.params.hasOwnProperty('sizes') ? bid.params.sizes : bid.sizes;
+        sizes = utils.parseSizesInput(sizes);
+&nbsp;
+        var cbid = utils.getUniqueIdentifierStr();
+&nbsp;
+        // we allow overriding the URL in the params
+        var url = bid.params.prebidUrl || PREBID_URL;
+&nbsp;
+        // params are passed to the Piximedia endpoint, including custom params
+        for (var key in bid.params) {
+          /* istanbul ignore else */
+          <span class="skip-if-branch" title="else path not taken" >E</span>if (bid.params.hasOwnProperty(key)) {
+            var value = bid.params[key];
+            switch (key) {
+              case "siteId":
+                url = tryAppendPixiQueryString(url, 'site_id', encodeURIComponent(value));
+                break;
+&nbsp;
+              case "placementId":
+                url = tryAppendPixiQueryString(url, 'placement_id', encodeURIComponent(value));
+                break;
+&nbsp;
+              case "dealId":
+                url = tryAppendPixiQueryString(url, 'l_id', encodeURIComponent(value));
+                break;
+&nbsp;
+              case "sizes":
+              case "prebidUrl":
+                break;
+&nbsp;
+              default:
+                if (typeof value === "function") {
+                  url = tryAppendPixiQueryString(url, key, encodeURIComponent((value(baseAdapter, params, bid) || "").toString()));
+                } else {
+                  url = tryAppendPixiQueryString(url, key, encodeURIComponent((value || "").toString()));
+                }
+                break;
+            }
+          }
+        }
+&nbsp;
+        url = tryAppendPixiQueryString(url, 'jsonp', 'pbjs.handlePiximediaCallback');
+        url = tryAppendPixiQueryString(url, 'sizes', encodeURIComponent(sizes.join(",")));
+        url = tryAppendPixiQueryString(url, 'cbid', encodeURIComponent(cbid));
+        url = tryAppendPixiQueryString(url, 'rand', String(Math.floor(Math.random() * 1000000000)));
+&nbsp;
+        bidStash[cbid] = {
+          'bidObj': bid,
+          'url': url,
+          'start': new Date().getTime()
+        };
+        utils.logMessage('[Piximedia] Dispatching header Piximedia to URL ' + url);
+        adloader.loadScript(url);
+      }
+    });
+  };
+&nbsp;
+  /*
+   * Piximedia's bidResponse should look like:
+   *
+   * {
+   *   'foundbypm': true,            // a Boolean, indicating if an ad was found
+   *   'currency': 'EUR',        // the currency, as a String
+   *   'cpm': 1.99,              // the win price as a Number, in currency
+   *   'dealId': null,           // or string value of winning deal ID
+   *   'width': 300,             // width in pixels of winning ad
+   *   'height': 250,            // height in pixels of winning ad
+   *   'html': 'tag_here'        // HTML tag to load if we are picked
+   * }
+   *
+   */
+  pbjs.handlePiximediaCallback = function (bidResponse) {
+    if (bidResponse &amp;&amp; bidResponse.hasOwnProperty("foundbypm")) {
+      var stash = bidStash[bidResponse.cbid]; // retrieve our stashed data, by using the cbid
+      var bid;
+&nbsp;
+      if (stash) {
+        var bidObj = stash.bidObj;
+        var timelapsed = new Date().getTime();
+        timelapsed = timelapsed - stash.start;
+&nbsp;
+        if (bidResponse.foundbypm &amp;&amp; bidResponse.width &amp;&amp; bidResponse.height &amp;&amp; bidResponse.html &amp;&amp; bidResponse.cpm &amp;&amp; bidResponse.currency) {
+&nbsp;
+          /* we have a valid ad to display */
+          bid = bidfactory.createBid(CONSTANTS.STATUS.GOOD);
+          bid.bidderCode = bidObj.bidder;
+          bid.width = bidResponse.width;
+          bid.height = bidResponse.height;
+          bid.ad = bidResponse.html;
+          bid.cpm = bidResponse.cpm;
+          bid.currency = bidResponse.currency;
+&nbsp;
+          if (bidResponse.dealId) {
+            bid.dealId = bidResponse.dealId;
+          } else {
+            bid.dealId = null;
+          }
+&nbsp;
+          bidmanager.addBidResponse(bidObj.placementCode, bid);
+&nbsp;
+          utils.logMessage('[Piximedia] Registered bidresponse from URL ' + stash.url + ' (time: ' + String(timelapsed) + ')');
+          utils.logMessage('[Piximedia] ======&gt; BID placementCode: ' + bidObj.placementCode + ' CPM: ' + String(bid.cpm) + ' ' + bid.currency + ' Format: ' + String(bid.width) + 'x' + String(bid.height));
+        } else {
+&nbsp;
+          /* we have no ads to display */
+          bid = bidfactory.createBid(CONSTANTS.STATUS.NO_BID);
+          bid.bidderCode = bidObj.bidder;
+          bidmanager.addBidResponse(bidObj.placementCode, bid);
+&nbsp;
+          utils.logMessage('[Piximedia] Registered BLANK bidresponse from URL ' + stash.url + ' (time: ' + String(timelapsed) + ')');
+          utils.logMessage('[Piximedia] ======&gt; NOBID placementCode: ' + bidObj.placementCode);
+        }
+&nbsp;
+        // We should no longer need this stashed object, so drop reference:
+        bidStash[bidResponse.cbid] = null;
+      } else {
+        utils.logMessage("[Piximedia] Couldn't find stash for cbid=" + bidResponse.cbid);
+      }
+    }
+  };
+&nbsp;
+  // return an object with PiximediaAdapter methods
+  return {
+    callBids: baseAdapter.callBids,
+    setBidderCode: baseAdapter.setBidderCode,
+    getBidderCode: baseAdapter.getBidderCode
+  };
+};
+&nbsp;
+module.exports = PiximediaAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

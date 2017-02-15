@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/bidmanager.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/bidmanager.js</span></h1>
+    <h2>
+        Statements: <span class="metric">88.52% <small>(185 / 209)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">75.22% <small>(85 / 113)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">93.88% <small>(46 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">91.5% <small>(183 / 200)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; bidmanager.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">107</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">176</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2257</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">1274</span>
+<span class="cline-any cline-yes">762</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">367</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">1571</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">367</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-yes">1282</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">771</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">771</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">897</span>
+<span class="cline-any cline-yes">1111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">103</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-yes">156</span>
+<span class="cline-any cline-yes">156</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">80</span>
+<span class="cline-any cline-yes">80</span>
+<span class="cline-any cline-yes">80</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">80</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? "symbol" : typeof obj; </span>};</span>
+&nbsp;
+var _extends = Object.assign || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (target) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 1; i &lt; arguments.length; i++) { <span class="cstat-no" title="statement not covered" >var source = arguments[i]; <span class="cstat-no" title="statement not covered" ></span>for (var key in source) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(source, key)) { <span class="cstat-no" title="statement not covered" >target[key] = source[key]; </span>} </span>} </span>} <span class="cstat-no" title="statement not covered" ></span>return target; </span>};</span>
+&nbsp;
+var _utils = require('./utils');
+&nbsp;
+var _cpmBucketManager = require('./cpmBucketManager');
+&nbsp;
+var CONSTANTS = require('./constants.json');
+var AUCTION_END = CONSTANTS.EVENTS.AUCTION_END;
+var utils = require('./utils.js');
+var events = require('./events');
+&nbsp;
+var objectType_function = 'function';
+&nbsp;
+var externalCallbacks = { byAdUnit: [], all: [], oneTime: null, timer: false };
+var _granularity = CONSTANTS.GRANULARITY_OPTIONS.MEDIUM;
+var _customPriceBucket = void 0;
+var defaultBidderSettingsMap = {};
+&nbsp;
+exports.setCustomPriceBucket = function (customConfig) {
+  _customPriceBucket = customConfig;
+};
+&nbsp;
+/**
+ * Returns a list of bidders that we haven't received a response yet
+ * @return {array} [description]
+ */
+exports.getTimedOutBidders = function () {
+  return pbjs._bidsRequested.map(getBidderCode).filter(_utils.uniques).filter(function (bidder) {
+    return pbjs._bidsReceived.map(getBidders).filter(_utils.uniques).indexOf(bidder) &lt; 0;
+  });
+};
+&nbsp;
+function timestamp() {
+  return new Date().getTime();
+}
+&nbsp;
+function getBidderCode(bidSet) {
+  return bidSet.bidderCode;
+}
+&nbsp;
+function getBidders(bid) {
+  return bid.bidder;
+}
+&nbsp;
+function bidsBackAdUnit(adUnitCode) {
+  var _this = this;
+&nbsp;
+  var requested = pbjs._bidsRequested.map(function (request) {
+    return request.bids.filter(_utils.adUnitsFilter.bind(_this, pbjs._adUnitCodes)).filter(function (bid) {
+      return bid.placementCode === adUnitCode;
+    });
+  }).reduce(_utils.flatten, []).map(function (bid) {
+    return bid.bidder === 'indexExchange' ? bid.sizes.length : 1;
+  }).reduce(add, 0);
+&nbsp;
+  var received = pbjs._bidsReceived.filter(function (bid) {
+    return bid.adUnitCode === adUnitCode;
+  }).length;
+  return requested === received;
+}
+&nbsp;
+function add(a, b) {
+  return a + b;
+}
+&nbsp;
+function bidsBackAll() {
+  var requested = pbjs._bidsRequested.map(function (request) {
+    return request.bids;
+  }).reduce(_utils.flatten, []).filter(_utils.adUnitsFilter.bind(this, pbjs._adUnitCodes)).map(function (bid) {
+    return bid.bidder === 'indexExchange' ? bid.sizes.length : 1;
+  }).reduce(function (a, b) {
+    return a + b;
+  }, 0);
+&nbsp;
+  var received = pbjs._bidsReceived.filter(_utils.adUnitsFilter.bind(this, pbjs._adUnitCodes)).length;
+&nbsp;
+  return requested === received;
+}
+&nbsp;
+exports.bidsBackAll = function () {
+  return bidsBackAll();
+};
+&nbsp;
+function getBidderRequest(bidder, adUnitCode) {
+  return pbjs._bidsRequested.find(function (request) {
+    return request.bids.filter(function (bid) {
+      return bid.bidder === bidder &amp;&amp; bid.placementCode === adUnitCode;
+    }).length &gt; 0;
+  }) || { start: null, requestId: null };
+}
+&nbsp;
+/*
+ *   This function should be called to by the bidder adapter to register a bid response
+ */
+exports.addBidResponse = function (adUnitCode, bid) {
+  if (!adUnitCode) {
+    utils.logWarn('No adUnitCode supplied to addBidResponse, response discarded');
+    return;
+  }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (bid) {
+    var _getBidderRequest = getBidderRequest(bid.bidderCode, adUnitCode),
+        requestId = _getBidderRequest.requestId,
+        start = _getBidderRequest.start;
+&nbsp;
+    _extends(bid, {
+      requestId: requestId,
+      responseTimestamp: timestamp(),
+      requestTimestamp: start,
+      cpm: bid.cpm || 0,
+      bidder: bid.bidderCode,
+      adUnitCode: adUnitCode
+    });
+&nbsp;
+    bid.timeToRespond = bid.responseTimestamp - bid.requestTimestamp;
+&nbsp;
+    if (bid.timeToRespond &gt; pbjs.cbTimeout + pbjs.timeoutBuffer) {
+      var timedOut = true;
+&nbsp;
+      exports.executeCallback(timedOut);
+    }
+&nbsp;
+    //emit the bidAdjustment event before bidResponse, so bid response has the adjusted bid value
+    events.emit(CONSTANTS.EVENTS.BID_ADJUSTMENT, bid);
+&nbsp;
+    //emit the bidResponse event
+    events.emit(CONSTANTS.EVENTS.BID_RESPONSE, bid);
+&nbsp;
+    //append price strings
+    var priceStringsObj = (0, _cpmBucketManager.getPriceBucketString)(bid.cpm, _customPriceBucket);
+    bid.pbLg = priceStringsObj.low;
+    bid.pbMg = priceStringsObj.med;
+    bid.pbHg = priceStringsObj.high;
+    bid.pbAg = priceStringsObj.auto;
+    bid.pbDg = priceStringsObj.dense;
+    bid.pbCg = priceStringsObj.custom;
+&nbsp;
+    //if there is any key value pairs to map do here
+    var keyValues = {};
+    if (bid.bidderCode &amp;&amp; bid.cpm &gt; 0) {
+      keyValues = getKeyValueTargetingPairs(bid.bidderCode, bid);
+    }
+&nbsp;
+    bid.adserverTargeting = keyValues;
+    pbjs._bidsReceived.push(bid);
+  }
+&nbsp;
+  if (bid &amp;&amp; bid.adUnitCode &amp;&amp; bidsBackAdUnit(bid.adUnitCode)) {
+    triggerAdUnitCallbacks(bid.adUnitCode);
+  }
+&nbsp;
+  if (bidsBackAll()) {
+    exports.executeCallback();
+  }
+};
+&nbsp;
+function getKeyValueTargetingPairs(bidderCode, custBidObj) {
+  var keyValues = {};
+  var bidder_settings = pbjs.bidderSettings;
+&nbsp;
+  //1) set the keys from "standard" setting or from prebid defaults
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (custBidObj &amp;&amp; bidder_settings) {
+    //initialize default if not set
+    var standardSettings = getStandardBidderSettings();
+    setKeys(keyValues, standardSettings, custBidObj);
+  }
+&nbsp;
+  //2) set keys from specific bidder setting override if they exist
+  if (bidderCode &amp;&amp; custBidObj &amp;&amp; bidder_settings &amp;&amp; bidder_settings[bidderCode] &amp;&amp; bidder_settings[bidderCode][CONSTANTS.JSON_MAPPING.ADSERVER_TARGETING]) {
+    setKeys(keyValues, bidder_settings[bidderCode], custBidObj);
+    custBidObj.alwaysUseBid = bidder_settings[bidderCode].alwaysUseBid;
+    custBidObj.sendStandardTargeting = bidder_settings[bidderCode].sendStandardTargeting;
+  }
+&nbsp;
+  //2) set keys from standard setting. NOTE: this API doesn't seem to be in use by any Adapter
+  else <span class="missing-if-branch" title="if path not taken" >I</span>if (defaultBidderSettingsMap[bidderCode]) {
+<span class="cstat-no" title="statement not covered" >      setKeys(keyValues, defaultBidderSettingsMap[bidderCode], custBidObj);</span>
+<span class="cstat-no" title="statement not covered" >      custBidObj.alwaysUseBid = defaultBidderSettingsMap[bidderCode].alwaysUseBid;</span>
+<span class="cstat-no" title="statement not covered" >      custBidObj.sendStandardTargeting = defaultBidderSettingsMap[bidderCode].sendStandardTargeting;</span>
+    }
+&nbsp;
+  return keyValues;
+}
+&nbsp;
+exports.getKeyValueTargetingPairs = function () {
+  return getKeyValueTargetingPairs.apply(undefined, arguments);
+};
+&nbsp;
+function setKeys(keyValues, bidderSettings, custBidObj) {
+  var targeting = bidderSettings[CONSTANTS.JSON_MAPPING.ADSERVER_TARGETING];
+  custBidObj.size = custBidObj.getSize();
+&nbsp;
+  utils._each(targeting, function (kvPair) {
+    var key = kvPair.key;
+    var value = kvPair.val;
+&nbsp;
+    if (keyValues[key]) {
+      utils.logWarn('The key: ' + key + ' is getting ovewritten');
+    }
+&nbsp;
+    if (utils.isFn(value)) {
+      try {
+        value = value(custBidObj);
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        utils.logError('bidmanager', 'ERROR', e);</span>
+      }
+    }
+&nbsp;
+    if ((typeof bidderSettings.suppressEmptyKeys !== "undefined" &amp;&amp; bidderSettings.suppressEmptyKeys === true || key === "hb_deal") &amp;&amp; ( // hb_deal is suppressed automatically if not set
+    utils.isEmptyStr(value) || value === null || value === undefined)) {
+      utils.logInfo("suppressing empty key '" + key + "' from adserver targeting");
+    } else {
+      keyValues[key] = value;
+    }
+  });
+&nbsp;
+  return keyValues;
+}
+&nbsp;
+exports.setPriceGranularity = function setPriceGranularity(granularity) {
+  var granularityOptions = CONSTANTS.GRANULARITY_OPTIONS;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (Object.keys(granularityOptions).filter(function (option) {
+    return granularity === granularityOptions[option];
+  })) {
+    _granularity = granularity;
+  } else {
+<span class="cstat-no" title="statement not covered" >    utils.logWarn('Prebid Warning: setPriceGranularity was called with invalid setting, using' + ' `medium` as default.');</span>
+<span class="cstat-no" title="statement not covered" >    _granularity = CONSTANTS.GRANULARITY_OPTIONS.MEDIUM;</span>
+  }
+};
+&nbsp;
+exports.registerDefaultBidderSetting = <span class="fstat-no" title="function not covered" >function (bidderCode, defaultSetting) {</span>
+<span class="cstat-no" title="statement not covered" >  defaultBidderSettingsMap[bidderCode] = defaultSetting;</span>
+};
+&nbsp;
+exports.executeCallback = function (timedOut) {
+  // if there's still a timeout running, clear it now
+  if (!timedOut &amp;&amp; externalCallbacks.timer) {
+    clearTimeout(externalCallbacks.timer);
+  }
+&nbsp;
+  if (externalCallbacks.all.called !== true) {
+    processCallbacks(externalCallbacks.all);
+    externalCallbacks.all.called = true;
+&nbsp;
+    if (timedOut) {
+      var timedOutBidders = exports.getTimedOutBidders();
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (timedOutBidders.length) {
+        events.emit(CONSTANTS.EVENTS.BID_TIMEOUT, timedOutBidders);
+      }
+    }
+  }
+&nbsp;
+  //execute one time callback
+  if (externalCallbacks.oneTime) {
+    events.emit(AUCTION_END);
+    try {
+      processCallbacks([externalCallbacks.oneTime]);
+    } catch (e) {
+      utils.logError('Error executing bidsBackHandler', null, e);
+    } finally {
+      externalCallbacks.oneTime = null;
+      externalCallbacks.timer = false;
+      pbjs.clearAuction();
+    }
+  }
+};
+&nbsp;
+exports.externalCallbackReset = function () {
+  externalCallbacks.all.called = false;
+};
+&nbsp;
+function triggerAdUnitCallbacks(adUnitCode) {
+  //todo : get bid responses and send in args
+  var singleAdUnitCode = [adUnitCode];
+  processCallbacks(externalCallbacks.byAdUnit, singleAdUnitCode);
+}
+&nbsp;
+function processCallbacks(callbackQueue, singleAdUnitCode) {
+  var _this2 = this;
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (utils.isArray(callbackQueue)) {
+    callbackQueue.forEach(function (callback) {
+      var adUnitCodes = singleAdUnitCode || pbjs._adUnitCodes;
+      var bids = [pbjs._bidsReceived.filter(_utils.adUnitsFilter.bind(_this2, adUnitCodes)).reduce(groupByPlacement, {})];
+&nbsp;
+      callback.apply(pbjs, bids);
+    });
+  }
+}
+&nbsp;
+/**
+ * groupByPlacement is a reduce function that converts an array of Bid objects
+ * to an object with placement codes as keys, with each key representing an object
+ * with an array of `Bid` objects for that placement
+ * @returns {*} as { [adUnitCode]: { bids: [Bid, Bid, Bid] } }
+ */
+function groupByPlacement(bidsByPlacement, bid) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!bidsByPlacement[bid.adUnitCode]) bidsByPlacement[bid.adUnitCode] = { bids: [] };
+&nbsp;
+  bidsByPlacement[bid.adUnitCode].bids.push(bid);
+&nbsp;
+  return bidsByPlacement;
+}
+&nbsp;
+/**
+ * Add a one time callback, that is discarded after it is called
+ * @param {Function} callback
+ * @param timer Timer to clear if callback is triggered before timer time's out
+ */
+exports.addOneTimeCallback = function (callback, timer) {
+  externalCallbacks.oneTime = callback;
+  externalCallbacks.timer = timer;
+};
+&nbsp;
+exports.addCallback = function (id, callback, cbEvent) {
+  callback.id = id;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (CONSTANTS.CB.TYPE.ALL_BIDS_BACK === cbEvent) {
+<span class="cstat-no" title="statement not covered" >    externalCallbacks.all.push(callback);</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (CONSTANTS.CB.TYPE.AD_UNIT_BIDS_BACK === cbEvent) {
+<span class="cstat-no" title="statement not covered" >    externalCallbacks.byAdUnit.push(callback);</span>
+  }
+};
+&nbsp;
+//register event for bid adjustment
+events.on(CONSTANTS.EVENTS.BID_ADJUSTMENT, function (bid) {
+  adjustBids(bid);
+});
+&nbsp;
+function adjustBids(bid) {
+  var code = bid.bidderCode;
+  var bidPriceAdjusted = bid.cpm;
+  if (code &amp;&amp; pbjs.bidderSettings &amp;&amp; pbjs.bidderSettings[code]) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (_typeof(pbjs.bidderSettings[code].bidCpmAdjustment) === objectType_function) {
+      try {
+        bidPriceAdjusted = pbjs.bidderSettings[code].bidCpmAdjustment.call(null, bid.cpm, utils.extend({}, bid));
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        utils.logError('Error during bid adjustment', 'bidmanager.js', e);</span>
+      }
+    }
+  }
+&nbsp;
+  if (bidPriceAdjusted &gt;= 0) {
+    bid.cpm = bidPriceAdjusted;
+  }
+}
+&nbsp;
+exports.adjustBids = function () {
+  return adjustBids.apply(undefined, arguments);
+};
+&nbsp;
+function getStandardBidderSettings() {
+  var bidder_settings = pbjs.bidderSettings;
+  if (!bidder_settings[CONSTANTS.JSON_MAPPING.BD_SETTING_STANDARD]) {
+    bidder_settings[CONSTANTS.JSON_MAPPING.BD_SETTING_STANDARD] = {
+      adserverTargeting: [{
+        key: 'hb_bidder',
+        val: function val(bidResponse) {
+          return bidResponse.bidderCode;
+        }
+      }, {
+        key: 'hb_adid',
+        val: function val(bidResponse) {
+          return bidResponse.adId;
+        }
+      }, {
+        key: 'hb_pb',
+        val: function val(bidResponse) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.AUTO) {
+<span class="cstat-no" title="statement not covered" >            return bidResponse.pbAg;</span>
+          } else <span class="missing-if-branch" title="if path not taken" >I</span>if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.DENSE) {
+<span class="cstat-no" title="statement not covered" >            return bidResponse.pbDg;</span>
+          } else <span class="missing-if-branch" title="if path not taken" >I</span>if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.LOW) {
+<span class="cstat-no" title="statement not covered" >            return bidResponse.pbLg;</span>
+          } else <span class="missing-if-branch" title="else path not taken" >E</span>if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.MEDIUM) {
+            return bidResponse.pbMg;
+          } else <span class="cstat-no" title="statement not covered" >if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.HIGH) {</span>
+<span class="cstat-no" title="statement not covered" >            return bidResponse.pbHg;</span>
+          } else <span class="cstat-no" title="statement not covered" >if (_granularity === CONSTANTS.GRANULARITY_OPTIONS.CUSTOM) {</span>
+<span class="cstat-no" title="statement not covered" >            return bidResponse.pbCg;</span>
+          }
+        }
+      }, {
+        key: 'hb_size',
+        val: function val(bidResponse) {
+          return bidResponse.size;
+        }
+      }, {
+        key: 'hb_deal',
+        val: function val(bidResponse) {
+          return bidResponse.dealId;
+        }
+      }]
+    };
+  }
+  return bidder_settings[CONSTANTS.JSON_MAPPING.BD_SETTING_STANDARD];
+}
+&nbsp;
+function getStandardBidderAdServerTargeting() {
+  return getStandardBidderSettings()[CONSTANTS.JSON_MAPPING.ADSERVER_TARGETING];
+}
+&nbsp;
+exports.getStandardBidderAdServerTargeting = getStandardBidderAdServerTargeting;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

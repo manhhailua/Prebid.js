@@ -1,0 +1,2226 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/prebid.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/prebid.js</span></h1>
+    <h2>
+        Statements: <span class="metric">91.56% <small>(293 / 320)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">78.81% <small>(119 / 151)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">93.65% <small>(59 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.83% <small>(289 / 308)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; prebid.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">315</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">105</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">237</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">237</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">28</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _extends = Object.assign || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (target) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 1; i &lt; arguments.length; i++) { <span class="cstat-no" title="statement not covered" >var source = arguments[i]; <span class="cstat-no" title="statement not covered" ></span>for (var key in source) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(source, key)) { <span class="cstat-no" title="statement not covered" >target[key] = source[key]; </span>} </span>} </span>} <span class="cstat-no" title="statement not covered" ></span>return target; </span>};</span>
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? "symbol" : typeof obj; </span>};</span> /** @module pbjs */
+&nbsp;
+var _prebidGlobal = require('./prebidGlobal');
+&nbsp;
+var _utils = require('./utils');
+&nbsp;
+var _video = require('./video');
+&nbsp;
+require('polyfill');
+&nbsp;
+var _url = require('./url');
+&nbsp;
+var _cpmBucketManager = require('./cpmBucketManager');
+&nbsp;
+var _secureCreatives = require('./secure-creatives');
+&nbsp;
+function _defineProperty(obj, key, value) { <span class="missing-if-branch" title="if path not taken" >I</span>if (key in obj) { <span class="cstat-no" title="statement not covered" >Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); </span>} else { obj[key] = value; } return obj; }
+&nbsp;
+var pbjs = (0, _prebidGlobal.getGlobal)();
+var CONSTANTS = require('./constants.json');
+var utils = require('./utils.js');
+var bidmanager = require('./bidmanager.js');
+var adaptermanager = require('./adaptermanager');
+var bidfactory = require('./bidfactory');
+var adloader = require('./adloader');
+var events = require('./events');
+var adserver = require('./adserver.js');
+var targeting = require('./targeting.js');
+&nbsp;
+/* private variables */
+&nbsp;
+var objectType_function = 'function';
+var objectType_undefined = 'undefined';
+var objectType_object = 'object';
+var BID_WON = CONSTANTS.EVENTS.BID_WON;
+var SET_TARGETING = CONSTANTS.EVENTS.SET_TARGETING;
+&nbsp;
+var auctionRunning = false;
+var bidRequestQueue = [];
+&nbsp;
+var eventValidators = {
+  bidWon: checkDefinedPlacement
+};
+&nbsp;
+/* Public vars */
+&nbsp;
+pbjs._bidsRequested = [];
+pbjs._bidsReceived = [];
+// _adUnitCodes stores the current filter to use for adUnits as an array of adUnitCodes
+pbjs._adUnitCodes = [];
+pbjs._winningBids = [];
+pbjs._adsReceived = [];
+pbjs._sendAllBids = false;
+&nbsp;
+pbjs.bidderSettings = pbjs.bidderSettings || {};
+&nbsp;
+//default timeout for all bids
+pbjs.bidderTimeout = pbjs.bidderTimeout || 3000;
+&nbsp;
+// current timeout set in `requestBids` or to default `bidderTimeout`
+pbjs.cbTimeout = pbjs.cbTimeout || 200;
+&nbsp;
+// timeout buffer to adjust for bidder CDN latency
+pbjs.timeoutBuffer = 200;
+&nbsp;
+pbjs.logging = pbjs.logging || false;
+&nbsp;
+// domain where prebid is running for cross domain iframe communication
+pbjs.publisherDomain = pbjs.publisherDomain || window.location.origin;
+&nbsp;
+//let the world know we are loaded
+pbjs.libLoaded = true;
+&nbsp;
+//version auto generated from build
+pbjs.version = 'v$prebid.version$';
+utils.logInfo('Prebid.js v$prebid.version$ loaded');
+&nbsp;
+//create adUnit array
+pbjs.adUnits = pbjs.adUnits || [];
+&nbsp;
+/**
+ * Command queue that functions will execute once prebid.js is loaded
+ * @param  {function} cmd Annoymous function to execute
+ * @alias module:pbjs.que.push
+ */
+pbjs.que.push = function (cmd) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if ((typeof cmd === 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >'undefined' </span>: _typeof(cmd)) === objectType_function) {
+    try {
+      cmd.call();
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      utils.logError('Error processing command :' + e.message);</span>
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    utils.logError('Commands written into pbjs.que.push must wrapped in a function');</span>
+  }
+};
+&nbsp;
+function processQue() {
+  for (var i = 0; i &lt; pbjs.que.length; i++) {
+<span class="cstat-no" title="statement not covered" >    if (_typeof(pbjs.que[i].called) === objectType_undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        pbjs.que[i].call();</span>
+<span class="cstat-no" title="statement not covered" >        pbjs.que[i].called = true;</span>
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        utils.logError('Error processing command :', 'prebid.js', e);</span>
+      }
+    }
+  }
+}
+&nbsp;
+function checkDefinedPlacement(id) {
+  var placementCodes = pbjs._bidsRequested.map(function (bidSet) {
+    return bidSet.bids.map(function (bid) {
+      return bid.placementCode;
+    });
+  }).reduce(_utils.flatten).filter(_utils.uniques);
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!utils.contains(placementCodes, id)) {
+    utils.logError('The "' + id + '" placement is not defined.');
+    return;
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+}
+&nbsp;
+/**
+ * When a request for bids is made any stale bids remaining will be cleared for
+ * a placement included in the outgoing bid request.
+ */
+function clearPlacements() {
+  pbjs._bidsRequested = [];
+&nbsp;
+  // leave bids received for ad slots not in this bid request
+  pbjs._bidsReceived = pbjs._bidsReceived.filter(function (bid) {
+    return !pbjs._adUnitCodes.includes(bid.adUnitCode);
+  });
+}
+&nbsp;
+function setRenderSize(doc, width, height) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (doc.defaultView &amp;&amp; doc.defaultView.frameElement) {
+    doc.defaultView.frameElement.width = width;
+    doc.defaultView.frameElement.height = height;
+  }
+}
+&nbsp;
+//////////////////////////////////
+//                              //
+//    Start Public APIs         //
+//                              //
+//////////////////////////////////
+&nbsp;
+/**
+ * This function returns the query string targeting parameters available at this moment for a given ad unit. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
+ * @param  {string} [adunitCode] adUnitCode to get the bid responses for
+ * @alias module:pbjs.getAdserverTargetingForAdUnitCodeStr
+ * @return {array}  returnObj return bids array
+ */
+pbjs.getAdserverTargetingForAdUnitCodeStr = function (adunitCode) {
+  utils.logInfo('Invoking pbjs.getAdserverTargetingForAdUnitCodeStr', arguments);
+&nbsp;
+  // call to retrieve bids array
+  if (adunitCode) {
+    var res = pbjs.getAdserverTargetingForAdUnitCode(adunitCode);
+    return utils.transformAdServerTargetingObj(res);
+  } else {
+    utils.logMessage('Need to call getAdserverTargetingForAdUnitCodeStr with adunitCode');
+  }
+};
+&nbsp;
+/**
+ * This function returns the query string targeting parameters available at this moment for a given ad unit. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
+ * @param adUnitCode {string} adUnitCode to get the bid responses for
+ * @returns {object}  returnObj return bids
+ */
+pbjs.getAdserverTargetingForAdUnitCode = function (adUnitCode) {
+  return pbjs.getAdserverTargeting(adUnitCode)[adUnitCode];
+};
+&nbsp;
+/**
+ * returns all ad server targeting for all ad units
+ * @return {object} Map of adUnitCodes and targeting values []
+ * @alias module:pbjs.getAdserverTargeting
+ */
+&nbsp;
+pbjs.getAdserverTargeting = function (adUnitCode) {
+  utils.logInfo('Invoking pbjs.getAdserverTargeting', arguments);
+  return targeting.getAllTargeting(adUnitCode).map(function (targeting) {
+    return _defineProperty({}, Object.keys(targeting)[0], targeting[Object.keys(targeting)[0]].map(function (target) {
+      return _defineProperty({}, Object.keys(target)[0], target[Object.keys(target)[0]].join(', '));
+    }).reduce(function (p, c) {
+      return _extends(c, p);
+    }, {}));
+  }).reduce(function (accumulator, targeting) {
+    var key = Object.keys(targeting)[0];
+    accumulator[key] = _extends({}, accumulator[key], targeting[key]);
+    return accumulator;
+  }, {});
+};
+&nbsp;
+/**
+ * This function returns the bid responses at the given moment.
+ * @alias module:pbjs.getBidResponses
+ * @return {object}            map | object that contains the bidResponses
+ */
+&nbsp;
+pbjs.getBidResponses = function () {
+  utils.logInfo('Invoking pbjs.getBidResponses', arguments);
+  var responses = pbjs._bidsReceived.filter(_utils.adUnitsFilter.bind(this, pbjs._adUnitCodes));
+&nbsp;
+  // find the last requested id to get responses for most recent auction only
+  var currentRequestId = responses &amp;&amp; responses.length &amp;&amp; responses[responses.length - 1].requestId;
+&nbsp;
+  return responses.map(function (bid) {
+    return bid.adUnitCode;
+  }).filter(_utils.uniques).map(function (adUnitCode) {
+    return responses.filter(function (bid) {
+      return bid.requestId === currentRequestId &amp;&amp; bid.adUnitCode === adUnitCode;
+    });
+  }).filter(function (bids) {
+    return bids &amp;&amp; bids[0] &amp;&amp; bids[0].adUnitCode;
+  }).map(function (bids) {
+    return _defineProperty({}, bids[0].adUnitCode, { bids: bids });
+  }).reduce(function (a, b) {
+    return _extends(a, b);
+  }, {});
+};
+&nbsp;
+/**
+ * Returns bidResponses for the specified adUnitCode
+ * @param  {String} adUnitCode adUnitCode
+ * @alias module:pbjs.getBidResponsesForAdUnitCode
+ * @return {Object}            bidResponse object
+ */
+&nbsp;
+pbjs.getBidResponsesForAdUnitCode = function (adUnitCode) {
+  var bids = pbjs._bidsReceived.filter(function (bid) {
+    return bid.adUnitCode === adUnitCode;
+  });
+  return {
+    bids: bids
+  };
+};
+&nbsp;
+/**
+ * Set query string targeting on all GPT ad units.
+ * @alias module:pbjs.setTargetingForGPTAsync
+ */
+pbjs.setTargetingForGPTAsync = function () {
+  utils.logInfo('Invoking pbjs.setTargetingForGPTAsync', arguments);
+  if (!(0, _utils.isGptPubadsDefined)()) {
+    utils.logError('window.googletag is not defined on the page');
+    return;
+  }
+&nbsp;
+  //first reset any old targeting
+  targeting.resetPresetTargeting();
+&nbsp;
+  //now set new targeting keys
+  targeting.setTargeting(targeting.getAllTargeting());
+&nbsp;
+  //emit event 
+  events.emit(SET_TARGETING);
+};
+&nbsp;
+pbjs.setTargetingForAst = function () {
+  utils.logInfo('Invoking pbjs.setTargetingForAn', arguments);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!targeting.isApntagDefined()) {
+<span class="cstat-no" title="statement not covered" >    utils.logError('window.apntag is not defined on the page');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  targeting.setTargetingForAst();
+&nbsp;
+  //emit event 
+  events.emit(SET_TARGETING);
+};
+&nbsp;
+/**
+ * Returns a bool if all the bids have returned or timed out
+ * @alias module:pbjs.allBidsAvailable
+ * @return {bool} all bids available
+ */
+pbjs.allBidsAvailable = function () {
+  utils.logInfo('Invoking pbjs.allBidsAvailable', arguments);
+  return bidmanager.bidsBackAll();
+};
+&nbsp;
+/**
+ * This function will render the ad (based on params) in the given iframe document passed through. Note that doc SHOULD NOT be the parent document page as we can't doc.write() asynchrounsly
+ * @param  {object} doc document
+ * @param  {string} id bid id to locate the ad
+ * @alias module:pbjs.renderAd
+ */
+pbjs.renderAd = function (doc, id) {
+  utils.logInfo('Invoking pbjs.renderAd', arguments);
+  utils.logMessage('Calling renderAd with adId :' + id);
+  if (doc &amp;&amp; id) {
+    try {
+      //lookup ad by ad Id
+      var adObject = pbjs._bidsReceived.find(function (bid) {
+        return bid.adId === id;
+      });
+      if (adObject) {
+        //save winning bids
+        pbjs._winningBids.push(adObject);
+        //emit 'bid won' event here
+        events.emit(BID_WON, adObject);
+&nbsp;
+        var height = adObject.height;
+        var width = adObject.width;
+        var url = adObject.adUrl;
+        var ad = adObject.ad;
+&nbsp;
+        if (doc === document || adObject.mediaType === 'video') {
+          utils.logError('Error trying to write ad. Ad render call ad id ' + id + ' was prevented from writing to the main document.');
+        } else if (ad) {
+          doc.write(ad);
+          doc.close();
+          setRenderSize(doc, width, height);
+        } else if (url) {
+          doc.write('&lt;IFRAME SRC="' + url + '" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="' + width + '" HEIGHT="' + height + '"&gt;&lt;/IFRAME&gt;');
+          doc.close();
+          setRenderSize(doc, width, height);
+        } else {
+          utils.logError('Error trying to write ad. No ad for bid response id: ' + id);
+        }
+      } else {
+        utils.logError('Error trying to write ad. Cannot find ad by given id : ' + id);
+      }
+    } catch (e) {
+      utils.logError('Error trying to write ad Id :' + id + ' to the page:' + e.message);
+    }
+  } else {
+    utils.logError('Error trying to write ad Id :' + id + ' to the page. Missing document or adId');
+  }
+};
+&nbsp;
+/**
+ * Remove adUnit from the pbjs configuration
+ * @param  {String} adUnitCode the adUnitCode to remove
+ * @alias module:pbjs.removeAdUnit
+ */
+pbjs.removeAdUnit = function (adUnitCode) {
+  utils.logInfo('Invoking pbjs.removeAdUnit', arguments);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (adUnitCode) {
+    for (var i = 0; i &lt; pbjs.adUnits.length; i++) {
+      if (pbjs.adUnits[i].code === adUnitCode) {
+        pbjs.adUnits.splice(i, 1);
+      }
+    }
+  }
+};
+&nbsp;
+pbjs.clearAuction = function () {
+  auctionRunning = false;
+  utils.logMessage('Prebid auction cleared');
+  if (bidRequestQueue.length) {
+    bidRequestQueue.shift()();
+  }
+};
+&nbsp;
+/**
+ *
+ * @param bidsBackHandler
+ * @param timeout
+ * @param adUnits
+ * @param adUnitCodes
+ */
+pbjs.requestBids = function (_ref4) {
+  var bidsBackHandler = _ref4.bidsBackHandler,
+      timeout = _ref4.timeout,
+      adUnits = _ref4.adUnits,
+      adUnitCodes = _ref4.adUnitCodes;
+&nbsp;
+  events.emit('requestBids');
+  var cbTimeout = pbjs.cbTimeout = timeout || pbjs.bidderTimeout;
+  adUnits = adUnits || pbjs.adUnits;
+&nbsp;
+  utils.logInfo('Invoking pbjs.requestBids', arguments);
+&nbsp;
+  if (adUnitCodes &amp;&amp; adUnitCodes.length) {
+    // if specific adUnitCodes supplied filter adUnits for those codes
+    adUnits = adUnits.filter(function (unit) {
+      return adUnitCodes.includes(unit.code);
+    });
+  } else {
+    // otherwise derive adUnitCodes from adUnits
+    adUnitCodes = adUnits &amp;&amp; adUnits.map(function (unit) {
+      return unit.code;
+    });
+  }
+&nbsp;
+  // for video-enabled adUnits, only request bids if all bidders support video
+  var invalidVideoAdUnits = adUnits.filter(_video.videoAdUnit).filter(_video.hasNonVideoBidder);
+  invalidVideoAdUnits.forEach(function (adUnit) {
+    utils.logError('adUnit ' + adUnit.code + ' has \'mediaType\' set to \'video\' but contains a bidder that doesn\'t support video. No Prebid demand requests will be triggered for this adUnit.');
+    for (var i = 0; i &lt; adUnits.length; i++) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (adUnits[i].code === adUnit.code) {
+        adUnits.splice(i, 1);
+      }
+    }
+  });
+&nbsp;
+  if (auctionRunning) {
+    bidRequestQueue.push(function () {
+      pbjs.requestBids({ bidsBackHandler: bidsBackHandler, timeout: cbTimeout, adUnits: adUnits, adUnitCodes: adUnitCodes });
+    });
+    return;
+  }
+&nbsp;
+  auctionRunning = true;
+&nbsp;
+  // we will use adUnitCodes for filtering the current auction
+  pbjs._adUnitCodes = adUnitCodes;
+&nbsp;
+  bidmanager.externalCallbackReset();
+  clearPlacements();
+&nbsp;
+  if (!adUnits || adUnits.length === 0) {
+    utils.logMessage('No adUnits configured. No bids requested.');
+    if ((typeof bidsBackHandler === 'undefined' ? 'undefined' : _typeof(bidsBackHandler)) === objectType_function) {
+      bidmanager.addOneTimeCallback(bidsBackHandler, false);
+    }
+    bidmanager.executeCallback();
+    return;
+  }
+&nbsp;
+  //set timeout for all bids
+  var timedOut = true;
+  var timeoutCallback = bidmanager.executeCallback.bind(bidmanager, timedOut);
+  var timer = setTimeout(timeoutCallback, cbTimeout);
+  if ((typeof bidsBackHandler === 'undefined' ? 'undefined' : _typeof(bidsBackHandler)) === objectType_function) {
+    bidmanager.addOneTimeCallback(bidsBackHandler, timer);
+  }
+&nbsp;
+  adaptermanager.callBids({ adUnits: adUnits, adUnitCodes: adUnitCodes, cbTimeout: cbTimeout });
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (pbjs._bidsRequested.length === 0) {
+<span class="cstat-no" title="statement not covered" >    bidmanager.executeCallback();</span>
+  }
+};
+&nbsp;
+/**
+ *
+ * Add adunit(s)
+ * @param {Array|String} adUnitArr Array of adUnits or single adUnit Object.
+ * @alias module:pbjs.addAdUnits
+ */
+pbjs.addAdUnits = function (adUnitArr) {
+  utils.logInfo('Invoking pbjs.addAdUnits', arguments);
+  if (utils.isArray(adUnitArr)) {
+    //append array to existing
+    pbjs.adUnits.push.apply(pbjs.adUnits, adUnitArr);
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if ((typeof adUnitArr === 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >'undefined' </span>: _typeof(adUnitArr)) === objectType_object) {
+    pbjs.adUnits.push(adUnitArr);
+  }
+};
+&nbsp;
+/**
+ * @param {String} event the name of the event
+ * @param {Function} handler a callback to set on event
+ * @param {String} id an identifier in the context of the event
+ *
+ * This API call allows you to register a callback to handle a Prebid.js event.
+ * An optional `id` parameter provides more finely-grained event callback registration.
+ * This makes it possible to register callback events for a specific item in the
+ * event context. For example, `bidWon` events will accept an `id` for ad unit code.
+ * `bidWon` callbacks registered with an ad unit code id will be called when a bid
+ * for that ad unit code wins the auction. Without an `id` this method registers the
+ * callback for every `bidWon` event.
+ *
+ * Currently `bidWon` is the only event that accepts an `id` parameter.
+ */
+pbjs.onEvent = function (event, handler, id) {
+  utils.logInfo('Invoking pbjs.onEvent', arguments);
+  if (!utils.isFn(handler)) {
+    utils.logError('The event handler provided is not a function and was not set on event "' + event + '".');
+    return;
+  }
+&nbsp;
+  if (id &amp;&amp; !eventValidators[event].call(null, id)) {
+    utils.logError('The id provided is not valid for event "' + event + '" and no handler was set.');
+    return;
+  }
+&nbsp;
+  events.on(event, handler, id);
+};
+&nbsp;
+/**
+ * @param {String} event the name of the event
+ * @param {Function} handler a callback to remove from the event
+ * @param {String} id an identifier in the context of the event (see `pbjs.onEvent`)
+ */
+pbjs.offEvent = function (event, handler, id) {
+  utils.logInfo('Invoking pbjs.offEvent', arguments);
+  if (id &amp;&amp; !eventValidators[event].call(null, id)) {
+    return;
+  }
+&nbsp;
+  events.off(event, handler, id);
+};
+&nbsp;
+/**
+ * Add a callback event
+ * @param {String} eventStr event to attach callback to Options: "allRequestedBidsBack" | "adUnitBidsBack"
+ * @param {Function} func  function to execute. Paramaters passed into the function: (bidResObj), [adUnitCode]);
+ * @alias module:pbjs.addCallback
+ * @returns {String} id for callback
+ */
+pbjs.addCallback = function (eventStr, func) {
+  utils.logInfo('Invoking pbjs.addCallback', arguments);
+  var id = null;
+  if (!eventStr || !func || (typeof func === 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >'undefined' </span>: _typeof(func)) !== objectType_function) {
+    utils.logError('error registering callback. Check method signature');
+    return id;
+  }
+&nbsp;
+  id = utils.getUniqueIdentifierStr;
+  bidmanager.addCallback(id, func, eventStr);
+  return id;
+};
+&nbsp;
+/**
+ * Remove a callback event
+ * //@param {string} cbId id of the callback to remove
+ * @alias module:pbjs.removeCallback
+ * @returns {String} id for callback
+ */
+pbjs.removeCallback = function () /* cbId */{
+  //todo
+  return null;
+};
+&nbsp;
+/**
+ * Wrapper to register bidderAdapter externally (adaptermanager.registerBidAdapter())
+ * @param  {[type]} bidderAdaptor [description]
+ * @param  {[type]} bidderCode    [description]
+ * @return {[type]}               [description]
+ */
+pbjs.registerBidAdapter = function (bidderAdaptor, bidderCode) {
+  utils.logInfo('Invoking pbjs.registerBidAdapter', arguments);
+  try {
+    adaptermanager.registerBidAdapter(bidderAdaptor(), bidderCode);
+  } catch (e) {
+    utils.logError('Error registering bidder adapter : ' + e.message);
+  }
+};
+&nbsp;
+/**
+ * Wrapper to register analyticsAdapter externally (adaptermanager.registerAnalyticsAdapter())
+ * @param  {[type]} options [description]
+ */
+pbjs.registerAnalyticsAdapter = <span class="fstat-no" title="function not covered" >function (options) {</span>
+<span class="cstat-no" title="statement not covered" >  utils.logInfo('Invoking pbjs.registerAnalyticsAdapter', arguments);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    adaptermanager.registerAnalyticsAdapter(options);</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    utils.logError('Error registering analytics adapter : ' + e.message);</span>
+  }
+};
+&nbsp;
+pbjs.bidsAvailableForAdapter = function (bidderCode) {
+  utils.logInfo('Invoking pbjs.bidsAvailableForAdapter', arguments);
+&nbsp;
+  pbjs._bidsRequested.find(function (bidderRequest) {
+    return bidderRequest.bidderCode === bidderCode;
+  }).bids.map(function (bid) {
+    return _extends(bid, bidfactory.createBid(1), {
+      bidderCode: bidderCode,
+      adUnitCode: bid.placementCode
+    });
+  }).map(function (bid) {
+    return pbjs._bidsReceived.push(bid);
+  });
+};
+&nbsp;
+/**
+ * Wrapper to bidfactory.createBid()
+ * @param  {[type]} statusCode [description]
+ * @return {[type]}            [description]
+ */
+pbjs.createBid = function (statusCode) {
+  utils.logInfo('Invoking pbjs.createBid', arguments);
+  return bidfactory.createBid(statusCode);
+};
+&nbsp;
+/**
+ * Wrapper to bidmanager.addBidResponse
+ * @param {[type]} adUnitCode [description]
+ * @param {[type]} bid        [description]
+ */
+pbjs.addBidResponse = function (adUnitCode, bid) {
+  utils.logInfo('Invoking pbjs.addBidResponse', arguments);
+  bidmanager.addBidResponse(adUnitCode, bid);
+};
+&nbsp;
+/**
+ * Wrapper to adloader.loadScript
+ * @param  {[type]}   tagSrc   [description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+pbjs.loadScript = function (tagSrc, callback, useCache) {
+  utils.logInfo('Invoking pbjs.loadScript', arguments);
+  adloader.loadScript(tagSrc, callback, useCache);
+};
+&nbsp;
+/**
+ * Will enable sendinga prebid.js to data provider specified
+ * @param  {object} config object {provider : 'string', options : {}}
+ */
+pbjs.enableAnalytics = <span class="fstat-no" title="function not covered" >function (config) {</span>
+<span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; !utils.isEmpty(config)) {</span>
+<span class="cstat-no" title="statement not covered" >    utils.logInfo('Invoking pbjs.enableAnalytics for: ', config);</span>
+<span class="cstat-no" title="statement not covered" >    adaptermanager.enableAnalytics(config);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    utils.logError('pbjs.enableAnalytics should be called with option {}');</span>
+  }
+};
+&nbsp;
+pbjs.aliasBidder = function (bidderCode, alias) {
+  utils.logInfo('Invoking pbjs.aliasBidder', arguments);
+  if (bidderCode &amp;&amp; alias) {
+    adaptermanager.aliasBidAdapter(bidderCode, alias);
+  } else {
+    utils.logError('bidderCode and alias must be passed as arguments', 'pbjs.aliasBidder');
+  }
+};
+&nbsp;
+/**
+ * Sets a default price granularity scheme.
+ * @param {String|Object} granularity - the granularity scheme.
+ * "low": $0.50 increments, capped at $5 CPM
+ * "medium": $0.10 increments, capped at $20 CPM (the default)
+ * "high": $0.01 increments, capped at $20 CPM
+ * "auto": Applies a sliding scale to determine granularity
+ * "dense": Like "auto", but the bid price granularity uses smaller increments, especially at lower CPMs
+ *
+ * Alternatively a custom object can be specified:
+ * { "buckets" : [{"min" : 0,"max" : 20,"increment" : 0.1,"cap" : true}]};
+ * See http://prebid.org/dev-docs/publisher-api-reference.html#module_pbjs.setPriceGranularity for more details
+ */
+pbjs.setPriceGranularity = function (granularity) {
+  utils.logInfo('Invoking pbjs.setPriceGranularity', arguments);
+  if (!granularity) {
+    utils.logError('Prebid Error: no value passed to `setPriceGranularity()`');
+    return;
+  }
+  if (typeof granularity === 'string') {
+    bidmanager.setPriceGranularity(granularity);
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if ((typeof granularity === 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >'undefined' </span>: _typeof(granularity)) === 'object') {
+    if (!(0, _cpmBucketManager.isValidePriceConfig)(granularity)) {
+      utils.logError('Invalid custom price value passed to `setPriceGranularity()`');
+      return;
+    }
+    bidmanager.setCustomPriceBucket(granularity);
+    bidmanager.setPriceGranularity(CONSTANTS.GRANULARITY_OPTIONS.CUSTOM);
+    utils.logMessage('Using custom price granularity');
+  }
+};
+&nbsp;
+pbjs.enableSendAllBids = function () {
+  pbjs._sendAllBids = true;
+};
+&nbsp;
+pbjs.getAllWinningBids = function () {
+  return pbjs._winningBids;
+};
+&nbsp;
+/**
+ * Build master video tag from publishers adserver tag
+ * @param {string} adserverTag default url
+ * @param {object} options options for video tag
+ */
+pbjs.buildMasterVideoTagFromAdserverTag = function (adserverTag, options) {
+  utils.logInfo('Invoking pbjs.buildMasterVideoTagFromAdserverTag', arguments);
+  var urlComponents = (0, _url.parse)(adserverTag);
+&nbsp;
+  //return original adserverTag if no bids received
+  if (pbjs._bidsReceived.length === 0) {
+    return adserverTag;
+  }
+&nbsp;
+  var masterTag = '';
+  if (options.adserver.toLowerCase() === 'dfp') {
+    var dfpAdserverObj = adserver.dfpAdserver(options, urlComponents);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!dfpAdserverObj.verifyAdserverTag()) {
+      utils.logError('Invalid adserverTag, required google params are missing in query string');
+    }
+    dfpAdserverObj.appendQueryParams();
+    masterTag = (0, _url.format)(dfpAdserverObj.urlComponents);
+  } else {
+    utils.logError('Only DFP adserver is supported');
+    return;
+  }
+  return masterTag;
+};
+&nbsp;
+/**
+ * Set the order bidders are called in. If not set, the bidders are called in
+ * the order they are defined wihin the adUnit.bids array
+ * @param {string} order - Order to call bidders in. Currently the only possible value
+ * is 'random', which randomly shuffles the order
+ */
+pbjs.setBidderSequence = function (order) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (order === CONSTANTS.ORDER.RANDOM) {
+    adaptermanager.setBidderSequence(CONSTANTS.ORDER.RANDOM);
+  }
+};
+&nbsp;
+/**
+ * Get array of highest cpm bids for all adUnits, or highest cpm bid
+ * object for the given adUnit
+ * @param {string} adUnitCode - optional ad unit code
+ * @return {array} array containing highest cpm bid object(s)
+ */
+pbjs.getHighestCpmBids = function (adUnitCode) {
+  return targeting.getWinningBids(adUnitCode);
+};
+&nbsp;
+pbjs.que.push(function () {
+  return (0, _secureCreatives.listenMessagesFromCreative)();
+});
+processQue();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

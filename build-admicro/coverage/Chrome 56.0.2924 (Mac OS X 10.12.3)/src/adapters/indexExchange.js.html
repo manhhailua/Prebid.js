@@ -1,0 +1,2046 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/indexExchange.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/indexExchange.js</span></h1>
+    <h2>
+        Statements: <span class="metric">82.62% <small>(309 / 374)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">72.29% <small>(180 / 249)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">72.73% <small>(16 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">82.66% <small>(305 / 369)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; indexExchange.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">270</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">222</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">518</span>
+<span class="cline-any cline-yes">518</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">518</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">185</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">257</span>
+<span class="cline-any cline-yes">257</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">257</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">257</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">257</span>
+<span class="cline-any cline-yes">342</span>
+<span class="cline-any cline-yes">342</span>
+<span class="cline-any cline-yes">1536</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">342</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">308</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">299</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">299</span>
+<span class="cline-any cline-yes">299</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">289</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">287</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">301</span>
+<span class="cline-any cline-yes">1688</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-yes">300</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-yes">8120</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">456</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? "symbol" : typeof obj; </span>};</span>
+&nbsp;
+//Factory for creating the bidderAdaptor
+// jshint ignore:start
+var utils = require('../utils.js');
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader.js');
+&nbsp;
+var ADAPTER_NAME = 'INDEXEXCHANGE';
+var ADAPTER_CODE = 'indexExchange';
+&nbsp;
+var CONSTANTS = {
+  "INDEX_DEBUG_MODE": {
+    "queryParam": "pbjs_ix_debug",
+    "mode": {
+      "sandbox": {
+        "topFrameLimit": 10,
+        "queryValue": "sandbox",
+        "siteID": "999990"
+      }
+    }
+  }
+};
+&nbsp;
+var OPEN_MARKET = 'IOM';
+var PRIVATE_MARKET = 'IPM';
+&nbsp;
+window.cygnus_index_parse_res = function (response) {
+  try {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (response) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if ((typeof _IndexRequestData === 'undefined' ? <span class="branch-0 cbranch-no" title="branch not covered" >'undefined' </span>: _typeof(_IndexRequestData)) !== "object" || _typeof(_IndexRequestData.impIDToSlotID) !== "object" || typeof _IndexRequestData.impIDToSlotID[response.id] === "undefined") {
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+      var targetMode = 1;
+      var callbackFn;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (_typeof(_IndexRequestData.reqOptions) === 'object' &amp;&amp; _typeof(_IndexRequestData.reqOptions[response.id]) === 'object') {
+        if (typeof _IndexRequestData.reqOptions[response.id].callback === "function") {
+          callbackFn = _IndexRequestData.reqOptions[response.id].callback;
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof _IndexRequestData.reqOptions[response.id].targetMode === "number") {
+<span class="cstat-no" title="statement not covered" >          targetMode = _IndexRequestData.reqOptions[response.id].targetMode;</span>
+        }
+      }
+&nbsp;
+      _IndexRequestData.lastRequestID = response.id;
+      _IndexRequestData.targetIDToBid = {};
+      _IndexRequestData.targetIDToResp = {};
+      _IndexRequestData.targetIDToCreative = {};
+&nbsp;
+      var allBids = [];
+      var seatbidLength = typeof response.seatbid === "undefined" ? 0 : response.seatbid.length;
+      for (var i = 0; i &lt; seatbidLength; i++) {
+        for (var j = 0; j &lt; response.seatbid[i].bid.length; j++) {
+          var bid = response.seatbid[i].bid[j];
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (_typeof(bid.ext) !== "object" || typeof bid.ext.pricelevel !== "string") {
+<span class="cstat-no" title="statement not covered" >            continue;</span>
+          }
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof _IndexRequestData.impIDToSlotID[response.id][bid.impid] === "undefined") {
+<span class="cstat-no" title="statement not covered" >            continue;</span>
+          }
+          var slotID = _IndexRequestData.impIDToSlotID[response.id][bid.impid];
+          var targetID;
+          var noTargetModeTargetID;
+          var targetPrefix;
+          if (typeof bid.ext.dealid === "string") {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (targetMode === 1) {
+              targetID = slotID + bid.ext.pricelevel;
+            } else {
+<span class="cstat-no" title="statement not covered" >              targetID = slotID + "_" + bid.ext.dealid;</span>
+            }
+            noTargetModeTargetID = slotID + '_' + bid.ext.dealid;
+            targetPrefix = PRIVATE_MARKET + '_';
+          } else {
+            targetID = slotID + bid.ext.pricelevel;
+            noTargetModeTargetID = slotID + bid.ext.pricelevel;
+            targetPrefix = OPEN_MARKET + '_';
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (_IndexRequestData.targetIDToBid[targetID] === undefined) {
+            _IndexRequestData.targetIDToBid[targetID] = [bid.adm];
+          } else {
+<span class="cstat-no" title="statement not covered" >            _IndexRequestData.targetIDToBid[targetID].push(bid.adm);</span>
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (_IndexRequestData.targetIDToCreative[noTargetModeTargetID] === undefined) {
+            _IndexRequestData.targetIDToCreative[noTargetModeTargetID] = [bid.adm];
+          } else {
+<span class="cstat-no" title="statement not covered" >            _IndexRequestData.targetIDToCreative[noTargetModeTargetID].push(bid.adm);</span>
+          }
+          var impBid = {};
+          impBid.impressionID = bid.impid;
+          if (typeof bid.ext.dealid !== 'undefined') {
+            impBid.dealID = bid.ext.dealid;
+          }
+          impBid.bid = bid.price;
+          impBid.slotID = slotID;
+          impBid.priceLevel = bid.ext.pricelevel;
+          impBid.target = targetPrefix + targetID;
+          _IndexRequestData.targetIDToResp[targetID] = impBid;
+          allBids.push(impBid);
+        }
+      }
+      if (typeof callbackFn === "function") {
+        if (allBids.length === 0) {
+          callbackFn(response.id);
+        } else {
+          callbackFn(response.id, allBids);
+        }
+      }
+    }
+  } catch (e) {}
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof window.cygnus_index_ready_state === 'function') {
+    window.cygnus_index_ready_state();
+  }
+};
+&nbsp;
+window.index_render = <span class="fstat-no" title="function not covered" >function (doc, targetID) {</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    var ad = _IndexRequestData.targetIDToCreative[targetID].pop();</span>
+<span class="cstat-no" title="statement not covered" >    if (ad != null) {</span>
+<span class="cstat-no" title="statement not covered" >      doc.write(ad);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      var url = window.location.protocol === 'https:' ? 'https://as-sec.casalemedia.com' : 'http://as.casalemedia.com';</span>
+<span class="cstat-no" title="statement not covered" >      url += '/headerstats?type=RT&amp;s=' + cygnus_index_args.siteID + '&amp;u=' + encodeURIComponent(location.href) + '&amp;r=' + _IndexRequestData.lastRequestID;</span>
+<span class="cstat-no" title="statement not covered" >      var px_call = new Image();</span>
+<span class="cstat-no" title="statement not covered" >      px_call.src = url + '&amp;blank=' + targetID;</span>
+    }
+  } catch (e) {}
+};
+&nbsp;
+window.headertag_render = <span class="fstat-no" title="function not covered" >function (doc, targetID, slotID) {</span>
+<span class="cstat-no" title="statement not covered" >  var index_slot = slotID;</span>
+<span class="cstat-no" title="statement not covered" >  var index_ary = targetID.split(',');</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; index_ary.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    var unpack = index_ary[i].split('_');</span>
+<span class="cstat-no" title="statement not covered" >    if (unpack[0] == index_slot) {</span>
+<span class="cstat-no" title="statement not covered" >      index_render(doc, index_ary[i]);</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+  }
+};
+&nbsp;
+window.cygnus_index_args = {};
+&nbsp;
+var cygnus_index_adunits = [[728, 90], [120, 600], [300, 250], [160, 600], [336, 280], [234, 60], [300, 600], [300, 50], [320, 50], [970, 250], [300, 1050], [970, 90], [180, 150]]; // jshint ignore:line
+&nbsp;
+var getIndexDebugMode = function getIndexDebugMode() {
+  return getParameterByName(CONSTANTS.INDEX_DEBUG_MODE.queryParam).toUpperCase();
+};
+&nbsp;
+var getParameterByName = function getParameterByName(name) {
+  var wdw = window;
+  var childsReferrer = '';
+  for (var x = 0; x &lt; CONSTANTS.INDEX_DEBUG_MODE.mode.sandbox.topFrameLimit; x++) {
+    if (wdw.parent == wdw) {
+      break;
+    }
+    try {
+      childsReferrer = wdw.document.referrer;
+    } catch (err) {}
+    wdw = wdw.parent;
+  }
+  var topURL = top === self ? <span class="branch-0 cbranch-no" title="branch not covered" >location.href </span>: childsReferrer;
+  var regexS = '[\\?&amp;]' + name + '=([^&amp;#]*)';
+  var regex = new RegExp(regexS);
+  var results = regex.exec(topURL);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (results === null) {
+    return '';
+  }
+<span class="cstat-no" title="statement not covered" >  return decodeURIComponent(results[1].replace(/\+/g, ' '));</span>
+};
+&nbsp;
+var cygnus_index_start = function cygnus_index_start() {
+  window.cygnus_index_args.parseFn = cygnus_index_parse_res;
+  var escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+  var meta = {
+    '\b': '\\b',
+    '\t': '\\t',
+    '\n': '\\n',
+    '\f': '\\f',
+    '\r': '\\r',
+    '"': '\\"',
+    '\\': '\\\\'
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function escapeCharacter(character) {</span>
+<span class="cstat-no" title="statement not covered" >    var escaped = meta[character];</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof escaped === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >      return escaped;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return '\\u' + ('0000' + character.charCodeAt(0).toString(16)).slice(-4);</span>
+    }
+  }
+&nbsp;
+  function quote(string) {
+    escapable.lastIndex = 0;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (escapable.test(string)) {
+<span class="cstat-no" title="statement not covered" >      return string.replace(escapable, escapeCharacter);</span>
+    } else {
+      return string;
+    }
+  }
+&nbsp;
+  function OpenRTBRequest(siteID, parseFn, timeoutDelay) {
+    this.initialized = false;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof siteID !== 'number' || siteID % 1 !== 0 || siteID &lt; 0) {
+<span class="cstat-no" title="statement not covered" >      throw 'Invalid Site ID';</span>
+    }
+&nbsp;
+    timeoutDelay = Number(timeoutDelay);
+    if (typeof timeoutDelay === 'number' &amp;&amp; timeoutDelay % 1 === 0 &amp;&amp; timeoutDelay &gt;= 0) {
+      this.timeoutDelay = timeoutDelay;
+    }
+&nbsp;
+    this.siteID = siteID;
+    this.impressions = [];
+    this._parseFnName = undefined;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (top === self) {
+<span class="cstat-no" title="statement not covered" >      this.sitePage = location.href;</span>
+<span class="cstat-no" title="statement not covered" >      this.topframe = 1;</span>
+    } else {
+      this.sitePage = document.referrer;
+      this.topframe = 0;
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof parseFn !== 'undefined') {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof parseFn === 'function') {
+        this._parseFnName = 'cygnus_index_args.parseFn';
+      } else {
+<span class="cstat-no" title="statement not covered" >        throw 'Invalid jsonp target function';</span>
+      }
+    }
+&nbsp;
+    if (typeof _IndexRequestData.requestCounter === 'undefined') {
+      _IndexRequestData.requestCounter = Math.floor(Math.random() * 256);
+    } else {
+      _IndexRequestData.requestCounter = (_IndexRequestData.requestCounter + 1) % 256;
+    }
+&nbsp;
+    this.requestID = String(new Date().getTime() % 2592000 * 256 + _IndexRequestData.requestCounter + 256);
+    this.initialized = true;
+  }
+&nbsp;
+  OpenRTBRequest.prototype.serialize = function () {
+    var json = '{"id":"' + this.requestID + '","site":{"page":"' + quote(this.sitePage) + '"';
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof document.referrer === 'string' &amp;&amp; document.referrer !== "") {
+      json += ',"ref":"' + quote(document.referrer) + '"';
+    }
+&nbsp;
+    json += '},"imp":[';
+    for (var i = 0; i &lt; this.impressions.length; i++) {
+      var impObj = this.impressions[i];
+      var ext = [];
+      json += '{"id":"' + impObj.id + '", "banner":{"w":' + impObj.w + ',"h":' + impObj.h + ',"topframe":' + String(this.topframe) + '}';
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof impObj.bidfloor === 'number') {
+<span class="cstat-no" title="statement not covered" >        json += ',"bidfloor":' + impObj.bidfloor;</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof impObj.bidfloorcur === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >          json += ',"bidfloorcur":"' + quote(impObj.bidfloorcur) + '"';</span>
+        }
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof impObj.slotID === 'string' &amp;&amp; !impObj.slotID.match(/^\s*$/)) {
+        ext.push('"sid":"' + quote(impObj.slotID) + '"');
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof impObj.siteID === 'number') {
+        ext.push('"siteID":' + impObj.siteID);
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (ext.length &gt; 0) {
+        json += ',"ext": {' + ext.join() + '}';
+      }
+&nbsp;
+      if (i + 1 === this.impressions.length) {
+        json += '}';
+      } else {
+        json += '},';
+      }
+    }
+&nbsp;
+    json += ']}';
+    return json;
+  };
+&nbsp;
+  OpenRTBRequest.prototype.setPageOverride = <span class="fstat-no" title="function not covered" >function (sitePageOverride) {</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof sitePageOverride === 'string' &amp;&amp; !sitePageOverride.match(/^\s*$/)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.sitePage = sitePageOverride;</span>
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+  };
+&nbsp;
+  OpenRTBRequest.prototype.addImpression = function (width, height, bidFloor, bidFloorCurrency, slotID, siteID) {
+    var impObj = {
+      id: String(this.impressions.length + 1)
+    };
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof width !== 'number' || width &lt;= 1) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof height !== 'number' || height &lt;= 1) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if ((typeof slotID === 'string' || <span class="branch-1 cbranch-no" title="branch not covered" >typeof slotID === 'number')</span> &amp;&amp; String(slotID).length &lt;= 50) {
+      impObj.slotID = String(slotID);
+    }
+&nbsp;
+    impObj.w = width;
+    impObj.h = height;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (bidFloor !== undefined &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >typeof bidFloor !== 'number')</span> {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof bidFloor === 'number') {
+<span class="cstat-no" title="statement not covered" >      if (bidFloor &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      impObj.bidfloor = bidFloor;</span>
+<span class="cstat-no" title="statement not covered" >      if (bidFloorCurrency !== undefined &amp;&amp; typeof bidFloorCurrency !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      impObj.bidfloorcur = bidFloorCurrency;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof siteID !== 'undefined') {
+      if (typeof siteID === 'number' &amp;&amp; siteID % 1 === 0 &amp;&amp; siteID &gt;= 0) {
+        impObj.siteID = siteID;
+      } else {
+        return null;
+      }
+    }
+&nbsp;
+    this.impressions.push(impObj);
+    return impObj.id;
+  };
+&nbsp;
+  OpenRTBRequest.prototype.buildRequest = function () {
+    if (this.impressions.length === 0 || this.initialized !== true) {
+      return;
+    }
+&nbsp;
+    var jsonURI = encodeURIComponent(this.serialize());
+&nbsp;
+    var scriptSrc;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (getIndexDebugMode() == CONSTANTS.INDEX_DEBUG_MODE.mode.sandbox.queryValue.toUpperCase()) {
+<span class="cstat-no" title="statement not covered" >      this.siteID = CONSTANTS.INDEX_DEBUG_MODE.mode.sandbox.siteID;</span>
+<span class="cstat-no" title="statement not covered" >      scriptSrc = window.location.protocol === 'https:' ? 'https://sandbox.ht.indexexchange.com' : 'http://sandbox.ht.indexexchange.com';</span>
+<span class="cstat-no" title="statement not covered" >      utils.logMessage('IX DEBUG: Sandbox mode activated');</span>
+    } else {
+      scriptSrc = window.location.protocol === 'https:' ? <span class="branch-0 cbranch-no" title="branch not covered" >'https://as-sec.casalemedia.com' </span>: 'http://as.casalemedia.com';
+    }
+    var prebidVersion = encodeURIComponent("$prebid.version$");
+    scriptSrc += '/cygnus?v=7&amp;fn=cygnus_index_parse_res&amp;s=' + this.siteID + '&amp;r=' + jsonURI + '&amp;pid=pb' + prebidVersion;
+    if (typeof this.timeoutDelay === 'number' &amp;&amp; this.timeoutDelay % 1 === 0 &amp;&amp; this.timeoutDelay &gt;= 0) {
+      scriptSrc += '&amp;t=' + this.timeoutDelay;
+    }
+&nbsp;
+    return scriptSrc;
+  };
+&nbsp;
+  try {
+    if (typeof cygnus_index_args === 'undefined' || typeof cygnus_index_args.siteID === 'undefined' || typeof cygnus_index_args.slots === 'undefined') {
+      return;
+    }
+&nbsp;
+    var req = new OpenRTBRequest(cygnus_index_args.siteID, cygnus_index_args.parseFn, cygnus_index_args.timeout);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (cygnus_index_args.url &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >typeof cygnus_index_args.url === 'string')</span> {
+<span class="cstat-no" title="statement not covered" >      req.setPageOverride(cygnus_index_args.url);</span>
+    }
+&nbsp;
+    _IndexRequestData.impIDToSlotID[req.requestID] = {};
+    _IndexRequestData.reqOptions[req.requestID] = {};
+    var slotDef, impID;
+&nbsp;
+    for (var i = 0; i &lt; cygnus_index_args.slots.length; i++) {
+      slotDef = cygnus_index_args.slots[i];
+&nbsp;
+      impID = req.addImpression(slotDef.width, slotDef.height, slotDef.bidfloor, slotDef.bidfloorcur, slotDef.id, slotDef.siteID);
+      if (impID) {
+        _IndexRequestData.impIDToSlotID[req.requestID][impID] = String(slotDef.id);
+      }
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof cygnus_index_args.targetMode === 'number') {
+<span class="cstat-no" title="statement not covered" >      _IndexRequestData.reqOptions[req.requestID].targetMode = cygnus_index_args.targetMode;</span>
+    }
+&nbsp;
+    if (typeof cygnus_index_args.callback === 'function') {
+      _IndexRequestData.reqOptions[req.requestID].callback = cygnus_index_args.callback;
+    }
+&nbsp;
+    return req.buildRequest();
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    utils.logError('Error calling index adapter', ADAPTER_NAME, e);</span>
+  }
+};
+&nbsp;
+var IndexExchangeAdapter = function IndexExchangeAdapter() {
+  var slotIdMap = {};
+  var requiredParams = [
+  /* 0 */
+  'id',
+  /* 1 */
+  'siteID'];
+  var firstAdUnitCode = '';
+&nbsp;
+  function _callBids(request) {
+    var bidArr = request.bids;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof window._IndexRequestData === 'undefined') {
+<span class="cstat-no" title="statement not covered" >      window._IndexRequestData = {};</span>
+<span class="cstat-no" title="statement not covered" >      window._IndexRequestData.impIDToSlotID = {};</span>
+<span class="cstat-no" title="statement not covered" >      window._IndexRequestData.reqOptions = {};</span>
+    }
+    // clear custom targets at the beginning of every request
+    _IndexRequestData.targetAggregate = { 'open': {}, 'private': {} };
+&nbsp;
+    if (!utils.hasValidBidRequest(bidArr[0].params, requiredParams, ADAPTER_NAME)) {
+      return;
+    }
+&nbsp;
+    //Our standard is to always bid for all known slots.
+    cygnus_index_args.slots = [];
+&nbsp;
+    var expectedBids = 0;
+&nbsp;
+    //Grab the slot level data for cygnus_index_args
+    for (var i = 0; i &lt; bidArr.length; i++) {
+      var bid = bidArr[i];
+      var sizeID = 0;
+&nbsp;
+      expectedBids++;
+&nbsp;
+      // Expecting nested arrays for sizes
+      if (!(bid.sizes[0] instanceof Array)) {
+        bid.sizes = [bid.sizes];
+      }
+&nbsp;
+      // Create index slots for all bids and sizes
+      for (var j = 0; j &lt; bid.sizes.length; j++) {
+        var validSize = false;
+        for (var k = 0; k &lt; cygnus_index_adunits.length; k++) {
+          if (bid.sizes[j][0] == cygnus_index_adunits[k][0] &amp;&amp; bid.sizes[j][1] == cygnus_index_adunits[k][1]) {
+            bid.sizes[j][0] = Number(bid.sizes[j][0]);
+            bid.sizes[j][1] = Number(bid.sizes[j][1]);
+            validSize = true;
+            break;
+          }
+        }
+&nbsp;
+        if (!validSize) {
+          utils.logMessage(ADAPTER_NAME + " slot excluded from request due to no valid sizes");
+          continue;
+        }
+&nbsp;
+        var usingSizeSpecificSiteID = false;
+        // Check for size defined in bidder params 
+        if (bid.params.size &amp;&amp; bid.params.size instanceof Array) {
+          if (!(bid.sizes[j][0] == bid.params.size[0] &amp;&amp; bid.sizes[j][1] == bid.params.size[1])) continue;
+          usingSizeSpecificSiteID = true;
+        }
+&nbsp;
+        if (bid.params.timeout &amp;&amp; typeof cygnus_index_args.timeout === 'undefined') {
+          cygnus_index_args.timeout = bid.params.timeout;
+        }
+&nbsp;
+        var siteID = Number(bid.params.siteID);
+        if (typeof siteID !== "number" || siteID % 1 != 0 || siteID &lt;= 0) {
+          utils.logMessage(ADAPTER_NAME + " slot excluded from request due to invalid siteID");
+          continue;
+        }
+        if (siteID &amp;&amp; typeof cygnus_index_args.siteID === 'undefined') {
+          cygnus_index_args.siteID = siteID;
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (utils.hasValidBidRequest(bid.params, requiredParams, ADAPTER_NAME)) {
+          firstAdUnitCode = bid.placementCode;
+          var slotID = bid.params[requiredParams[0]];
+          if (typeof slotID !== 'string' &amp;&amp; typeof slotID !== 'number') {
+            utils.logError(ADAPTER_NAME + " bid contains invalid slot ID from " + bid.placementCode + ". Discarding slot");
+            continue;
+          }
+&nbsp;
+          sizeID++;
+          var size = {
+            width: bid.sizes[j][0],
+            height: bid.sizes[j][1]
+          };
+&nbsp;
+          var slotName = usingSizeSpecificSiteID ? String(slotID) : slotID + '_' + sizeID;
+          slotIdMap[slotName] = bid;
+&nbsp;
+          //Doesn't need the if(primary_request) conditional since we are using the mergeSlotInto function which is safe
+          cygnus_index_args.slots = mergeSlotInto({
+            id: slotName,
+            width: size.width,
+            height: size.height,
+            siteID: siteID || <span class="branch-1 cbranch-no" title="branch not covered" >cygnus_index_args.siteID</span>
+          }, cygnus_index_args.slots);
+&nbsp;
+          if (bid.params.tier2SiteID) {
+            var tier2SiteID = Number(bid.params.tier2SiteID);
+            if (typeof tier2SiteID !== 'undefined' &amp;&amp; !tier2SiteID) {
+              continue;
+            }
+&nbsp;
+            cygnus_index_args.slots = mergeSlotInto({
+              id: 'T1_' + slotName,
+              width: size.width,
+              height: size.height,
+              siteID: tier2SiteID
+            }, cygnus_index_args.slots);
+          }
+&nbsp;
+          if (bid.params.tier3SiteID) {
+            var tier3SiteID = Number(bid.params.tier3SiteID);
+            if (typeof tier3SiteID !== 'undefined' &amp;&amp; !tier3SiteID) {
+              continue;
+            }
+&nbsp;
+            cygnus_index_args.slots = mergeSlotInto({
+              id: 'T2_' + slotName,
+              width: size.width,
+              height: size.height,
+              siteID: tier3SiteID
+            }, cygnus_index_args.slots);
+          }
+        }
+      }
+    }
+&nbsp;
+    if (cygnus_index_args.slots.length &gt; 20) {
+      utils.logError('Too many unique sizes on slots, will use the first 20.', ADAPTER_NAME);
+    }
+&nbsp;
+    //bidmanager.setExpectedBidsCount(ADAPTER_CODE, expectedBids);
+    adloader.loadScript(cygnus_index_start());
+&nbsp;
+    var responded = false;
+&nbsp;
+    // Handle response
+    window.cygnus_index_ready_state = function () {
+      if (responded) {
+        return;
+      }
+      responded = true;
+&nbsp;
+      try {
+        var indexObj = _IndexRequestData.targetIDToBid;
+        var lookupObj = cygnus_index_args;
+&nbsp;
+        // Grab all the bids for each slot
+        for (var adSlotId in slotIdMap) {
+          var bidObj = slotIdMap[adSlotId];
+          var adUnitCode = bidObj.placementCode;
+&nbsp;
+          var bids = [];
+&nbsp;
+          // Grab the bid for current slot
+          for (var cpmAndSlotId in indexObj) {
+            var match = /^(T\d_)?(.+)_(\d+)$/.exec(cpmAndSlotId);
+            // if parse fail, move to next bid
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!match) {
+<span class="cstat-no" title="statement not covered" >              utils.logError("Unable to parse " + cpmAndSlotId + ", skipping slot", ADAPTER_NAME);</span>
+<span class="cstat-no" title="statement not covered" >              continue;</span>
+            }
+            var tier = match[1] || '';
+            var slotID = match[2];
+            var currentCPM = match[3];
+&nbsp;
+            var slotObj = getSlotObj(cygnus_index_args, tier + slotID);
+            // Bid is for the current slot
+            if (slotID === adSlotId) {
+              var bid = bidfactory.createBid(1);
+              bid.cpm = currentCPM / 100;
+              bid.ad = indexObj[cpmAndSlotId][0];
+              bid.bidderCode = ADAPTER_CODE;
+              bid.width = slotObj.width;
+              bid.height = slotObj.height;
+              bid.siteID = slotObj.siteID;
+              if (_typeof(_IndexRequestData.targetIDToResp) === 'object' &amp;&amp; _typeof(_IndexRequestData.targetIDToResp[cpmAndSlotId]) === 'object' &amp;&amp; typeof _IndexRequestData.targetIDToResp[cpmAndSlotId].dealID !== 'undefined') {
+                if (typeof _IndexRequestData.targetAggregate['private'][adUnitCode] === 'undefined') _IndexRequestData.targetAggregate['private'][adUnitCode] = [];
+                bid.dealId = _IndexRequestData.targetIDToResp[cpmAndSlotId].dealID;
+                _IndexRequestData.targetAggregate['private'][adUnitCode].push(slotID + "_" + _IndexRequestData.targetIDToResp[cpmAndSlotId].dealID);
+              } else {
+                if (typeof _IndexRequestData.targetAggregate['open'][adUnitCode] === 'undefined') _IndexRequestData.targetAggregate['open'][adUnitCode] = [];
+                _IndexRequestData.targetAggregate['open'][adUnitCode].push(slotID + "_" + currentCPM);
+              }
+              bids.push(bid);
+            }
+          }
+&nbsp;
+          var currentBid = undefined;
+&nbsp;
+          if (bids.length &gt; 0) {
+            // Add all bid responses
+            for (var i = 0; i &lt; bids.length; i++) {
+              bidmanager.addBidResponse(adUnitCode, bids[i]);
+            }
+            // No bids for expected bid, pass bid
+          } else {
+            var bid = bidfactory.createBid(2);
+            bid.bidderCode = ADAPTER_CODE;
+            currentBid = bid;
+            bidmanager.addBidResponse(adUnitCode, currentBid);
+          }
+        }
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        utils.logError('Error calling index adapter', ADAPTER_NAME, e);</span>
+<span class="cstat-no" title="statement not covered" >        logErrorBidResponse();</span>
+      } finally {
+        // ensure that previous targeting mapping is cleared
+        _IndexRequestData.targetIDToBid = {};
+      }
+&nbsp;
+      //slotIdMap is used to determine which slots will be bid on in a given request.
+      //Therefore it needs to be blanked after the request is handled, else we will submit 'bids' for the wrong ads.
+      slotIdMap = {};
+    };
+  }
+&nbsp;
+  /*
+  Function in order to add a slot into the list if it hasn't been created yet, else it returns the same list.
+  */
+  function mergeSlotInto(slot, slotList) {
+    for (var i = 0; i &lt; slotList.length; i++) {
+      if (slot.id === slotList[i].id) {
+        return slotList;
+      }
+    }
+    slotList.push(slot);
+    return slotList;
+  }
+&nbsp;
+  function getSlotObj(obj, id) {
+    var arr = obj.slots;
+    var returnObj = {};
+    utils._each(arr, function (value) {
+      if (value.id === id) {
+        returnObj = value;
+      }
+    });
+&nbsp;
+    return returnObj;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function logErrorBidResponse() {</span>
+    //no bid response
+<span class="cstat-no" title="statement not covered" >    var bid = bidfactory.createBid(2);</span>
+<span class="cstat-no" title="statement not covered" >    bid.bidderCode = ADAPTER_CODE;</span>
+&nbsp;
+    //log error to first add unit
+<span class="cstat-no" title="statement not covered" >    bidmanager.addBidResponse(firstAdUnitCode, bid);</span>
+  }
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;
+module.exports = IndexExchangeAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

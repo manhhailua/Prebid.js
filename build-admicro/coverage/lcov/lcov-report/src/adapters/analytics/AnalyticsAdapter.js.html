@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/analytics/AnalyticsAdapter.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/analytics/AnalyticsAdapter.js</span></h1>
+    <h2>
+        Statements: <span class="metric">80.95% <small>(68 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">75% <small>(21 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">57.14% <small>(12 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">80.72% <small>(67 / 83)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/adapters/analytics/</a> &#187; AnalyticsAdapter.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports['default'] = AnalyticsAdapter;
+&nbsp;
+var _constants = require('src/constants.json');
+&nbsp;
+var _constants2 = _interopRequireDefault(_constants);
+&nbsp;
+var _adloader = require('src/adloader');
+&nbsp;
+var _ajax = require('src/ajax');
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj </span>: { 'default': obj }; }
+&nbsp;
+var events = require('src/events');
+var utils = require('../../utils');
+&nbsp;
+var AUCTION_INIT = _constants2['default'].EVENTS.AUCTION_INIT;
+var BID_REQUESTED = _constants2['default'].EVENTS.BID_REQUESTED;
+var BID_TIMEOUT = _constants2['default'].EVENTS.BID_TIMEOUT;
+var BID_RESPONSE = _constants2['default'].EVENTS.BID_RESPONSE;
+var BID_WON = _constants2['default'].EVENTS.BID_WON;
+var BID_ADJUSTMENT = _constants2['default'].EVENTS.BID_ADJUSTMENT;
+&nbsp;
+var LIBRARY = 'library';
+var ENDPOINT = 'endpoint';
+var BUNDLE = 'bundle';
+&nbsp;
+var _timedOutBidders = [];
+&nbsp;
+function AnalyticsAdapter(_ref) {
+  var url = _ref.url,
+      analyticsType = _ref.analyticsType,
+      global = _ref.global,
+      handler = _ref.handler;
+&nbsp;
+  var _queue = [];
+  var _eventCount = 0;
+  var _enableCheck = true;
+&nbsp;
+  if (analyticsType === LIBRARY) {
+    (0, _adloader.loadScript)(url, _emptyQueue);
+  }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (analyticsType === ENDPOINT || BUNDLE) {
+    _emptyQueue();
+  }
+&nbsp;
+  return {
+    track: _track,
+    enqueue: _enqueue,
+    enableAnalytics: _enable,
+    getAdapterType: function getAdapterType() {
+      return analyticsType;
+    },
+    getGlobal: <span class="fstat-no" title="function not covered" >function getGlobal() {</span>
+<span class="cstat-no" title="statement not covered" >      return global;</span>
+    },
+    getHandler: <span class="fstat-no" title="function not covered" >function getHandler() {</span>
+<span class="cstat-no" title="statement not covered" >      return handler;</span>
+    },
+    getUrl: <span class="fstat-no" title="function not covered" >function getUrl() {</span>
+<span class="cstat-no" title="statement not covered" >      return url;</span>
+    }
+  };
+&nbsp;
+  function _track(_ref2) {
+    var eventType = _ref2.eventType,
+        args = _ref2.args;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.getAdapterType() === LIBRARY || <span class="branch-1 cbranch-no" title="branch not covered" >BUNDLE)</span> {
+      window[global](handler, eventType, args);
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.getAdapterType() === ENDPOINT) {
+<span class="cstat-no" title="statement not covered" >      _callEndpoint.apply(undefined, arguments);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _callEndpoint(_ref3) {</span>
+<span class="cstat-no" title="statement not covered" >    var eventType = _ref3.eventType,</span>
+        args = _ref3.args,
+        callback = _ref3.callback;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    (0, _ajax.ajax)(url, callback, JSON.stringify({ eventType: eventType, args: args }));</span>
+  }
+&nbsp;
+  function _enqueue(_ref4) {
+    var eventType = _ref4.eventType,
+        args = _ref4.args;
+&nbsp;
+    var _this = this;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (global &amp;&amp; window[global] &amp;&amp; eventType &amp;&amp; args) {
+      this.track({ eventType: eventType, args: args });
+    } else {
+<span class="cstat-no" title="statement not covered" >      _queue.push(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        _eventCount++;</span>
+<span class="cstat-no" title="statement not covered" >        _this.track({ eventType: eventType, args: args });</span>
+      });
+    }
+  }
+&nbsp;
+  function _enable(config) {
+    var _this2 = this;
+&nbsp;
+    var _this = this;
+&nbsp;
+    //first send all events fired before enableAnalytics called
+    events.getEvents().forEach(function (event) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!event) {
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      var eventType = event.eventType,
+          args = event.args;
+&nbsp;
+&nbsp;
+      if (eventType === BID_TIMEOUT) {
+        _timedOutBidders = args.bidderCode;
+      } else {
+        _enqueue.call(_this, { eventType: eventType, args: args });
+      }
+    });
+&nbsp;
+    //Next register event listeners to send data immediately
+&nbsp;
+    //bidRequests
+    events.on(BID_REQUESTED, function (args) {
+      return _this2.enqueue({ eventType: BID_REQUESTED, args: args });
+    });
+    events.on(BID_RESPONSE, function (args) {
+      return _this2.enqueue({ eventType: BID_RESPONSE, args: args });
+    });
+    events.on(BID_TIMEOUT, function (args) {
+      return _this2.enqueue({ eventType: BID_TIMEOUT, args: args });
+    });
+    events.on(BID_WON, function (args) {
+      return _this2.enqueue({ eventType: BID_WON, args: args });
+    });
+    events.on(BID_ADJUSTMENT, <span class="fstat-no" title="function not covered" >function (args) {</span>
+<span class="cstat-no" title="statement not covered" >      return _this2.enqueue({ eventType: BID_ADJUSTMENT, args: args });</span>
+    });
+    events.on(AUCTION_INIT, <span class="fstat-no" title="function not covered" >function (args) {</span>
+<span class="cstat-no" title="statement not covered" >      args.config = config.options; </span>// enableAnaltyics configuration object
+<span class="cstat-no" title="statement not covered" >      _this2.enqueue({ eventType: AUCTION_INIT, args: args });</span>
+    });
+&nbsp;
+    // finally set this function to return log message, prevents multiple adapter listeners
+    this.enableAnalytics = <span class="fstat-no" title="function not covered" >function _enable() {</span>
+<span class="cstat-no" title="statement not covered" >      return utils.logMessage('Analytics adapter for "' + global + '" already enabled, unnecessary call to `enableAnalytics`.');</span>
+    };
+  }
+&nbsp;
+  function _emptyQueue() {
+    if (_enableCheck) {
+      for (var i = 0; i &lt; _queue.length; i++) {
+<span class="cstat-no" title="statement not covered" >        _queue[i]();</span>
+      }
+&nbsp;
+      //override push to execute the command immediately from now on
+      _queue.push = <span class="fstat-no" title="function not covered" >function (fn) {</span>
+<span class="cstat-no" title="statement not covered" >        fn();</span>
+      };
+&nbsp;
+      _enableCheck = false;
+    }
+&nbsp;
+    utils.logMessage('event count sent to ' + global + ': ' + _eventCount);
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

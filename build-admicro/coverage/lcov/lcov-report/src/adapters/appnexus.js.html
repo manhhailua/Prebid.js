@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/appnexus.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/appnexus.js</span></h1>
+    <h2>
+        Statements: <span class="metric">81.58% <small>(93 / 114)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">67.57% <small>(25 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(5 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">81.58% <small>(93 / 114)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; appnexus.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">43</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _utils = require('../utils.js');
+&nbsp;
+var CONSTANTS = require('../constants.json');
+var utils = require('../utils.js');
+var adloader = require('../adloader.js');
+var bidmanager = require('../bidmanager.js');
+var bidfactory = require('../bidfactory.js');
+var Adapter = require('./adapter.js');
+&nbsp;
+var AppNexusAdapter;
+AppNexusAdapter = function AppNexusAdapter() {
+  var baseAdapter = Adapter.createNew('appnexus');
+  var usersync = false;
+&nbsp;
+  baseAdapter.callBids = function (params) {
+    //var bidCode = baseAdapter.getBidderCode();
+&nbsp;
+    var anArr = params.bids;
+&nbsp;
+    //var bidsCount = anArr.length;
+&nbsp;
+    //set expected bids count for callback execution
+    //bidmanager.setExpectedBidsCount(bidCode, bidsCount);
+&nbsp;
+    for (var i = 0; i &lt; anArr.length; i++) {
+      var bidRequest = anArr[i];
+      var callbackId = bidRequest.bidId;
+      adloader.loadScript(buildJPTCall(bidRequest, callbackId));
+&nbsp;
+      //store a reference to the bidRequest from the callback id
+      //bidmanager.pbCallbackMap[callbackId] = bidRequest;
+    }
+  };
+&nbsp;
+  function buildJPTCall(bid, callbackId) {
+&nbsp;
+    //determine tag params
+    var placementId = utils.getBidIdParameter('placementId', bid.params);
+&nbsp;
+    //memberId will be deprecated, use member instead
+    var memberId = utils.getBidIdParameter('memberId', bid.params);
+    var member = utils.getBidIdParameter('member', bid.params);
+    var inventoryCode = utils.getBidIdParameter('invCode', bid.params);
+    var query = utils.getBidIdParameter('query', bid.params);
+    var referrer = utils.getBidIdParameter('referrer', bid.params);
+    var altReferrer = utils.getBidIdParameter('alt_referrer', bid.params);
+&nbsp;
+    //build our base tag, based on if we are http or https
+&nbsp;
+    var jptCall = 'http' + (document.location.protocol === 'https:' ? <span class="branch-0 cbranch-no" title="branch not covered" >'s://secure.adnxs.com/jpt?' </span>: '://ib.adnxs.com/jpt?');
+&nbsp;
+    jptCall = utils.tryAppendQueryString(jptCall, 'callback', 'pbjs.handleAnCB');
+    jptCall = utils.tryAppendQueryString(jptCall, 'callback_uid', callbackId);
+    jptCall = utils.tryAppendQueryString(jptCall, 'psa', '0');
+    jptCall = utils.tryAppendQueryString(jptCall, 'id', placementId);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (member) {
+<span class="cstat-no" title="statement not covered" >      jptCall = utils.tryAppendQueryString(jptCall, 'member', member);</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (memberId) {
+<span class="cstat-no" title="statement not covered" >      jptCall = utils.tryAppendQueryString(jptCall, 'member', memberId);</span>
+<span class="cstat-no" title="statement not covered" >      utils.logMessage('appnexus.callBids: "memberId" will be deprecated soon. Please use "member" instead');</span>
+    }
+&nbsp;
+    jptCall = utils.tryAppendQueryString(jptCall, 'code', inventoryCode);
+&nbsp;
+    //sizes takes a bit more logic
+    var sizeQueryString = '';
+    var parsedSizes = utils.parseSizesInput(bid.sizes);
+&nbsp;
+    //combine string into proper querystring for impbus
+    var parsedSizesLength = parsedSizes.length;
+    if (parsedSizesLength &gt; 0) {
+      //first value should be "size"
+      sizeQueryString = 'size=' + parsedSizes[0];
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (parsedSizesLength &gt; 1) {
+        //any subsequent values should be "promo_sizes"
+        sizeQueryString += '&amp;promo_sizes=';
+        for (var j = 1; j &lt; parsedSizesLength; j++) {
+          sizeQueryString += parsedSizes[j] += ',';
+        }
+&nbsp;
+        //remove trailing comma
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (sizeQueryString &amp;&amp; sizeQueryString.charAt(sizeQueryString.length - 1) === ',') {
+          sizeQueryString = sizeQueryString.slice(0, sizeQueryString.length - 1);
+        }
+      }
+    }
+&nbsp;
+    if (sizeQueryString) {
+      jptCall += sizeQueryString + '&amp;';
+    }
+&nbsp;
+    //this will be deprecated soon
+    var targetingParams = utils.parseQueryStringParameters(query);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (targetingParams) {
+      //don't append a &amp; here, we have already done it in parseQueryStringParameters
+<span class="cstat-no" title="statement not covered" >      jptCall += targetingParams;</span>
+    }
+&nbsp;
+    //append custom attributes:
+    var paramsCopy = utils.extend({}, bid.params);
+&nbsp;
+    //delete attributes already used
+    delete paramsCopy.placementId;
+    delete paramsCopy.memberId;
+    delete paramsCopy.invCode;
+    delete paramsCopy.query;
+    delete paramsCopy.referrer;
+    delete paramsCopy.alt_referrer;
+    delete paramsCopy.member;
+&nbsp;
+    //get the reminder
+    var queryParams = utils.parseQueryStringParameters(paramsCopy);
+&nbsp;
+    //append
+    if (queryParams) {
+      jptCall += queryParams;
+    }
+&nbsp;
+    //append referrer
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (referrer === '') {
+      referrer = utils.getTopWindowUrl();
+    }
+&nbsp;
+    jptCall = utils.tryAppendQueryString(jptCall, 'referrer', referrer);
+    jptCall = utils.tryAppendQueryString(jptCall, 'alt_referrer', altReferrer);
+&nbsp;
+    //remove the trailing "&amp;"
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (jptCall.lastIndexOf('&amp;') === jptCall.length - 1) {
+      jptCall = jptCall.substring(0, jptCall.length - 1);
+    }
+&nbsp;
+    // @if NODE_ENV='debug'
+    utils.logMessage('jpt request built: ' + jptCall);
+&nbsp;
+    // @endif
+&nbsp;
+    //append a timer here to track latency
+    bid.startTime = new Date().getTime();
+&nbsp;
+    return jptCall;
+  }
+&nbsp;
+  //expose the callback to the global object:
+  pbjs.handleAnCB = function (jptResponseObj) {
+&nbsp;
+    var bidCode;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (jptResponseObj &amp;&amp; jptResponseObj.callback_uid) {
+&nbsp;
+      var responseCPM;
+      var id = jptResponseObj.callback_uid;
+      var placementCode = '';
+      var bidObj = (0, _utils.getBidRequest)(id);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (bidObj) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bidCode = bidObj.bidder;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        placementCode = bidObj.placementCode;</span>
+&nbsp;
+        //set the status
+<span class="cstat-no" title="statement not covered" >        bidObj.status = CONSTANTS.STATUS.GOOD;</span>
+      }
+&nbsp;
+      // @if NODE_ENV='debug'
+      utils.logMessage('JSONP callback function called for ad ID: ' + id);
+&nbsp;
+      // @endif
+      var bid = [];
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (jptResponseObj.result &amp;&amp; jptResponseObj.result.cpm &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >jptResponseObj.result.cpm !== 0)</span> {
+<span class="cstat-no" title="statement not covered" >        responseCPM = parseInt(jptResponseObj.result.cpm, 10);</span>
+&nbsp;
+        //CPM response from /jpt is dollar/cent multiplied by 10000
+        //in order to avoid using floats
+        //switch CPM to "dollar/cent"
+<span class="cstat-no" title="statement not covered" >        responseCPM = responseCPM / 10000;</span>
+&nbsp;
+        //store bid response
+        //bid status is good (indicating 1)
+<span class="cstat-no" title="statement not covered" >        var adId = jptResponseObj.result.creative_id;</span>
+<span class="cstat-no" title="statement not covered" >        bid = bidfactory.createBid(1, bidObj);</span>
+<span class="cstat-no" title="statement not covered" >        bid.creative_id = adId;</span>
+<span class="cstat-no" title="statement not covered" >        bid.bidderCode = bidCode;</span>
+<span class="cstat-no" title="statement not covered" >        bid.cpm = responseCPM;</span>
+<span class="cstat-no" title="statement not covered" >        bid.adUrl = jptResponseObj.result.ad;</span>
+<span class="cstat-no" title="statement not covered" >        bid.width = jptResponseObj.result.width;</span>
+<span class="cstat-no" title="statement not covered" >        bid.height = jptResponseObj.result.height;</span>
+<span class="cstat-no" title="statement not covered" >        bid.dealId = jptResponseObj.result.deal_id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bidmanager.addBidResponse(placementCode, bid);</span>
+      } else {
+        //no response data
+        // @if NODE_ENV='debug'
+        utils.logMessage('No prebid response from AppNexus for placement code ' + placementCode);
+&nbsp;
+        // @endif
+        //indicate that there is no bid for this placement
+        bid = bidfactory.createBid(2, bidObj);
+        bid.bidderCode = bidCode;
+        bidmanager.addBidResponse(placementCode, bid);
+      }
+&nbsp;
+      if (!usersync) {
+        var iframe = utils.createInvisibleIframe();
+        iframe.src = '//acdn.adnxs.com/ib/static/usersync/v3/async_usersync.html';
+        try {
+          document.body.appendChild(iframe);
+        } catch (error) {
+<span class="cstat-no" title="statement not covered" >          utils.logError(error);</span>
+        }
+        usersync = true;
+      }
+    } else {
+      //no response data
+      // @if NODE_ENV='debug'
+<span class="cstat-no" title="statement not covered" >      utils.logMessage('No prebid response for placement %%PLACEMENT%%');</span>
+&nbsp;
+      // @endif
+    }
+  };
+&nbsp;
+  return {
+    callBids: baseAdapter.callBids,
+    setBidderCode: baseAdapter.setBidderCode,
+    createNew: AppNexusAdapter.createNew,
+    buildJPTCall: buildJPTCall
+  };
+};
+&nbsp;
+AppNexusAdapter.createNew = function () {
+  return new AppNexusAdapter();
+};
+&nbsp;
+module.exports = AppNexusAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/kruxlink.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/adapters/kruxlink.js</span></h1>
+    <h2>
+        Statements: <span class="metric">19.15% <small>(9 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">19.15% <small>(9 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; kruxlink.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader.js');
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _qs(key, value) {</span>
+<span class="cstat-no" title="statement not covered" >  return encodeURIComponent(key) + '=' + encodeURIComponent(value);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _makeBidResponse(placementCode, bid) {</span>
+<span class="cstat-no" title="statement not covered" >  var bidResponse = bidfactory.createBid(bid !== undefined ? 1 : 2);</span>
+<span class="cstat-no" title="statement not covered" >  bidResponse.bidderCode = 'kruxlink';</span>
+<span class="cstat-no" title="statement not covered" >  if (bid !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    bidResponse.cpm = bid.price;</span>
+<span class="cstat-no" title="statement not covered" >    bidResponse.ad = bid.adm;</span>
+<span class="cstat-no" title="statement not covered" >    bidResponse.width = bid.w;</span>
+<span class="cstat-no" title="statement not covered" >    bidResponse.height = bid.h;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  bidmanager.addBidResponse(placementCode, bidResponse);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _makeCallback(id, placements) {</span>
+<span class="cstat-no" title="statement not covered" >  var callback = '_kruxlink_' + id;</span>
+<span class="cstat-no" title="statement not covered" >  pbjs[callback] = <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+    // Clean up our callback
+<span class="cstat-no" title="statement not covered" >    delete pbjs[callback];</span>
+&nbsp;
+    // Add in the bid respones
+<span class="cstat-no" title="statement not covered" >    if (response.seatbid !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; response.seatbid.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        var seatbid = response.seatbid[i];</span>
+<span class="cstat-no" title="statement not covered" >        if (seatbid.bid !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >          for (var j = 0; j &lt; seatbid.bid.length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >            var bid = seatbid.bid[j];</span>
+<span class="cstat-no" title="statement not covered" >            if (bid.impid !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >              _makeBidResponse(placements[bid.impid], bid);</span>
+<span class="cstat-no" title="statement not covered" >              delete placements[bid.impid];</span>
+            }
+          }
+        }
+      }
+    }
+&nbsp;
+    // Add any no-bids remaining
+<span class="cstat-no" title="statement not covered" >    for (var impid in placements) {</span>
+<span class="cstat-no" title="statement not covered" >      if (placements.hasOwnProperty(impid)) {</span>
+<span class="cstat-no" title="statement not covered" >        _makeBidResponse(placements[impid]);</span>
+      }
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return 'pbjs.' + callback;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _callBids(params) {</span>
+<span class="cstat-no" title="statement not covered" >  var impids = [];</span>
+<span class="cstat-no" title="statement not covered" >  var placements = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var bids = params.bids || [];</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; bids.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    var bidRequest = bids[i];</span>
+<span class="cstat-no" title="statement not covered" >    var bidRequestParams = bidRequest.params || {};</span>
+<span class="cstat-no" title="statement not covered" >    var impid = bidRequestParams.impid;</span>
+<span class="cstat-no" title="statement not covered" >    placements[impid] = bidRequest.placementCode;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    impids.push(impid);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var callback = _makeCallback(params.bidderRequestId, placements);</span>
+<span class="cstat-no" title="statement not covered" >  var qs = [_qs('id', params.bidderRequestId), _qs('u', window.location.href), _qs('impid', impids.join(',')), _qs('calltype', 'pbd'), _qs('callback', callback)];</span>
+<span class="cstat-no" title="statement not covered" >  var url = 'https://link.krxd.net/hb?' + qs.join('&amp;');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  adloader.loadScript(url);</span>
+}
+&nbsp;
+module.exports = function KruxAdapter() {
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

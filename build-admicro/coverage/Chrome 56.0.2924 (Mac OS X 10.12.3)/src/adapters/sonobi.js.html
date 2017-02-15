@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/sonobi.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/sonobi.js</span></h1>
+    <h2>
+        Statements: <span class="metric">93.24% <small>(69 / 74)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">72.34% <small>(34 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(11 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.24% <small>(69 / 74)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; sonobi.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager.js');
+var adloader = require('../adloader.js');
+var utils = require('../utils');
+&nbsp;
+var SonobiAdapter = function SonobiAdapter() {
+  var keymakerAssoc = {}; //  Remember placement codes for callback mapping
+  var bidReqAssoc = {}; //  Remember bids for bid complete reporting
+&nbsp;
+  function _phone_in(request) {
+    var trinity = 'https://apex.go.sonobi.com/trinity.js?key_maker=';
+    var adSlots = request.bids || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    var bidderRequestId = request.bidderRequestId;
+    var ref = window.frameElement ? '&amp;ref=' + encodeURI(top.location.host || <span class="branch-1 cbranch-no" title="branch not covered" >document.referrer)</span> : <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+    adloader.loadScript(trinity + JSON.stringify(_keymaker(adSlots)) + '&amp;cv=' + _operator(bidderRequestId) + ref);
+  }
+&nbsp;
+  function _keymaker(adSlots) {
+    var keyring = {};
+    utils._each(adSlots, function (bidRequest) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (bidRequest.params) {
+        //  Optional
+        var floor = bidRequest.params.floor ? bidRequest.params.floor : null;
+        //  Mandatory
+        var slotIdentifier = bidRequest.params.ad_unit ? bidRequest.params.ad_unit : bidRequest.params.placement_id ? bidRequest.params.placement_id : <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+        var sizes = utils.parseSizesInput(bidRequest.sizes).toString() || <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+        var bidId = bidRequest.bidId;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (utils.isEmpty(sizes)) {
+<span class="cstat-no" title="statement not covered" >          utils.logError('Sonobi adapter expects sizes for ' + bidRequest.placementCode);</span>
+        }
+        var args = sizes ? floor ? sizes + '|f=' + floor : sizes : <span class="branch-1 cbranch-no" title="branch not covered" >floor ? 'f=' + floor : '';</span>
+        if (/^[\/]?[\d]+[[\/].+[\/]?]?$/.test(slotIdentifier)) {
+          slotIdentifier = slotIdentifier.charAt(0) === '/' ? slotIdentifier : '/' + slotIdentifier;
+          keyring[slotIdentifier + '|' + bidId] = args;
+          keymakerAssoc[slotIdentifier + '|' + bidId] = bidRequest.placementCode;
+          bidReqAssoc[bidRequest.placementCode] = bidRequest;
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (/^[0-9a-fA-F]{20}$/.test(slotIdentifier) &amp;&amp; slotIdentifier.length === 20) {
+          keyring[bidId] = slotIdentifier + '|' + args;
+          keymakerAssoc[bidId] = bidRequest.placementCode;
+          bidReqAssoc[bidRequest.placementCode] = bidRequest;
+        } else {
+<span class="cstat-no" title="statement not covered" >          keymakerAssoc[bidId] = bidRequest.placementCode;</span>
+<span class="cstat-no" title="statement not covered" >          bidReqAssoc[bidRequest.placementCode] = bidRequest;</span>
+<span class="cstat-no" title="statement not covered" >          _failure(bidRequest.placementCode);</span>
+<span class="cstat-no" title="statement not covered" >          utils.logError('The ad unit code or Sonobi Placement id for slot ' + bidRequest.placementCode + ' is invalid');</span>
+        }
+      }
+    });
+    return keyring;
+  }
+&nbsp;
+  function _operator(bidderRequestId) {
+    var cb_name = "sbi_" + bidderRequestId;
+    window[cb_name] = _trinity;
+    return cb_name;
+  }
+&nbsp;
+  function _trinity(response) {
+    var slots = response.slots || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    var sbi_dc = response.sbi_dc || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+    utils._each(slots, function (bid, slot_id) {
+      var placementCode = keymakerAssoc[slot_id];
+      if (bid.sbi_aid &amp;&amp; bid.sbi_mouse &amp;&amp; bid.sbi_size) {
+        _success(placementCode, sbi_dc, bid);
+      } else {
+        _failure(placementCode);
+      }
+      delete keymakerAssoc[slot_id];
+    });
+  }
+&nbsp;
+  function _seraph(placementCode) {
+    var theOne = bidReqAssoc[placementCode];
+    delete bidReqAssoc[placementCode];
+    return theOne;
+  }
+&nbsp;
+  function _success(placementCode, sbi_dc, bid) {
+    var goodBid = bidfactory.createBid(1, _seraph(placementCode));
+    if (bid.sbi_dozer) {
+      goodBid.dealId = bid.sbi_dozer;
+    }
+    goodBid.bidderCode = 'sonobi';
+    goodBid.ad = _creative(sbi_dc, bid.sbi_aid);
+    goodBid.cpm = Number(bid.sbi_mouse);
+    goodBid.width = Number(bid.sbi_size.split('x')[0]) || 1;
+    goodBid.height = Number(bid.sbi_size.split('x')[1]) || 1;
+    bidmanager.addBidResponse(placementCode, goodBid);
+  }
+&nbsp;
+  function _failure(placementCode) {
+    var failBid = bidfactory.createBid(2, _seraph(placementCode));
+    failBid.bidderCode = 'sonobi';
+    bidmanager.addBidResponse(placementCode, failBid);
+  }
+&nbsp;
+  function _creative(sbi_dc, sbi_aid) {
+    var src = 'https://' + sbi_dc + 'apex.go.sonobi.com/sbi.js?aid=' + sbi_aid + '&amp;as=null';
+    return '&lt;script type="text/javascript" src="' + src + '"&gt;&lt;/script&gt;';
+  }
+&nbsp;
+  return {
+    callBids: _phone_in,
+    formRequest: _keymaker,
+    parseResponse: _trinity,
+    success: _success,
+    failure: _failure
+  };
+};
+&nbsp;
+module.exports = SonobiAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

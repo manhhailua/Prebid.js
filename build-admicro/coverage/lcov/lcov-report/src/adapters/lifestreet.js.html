@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/adapters/lifestreet.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/adapters/lifestreet.js</span></h1>
+    <h2>
+        Statements: <span class="metric">87.65% <small>(71 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.87% <small>(52 / 62)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">88.89% <small>(8 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">87.65% <small>(71 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/adapters/</a> &#187; lifestreet.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var bidfactory = require('../bidfactory.js');
+var bidmanager = require('../bidmanager');
+var utils = require('../utils.js');
+var adloader = require('../adloader');
+&nbsp;
+var LifestreetAdapter = function LifestreetAdapter() {
+  var BIDDER_CODE = 'lifestreet';
+  var ADAPTER_VERSION = 'prebidJS-1.0';
+  var SLOTS_LOAD_MAP = {};
+  var PREBID_REQUEST_MESSAGE = 'LSMPrebid Request';
+  var PREBID_RESPONSE_MESSAGE = 'LSMPrebid Response';
+&nbsp;
+  function _callBids(params) {
+    utils._each(params.bids, function (bid) {
+      var jstagUrl = bid.params.jstag_url;
+      var slot = bid.params.slot;
+      var adkey = bid.params.adkey;
+      var adSize = bid.params.ad_size;
+      var timeout = 700;
+      if (bid.params.timeout) {
+        timeout = bid.params.timeout;
+      }
+      var shouldRequest = false;
+      if (jstagUrl &amp;&amp; jstagUrl.length &gt; 0 &amp;&amp; slot &amp;&amp; slot.length &gt; 0 &amp;&amp; adkey &amp;&amp; adkey.length &gt; 0 &amp;&amp; adSize &amp;&amp; adSize.length &gt; 0) {
+        var adSizeArray = adSize.split('x');
+        for (var i = 0; i &lt; adSizeArray.length; ++i) {
+          adSizeArray[i] = +adSizeArray[i];
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (bid.sizes &amp;&amp; bid.sizes instanceof Array &amp;&amp; bid.sizes.length &gt; 0 &amp;&amp; adSizeArray.length &gt; 1) {
+          bid.sizes = !(bid.sizes[0] instanceof Array) ? [bid.sizes] : bid.sizes;
+          for (var _i = 0; _i &lt; bid.sizes.length; ++_i) {
+            var size = bid.sizes[_i];
+            if (size.length &gt; 1) {
+              if (size[0] === adSizeArray[0] &amp;&amp; size[1] === adSizeArray[1]) {
+                shouldRequest = true;
+                break;
+              }
+            }
+          }
+        } else {
+<span class="cstat-no" title="statement not covered" >          shouldRequest = true;</span>
+        }
+      }
+      if (shouldRequest) {
+        _callJSTag(bid, jstagUrl, timeout);
+      } else {
+        _addSlotBidResponse(bid, 0, null, 0, 0);
+      }
+    });
+  }
+&nbsp;
+  function _callJSTag(bid, jstagUrl, timeout) {
+    adloader.loadScript(jstagUrl, function () {
+      /*global LSM_Slot */
+      if (LSM_Slot &amp;&amp; typeof LSM_Slot === 'function') {
+        var slotTagParams = {
+          _preload: 'wait',
+          _hb_request: ADAPTER_VERSION,
+          _timeout: timeout,
+          _onload: function _onload(slot, action, cpm, width, height) {
+            if (slot.state() !== 'error') {
+              var slotName = slot.getSlotObjectName();
+              pbjs[slotName] = slot;
+              if (slotName &amp;&amp; !SLOTS_LOAD_MAP[slotName]) {
+                SLOTS_LOAD_MAP[slotName] = true;
+                var ad = _constructLSMAd(jstagUrl, slotName);
+                _addSlotBidResponse(bid, cpm, ad, width, height);
+              } else {
+                slot.show();
+              }
+            } else {
+              _addSlotBidResponse(bid, 0, null, 0, 0);
+            }
+          }
+        };
+        for (var property in bid.params) {
+          if (property === 'jstag_url' || property === 'timeout') {
+            continue;
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (bid.params.hasOwnProperty(property)) {
+            slotTagParams[property] = bid.params[property];
+          }
+        }
+        /*jshint newcap: false */
+        LSM_Slot(slotTagParams);
+        window.addEventListener('message', <span class="fstat-no" title="function not covered" >function (ev) {</span>
+<span class="cstat-no" title="statement not covered" >          var key = ev.message ? 'message' : 'data';</span>
+<span class="cstat-no" title="statement not covered" >          var object = {};</span>
+<span class="cstat-no" title="statement not covered" >          try {</span>
+<span class="cstat-no" title="statement not covered" >            object = JSON.parse(ev[key]);</span>
+          } catch (e) {
+<span class="cstat-no" title="statement not covered" >            return;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if (object.message &amp;&amp; object.message === PREBID_REQUEST_MESSAGE &amp;&amp; object.slotName) {</span>
+<span class="cstat-no" title="statement not covered" >            ev.source.postMessage(JSON.stringify({</span>
+              message: PREBID_RESPONSE_MESSAGE,
+              slotObject: window.pbjs[object.slotName]
+            }), '*');
+<span class="cstat-no" title="statement not covered" >            window.pbjs[object.slotName].destroy();</span>
+          }
+        }, false);
+      } else {
+        _addSlotBidResponse(bid, 0, null, 0, 0);
+      }
+    });
+  }
+&nbsp;
+  function _addSlotBidResponse(bid, cpm, ad, width, height) {
+    var hasResponse = cpm &amp;&amp; ad &amp;&amp; ad.length &gt; 0;
+    var bidObject = bidfactory.createBid(hasResponse ? 1 : 2, bid);
+    bidObject.bidderCode = BIDDER_CODE;
+    if (hasResponse) {
+      bidObject.cpm = cpm;
+      bidObject.ad = ad;
+      bidObject.width = width;
+      bidObject.height = height;
+    }
+    bidmanager.addBidResponse(bid.placementCode, bidObject);
+  }
+&nbsp;
+  function _constructLSMAd(jsTagUrl, slotName) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (jsTagUrl &amp;&amp; slotName) {
+      return '&lt;div id="LSM_AD"&gt;&lt;/div&gt;\n             &lt;script type="text/javascript" src=\'' + jsTagUrl + '\'&gt;&lt;/script&gt;\n             &lt;script&gt;\n              function receivedLSMMessage(ev) {\n                var key = ev.message ? \'message\' : \'data\';\n                var object = {};\n                try {\n                  object = JSON.parse(ev[key]);\n                } catch (e) {\n                  return;\n                }\n                if (object.message === \'' + PREBID_RESPONSE_MESSAGE + '\' &amp;&amp; object.slotObject) {\n                  var slot  = object.slotObject;\n                  slot.__proto__ = slotapi.Slot.prototype;\n                  slot.getProperties()[\'_onload\'] = function(slot) {\n                    if (slot.state() !== \'error\') {\n                      slot.show();\n                    }\n                  };\n                  window[slot.getSlotObjectName()] = slot;\n                  slot.showInContainer(document.getElementById("LSM_AD"));\n                }\n              }\n              window.addEventListener(\'message\', receivedLSMMessage, false);\n              window.parent.postMessage(JSON.stringify({\n                message: \'' + PREBID_REQUEST_MESSAGE + '\',\n                slotName: \'' + slotName + '\'\n              }), \'*\');\n            &lt;/script&gt;';
+    }
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+&nbsp;
+  return {
+    callBids: _callBids
+  };
+};
+&nbsp;
+module.exports = LifestreetAdapter;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 15 2017 11:35:18 GMT+0700 (ICT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
